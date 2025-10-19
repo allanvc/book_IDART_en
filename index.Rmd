@@ -5,7 +5,7 @@ date: "October 2025"
 cover-image: img/cover_dark_v2.jpg
 apple-touch-icon: img/apple-touch-icon.png
 favicon: img/favicon.ico
-url: 'https\://allanvc.github.io/book_IDART_en'
+url: 'https://allanvc.github.io/book_IDART_en'
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
