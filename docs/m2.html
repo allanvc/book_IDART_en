@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 2 Module II | Introduction to Data Analysis with R and the Tidyverse</title>
+  <meta name="description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 2 Module II | Introduction to Data Analysis with R and the Tidyverse" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
+  <meta property="og:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="github-repo" content="allanvc/book_IADR-T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 2 Module II | Introduction to Data Analysis with R and the Tidyverse" />
+  
+  <meta name="twitter:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="twitter:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
+
+<meta name="author" content="Allan Quadros, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="m1.html"/>
+<link rel="next" href="m3.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Data Analysis in **R** using Tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-organization"><i class="fa fa-check"></i>Course Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="m1.html"><a href="m1.html"><i class="fa fa-check"></i><b>1</b> Module I</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="m1.html"><a href="m1.html#first-steps"><i class="fa fa-check"></i><b>1.1</b> First Steps</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="m1.html"><a href="m1.html#brief-history"><i class="fa fa-check"></i><b>1.1.1</b> Brief History</a></li>
+<li class="chapter" data-level="1.1.2" data-path="m1.html"><a href="m1.html#installing-r"><i class="fa fa-check"></i><b>1.1.2</b> Installing <strong>R</strong></a></li>
+<li class="chapter" data-level="1.1.3" data-path="m1.html"><a href="m1.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Installing <strong>RStudio</strong></a></li>
+<li class="chapter" data-level="1.1.4" data-path="m1.html"><a href="m1.html#installing-rtools-on-windows"><i class="fa fa-check"></i><b>1.1.4</b> Installing <strong>RTools</strong> on Windows</a></li>
+<li class="chapter" data-level="1.1.5" data-path="m1.html"><a href="m1.html#basic-functionalities-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.5</b> Basic Functionalities of R and RStudio</a></li>
+<li class="chapter" data-level="1.1.6" data-path="m1.html"><a href="m1.html#r-language-structure"><i class="fa fa-check"></i><b>1.1.6</b> R Language Structure</a></li>
+<li class="chapter" data-level="1.1.7" data-path="m1.html"><a href="m1.html#how-to-get-help"><i class="fa fa-check"></i><b>1.1.7</b> How to get help</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="m1.html"><a href="m1.html#r-language-object-structure"><i class="fa fa-check"></i><b>1.2</b> R Language Object Structure</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="m1.html"><a href="m1.html#vectors"><i class="fa fa-check"></i><b>1.2.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="m1.html"><a href="m1.html#dataframes"><i class="fa fa-check"></i><b>1.2.2</b> Dataframes</a></li>
+<li class="chapter" data-level="1.2.3" data-path="m1.html"><a href="m1.html#module-references"><i class="fa fa-check"></i><b>1.2.3</b> Module References</a></li>
+<li class="chapter" data-level="1.2.4" data-path="m1.html"><a href="m1.html#exercises"><i class="fa fa-check"></i><b>1.2.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="m2.html"><a href="m2.html"><i class="fa fa-check"></i><b>2</b> Module II</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="m2.html"><a href="m2.html#reading-data-in-r"><i class="fa fa-check"></i><b>2.1</b> Reading Data in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="m2.html"><a href="m2.html#the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> The Tidyverse</a></li>
+<li class="chapter" data-level="2.1.2" data-path="m2.html"><a href="m2.html#reading-and-exporting-data-using-readr"><i class="fa fa-check"></i><b>2.1.2</b> Reading and Exporting Data using <code>readr</code></a></li>
+<li class="chapter" data-level="2.1.3" data-path="m2.html"><a href="m2.html#writing-and-exporting-data"><i class="fa fa-check"></i><b>2.1.3</b> Writing and exporting data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="m2.html"><a href="m2.html#reading-data-from-stata-sas-and-spss"><i class="fa fa-check"></i><b>2.1.4</b> Reading data from Stata, SAS and SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="m2.html"><a href="m2.html#section-references"><i class="fa fa-check"></i><b>2.1.5</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="m2.html"><a href="m2.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Data Manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="m2.html"><a href="m2.html#filtering-rows-with-filter"><i class="fa fa-check"></i><b>2.2.1</b> Filtering rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="m2.html"><a href="m2.html#ordering-rows-with-arrange"><i class="fa fa-check"></i><b>2.2.2</b> Ordering rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="m2.html"><a href="m2.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.3</b> Selecting columns with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="m2.html"><a href="m2.html#adding-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Adding new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="m2.html"><a href="m2.html#modifying-entries-with-mutate-or-transmute-case_when"><i class="fa fa-check"></i><b>2.2.5</b> Modifying entries with <code>mutate()</code> or <code>transmute()</code> + <code>case_when()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="m2.html"><a href="m2.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>2.2.6</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.7" data-path="m2.html"><a href="m2.html#dplyr-structure"><i class="fa fa-check"></i><b>2.2.7</b> <code>dplyr</code> Structure</a></li>
+<li class="chapter" data-level="2.2.8" data-path="m2.html"><a href="m2.html#using-the-pipe"><i class="fa fa-check"></i><b>2.2.8</b> Using the Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="2.2.9" data-path="m2.html"><a href="m2.html#section-references-1"><i class="fa fa-check"></i><b>2.2.9</b> Section References</a></li>
+<li class="chapter" data-level="2.2.10" data-path="m2.html"><a href="m2.html#exercises-1"><i class="fa fa-check"></i><b>2.2.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="m2.html"><a href="m2.html#graphics-with-ggplot2"><i class="fa fa-check"></i><b>2.3</b> Graphics with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="m2.html"><a href="m2.html#introduction"><i class="fa fa-check"></i><b>2.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.2" data-path="m2.html"><a href="m2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.3.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="2.3.3" data-path="m2.html"><a href="m2.html#data"><i class="fa fa-check"></i><b>2.3.3</b> Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="m2.html"><a href="m2.html#the-ggplot-function"><i class="fa fa-check"></i><b>2.3.4</b> The <code>ggplot()</code> function</a></li>
+<li class="chapter" data-level="2.3.5" data-path="m2.html"><a href="m2.html#aesthetics-aesthetic-elements-of-graphics"><i class="fa fa-check"></i><b>2.3.5</b> Aesthetics (aesthetic elements of graphics)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="m2.html"><a href="m2.html#examples-for-aesthetics"><i class="fa fa-check"></i><b>2.3.6</b> Examples for <em>aesthetics</em></a></li>
+<li class="chapter" data-level="2.3.7" data-path="m2.html"><a href="m2.html#geoms"><i class="fa fa-check"></i><b>2.3.7</b> Geoms</a></li>
+<li class="chapter" data-level="2.3.8" data-path="m2.html"><a href="m2.html#examples-for-geoms"><i class="fa fa-check"></i><b>2.3.8</b> Examples for <em>Geoms</em></a></li>
+<li class="chapter" data-level="2.3.9" data-path="m2.html"><a href="m2.html#facetting"><i class="fa fa-check"></i><b>2.3.9</b> Facetting</a></li>
+<li class="chapter" data-level="2.3.10" data-path="m2.html"><a href="m2.html#titles-labels-themes-and-legends"><i class="fa fa-check"></i><b>2.3.10</b> Titles, labels, themes and legends</a></li>
+<li class="chapter" data-level="2.3.11" data-path="m2.html"><a href="m2.html#changing-colors-and-color-palette"><i class="fa fa-check"></i><b>2.3.11</b> Changing colors and color palette</a></li>
+<li class="chapter" data-level="2.3.12" data-path="m2.html"><a href="m2.html#plot-area-and-theme"><i class="fa fa-check"></i><b>2.3.12</b> Plot Area and Theme</a></li>
+<li class="chapter" data-level="2.3.13" data-path="m2.html"><a href="m2.html#section-references-2"><i class="fa fa-check"></i><b>2.3.13</b> Section References</a></li>
+<li class="chapter" data-level="2.3.14" data-path="m2.html"><a href="m2.html#exercises-2"><i class="fa fa-check"></i><b>2.3.14</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="m3.html"><a href="m3.html"><i class="fa fa-check"></i><b>3</b> Module III</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="m3.html"><a href="m3.html#accessing-relational-databases-with-dbplyr"><i class="fa fa-check"></i><b>3.1</b> Accessing Relational Databases with <code>dbplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="m3.html"><a href="m3.html#introduction-1"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1.2" data-path="m3.html"><a href="m3.html#connecting-to-a-database"><i class="fa fa-check"></i><b>3.1.2</b> Connecting to a database</a></li>
+<li class="chapter" data-level="3.1.3" data-path="m3.html"><a href="m3.html#generating-queries"><i class="fa fa-check"></i><b>3.1.3</b> Generating queries</a></li>
+<li class="chapter" data-level="3.1.4" data-path="m3.html"><a href="m3.html#section-references-3"><i class="fa fa-check"></i><b>3.1.4</b> Section References</a></li>
+<li class="chapter" data-level="3.1.5" data-path="m3.html"><a href="m3.html#exercises-3"><i class="fa fa-check"></i><b>3.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="m3.html"><a href="m3.html#data-manipulation-with-two-table-verbs---dplyr"><i class="fa fa-check"></i><b>3.2</b> Data Manipulation with <em>Two-table verbs</em> - <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="m3.html"><a href="m3.html#mutating-joins"><i class="fa fa-check"></i><b>3.2.1</b> <em>Mutating joins</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="m3.html"><a href="m3.html#filtering-joins"><i class="fa fa-check"></i><b>3.2.2</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="3.2.3" data-path="m3.html"><a href="m3.html#section-references-4"><i class="fa fa-check"></i><b>3.2.3</b> Section References</a></li>
+<li class="chapter" data-level="3.2.4" data-path="m3.html"><a href="m3.html#exercises-4"><i class="fa fa-check"></i><b>3.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="m3.html"><a href="m3.html#geographic-data-analysis-in-r"><i class="fa fa-check"></i><b>3.3</b> Geographic Data Analysis in <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="m3.html"><a href="m3.html#introduction-2"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="m3.html"><a href="m3.html#map-production-in-r"><i class="fa fa-check"></i><b>3.3.2</b> Map Production in R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="m3.html"><a href="m3.html#exporting-geographic-data"><i class="fa fa-check"></i><b>3.3.3</b> Exporting geographic data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="m3.html"><a href="m3.html#section-references-5"><i class="fa fa-check"></i><b>3.3.4</b> Section References</a></li>
+<li class="chapter" data-level="3.3.5" data-path="m3.html"><a href="m3.html#exercises-5"><i class="fa fa-check"></i><b>3.3.5</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="m4.html"><a href="m4.html"><i class="fa fa-check"></i><b>4</b> Module IV</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="m4.html"><a href="m4.html#string-manipulation-in-r-with-stringr"><i class="fa fa-check"></i><b>4.1</b> String Manipulation in R with <code>stringr</code></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="m4.html"><a href="m4.html#introduction-3"><i class="fa fa-check"></i><b>4.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.2" data-path="m4.html"><a href="m4.html#operations-with-individual-characters"><i class="fa fa-check"></i><b>4.1.2</b> Operations with individual characters</a></li>
+<li class="chapter" data-level="4.1.3" data-path="m4.html"><a href="m4.html#pattern-matching"><i class="fa fa-check"></i><b>4.1.3</b> Pattern matching</a></li>
+<li class="chapter" data-level="4.1.4" data-path="m4.html"><a href="m4.html#section-references-6"><i class="fa fa-check"></i><b>4.1.4</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="m4.html"><a href="m4.html#regular-expressions-regex"><i class="fa fa-check"></i><b>4.2</b> Regular Expressions (REGEX)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="m4.html"><a href="m4.html#introduction-4"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.2" data-path="m4.html"><a href="m4.html#regex-examples-using-stringr"><i class="fa fa-check"></i><b>4.2.2</b> REGEX Examples using <code>stringr</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="m4.html"><a href="m4.html#section-references-7"><i class="fa fa-check"></i><b>4.2.3</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="m4.html"><a href="m4.html#reports-and-reproducible-research-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> Reports and Reproducible Research with <code>rmarkdown</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="m4.html"><a href="m4.html#introduction-5"><i class="fa fa-check"></i><b>4.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.3.2" data-path="m4.html"><a href="m4.html#header"><i class="fa fa-check"></i><b>4.3.2</b> Header</a></li>
+<li class="chapter" data-level="4.3.3" data-path="m4.html"><a href="m4.html#text-formatting"><i class="fa fa-check"></i><b>4.3.3</b> Text Formatting</a></li>
+<li class="chapter" data-level="4.3.4" data-path="m4.html"><a href="m4.html#inserting-external-figures"><i class="fa fa-check"></i><b>4.3.4</b> Inserting external figures</a></li>
+<li class="chapter" data-level="4.3.5" data-path="m4.html"><a href="m4.html#inserting-links"><i class="fa fa-check"></i><b>4.3.5</b> Inserting links</a></li>
+<li class="chapter" data-level="4.3.6" data-path="m4.html"><a href="m4.html#mathematical-formulas"><i class="fa fa-check"></i><b>4.3.6</b> Mathematical formulas</a></li>
+<li class="chapter" data-level="4.3.7" data-path="m4.html"><a href="m4.html#code-insertion-and-execution"><i class="fa fa-check"></i><b>4.3.7</b> Code insertion and execution</a></li>
+<li class="chapter" data-level="4.3.8" data-path="m4.html"><a href="m4.html#more-sophisticated-tables"><i class="fa fa-check"></i><b>4.3.8</b> More sophisticated tables</a></li>
+<li class="chapter" data-level="4.3.9" data-path="m4.html"><a href="m4.html#section-references-8"><i class="fa fa-check"></i><b>4.3.9</b> Section References</a></li>
+<li class="chapter" data-level="4.3.10" data-path="m4.html"><a href="m4.html#exercises-6"><i class="fa fa-check"></i><b>4.3.10</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Data Analysis with R and the Tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="m2" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number"> 2</span> Module II<a href="m2.html#m2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="reading-data-in-r" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Reading Data in R<a href="m2.html#reading-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we’ve been working by creating objects from data entered via script or console. However, the most common practice when doing data analysis is to read data from external sources, such as a .txt or .csv file, a relational database (SQL) on our company’s server, or even from web pages. In this section, we’ll see how to read databases stored locally on the computer.</p>
+<p>I often say that in R, there are always at least 3 different ways to perform the same task. When it comes to reading data, this is no different, since R has several packages for data reading; some focus on speed, others on practicality, and still others are made specifically to handle massive databases. Regarding this last aspect, it must be recognized that R doesn’t have memory management that allows users to load very large databases (around 10 million rows or so). This is, in a way, intentional, since R was created to make life easier for users dealing with data analysis. But it should be noted that, due to its extremely active community, several packages have been and continue to be developed with the aim of improving how R handles object storage in memory.</p>
+<p>In this course, we’ll focus on using the <code>readr</code> package, as we understand it to be a middle ground between practicality and speed, considering the alternatives from <code>base R</code> and similar but much faster functions, such as those available in the <code>data.table</code>, <code>vroom</code> packages, among others.</p>
+<div id="the-tidyverse" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> The Tidyverse<a href="m2.html#the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>readr</code> is part of a collection of packages called <strong>Tidyverse</strong>.</p>
+<p><em>“The tidyverse is a set of packages that work in harmony because they share common data representations and API design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command.”</em> * <strong>Hadley Wickham</strong> *</p>
+<div class="figure">
+<img src="fig/tidyverse2.png" width="150" alt="" />
+<p class="caption">Tidyverse Hexsticker</p>
+</div>
+<p>We can define the <em>Tidyverse</em>, then, as a <em>meta-package</em> that brings together a collection of several other R packages aimed at importing, exploring, manipulating, and visualizing data. They range from packages for string manipulation, regular expressions, dates, through reading and import packages, data manipulation and visualization, to report generation and web page creation, among other things.</p>
+<p>These packages seek to provide greater standardization and ease in dealing with data in R.</p>
+</div>
+<div id="reading-and-exporting-data-using-readr" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Reading and Exporting Data using <code>readr</code><a href="m2.html#reading-and-exporting-data-using-readr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The goal of the <code>readr</code> package is to make reading rectangular/tabular databases (csv, txt, and fwf) in R easier and more user-friendly. Compared to <code>base R</code> alternatives, <code>readr</code> is smarter in the sense of trying to guess column formats, while still allowing, if necessary, user specification of patterns.</p>
+<p>The most important reading functions in the package are:</p>
+<ul>
+<li><code>read_csv()</code>: reads <code>.csv</code> or <code>.txt</code> files in American format, where the column separator is a comma;</li>
+<li><code>read_csv2()</code>: reads <code>.csv</code> or <code>.txt</code> files in European format, where the column separator is a semicolon;</li>
+<li><code>read_tsv()</code>: reads <code>.csv</code> or <code>.txt</code> files, where the column separator is tab <code>\t</code>;</li>
+<li><code>read_table()</code>: reads <code>.txt</code> files, where the column separator is whitespace;</li>
+<li><code>read_delim()</code>: allows reading files of various extensions, where the user can specify the delimiter through the <code>delim</code> parameter.</li>
+</ul>
+<p>Let’s practice using data from the <a href="https://archive.ics.uci.edu/ml/datasets/wine+quality"><strong>UCI Wine Quality Dataset</strong></a>. You can download the data. However, since our goal is to create the reading experience, we’ll use this <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"><strong>LINK</strong></a>. Once on the page, you can save it to your computer by right-clicking and then clicking <code>Save as</code>.</p>
+<p>Note that the data is in a <code>.csv</code> file in semicolon-separated format.</p>
+<p>Let’s read the file that was saved on our computer.</p>
+<p><strong>TIP:</strong> On your computer, the file path will be different.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="m2.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb172-2"><a href="m2.html#cb172-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-3"><a href="m2.html#cb172-3" aria-hidden="true" tabindex="-1"></a>wine_data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="at">file=</span><span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">...</span><span class="sc">\\</span><span class="st">winequality-red.csv&quot;</span>)</span>
+<span id="cb172-4"><a href="m2.html#cb172-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-5"><a href="m2.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="co"># or using the more generic function</span></span>
+<span id="cb172-6"><a href="m2.html#cb172-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-7"><a href="m2.html#cb172-7" aria-hidden="true" tabindex="-1"></a>wine_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file=</span><span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">...</span><span class="sc">\\</span><span class="st">winequality-red.csv&quot;</span>,</span>
+<span id="cb172-8"><a href="m2.html#cb172-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span></code></pre></div>
+<p>If you don’t want to save the database on your computer, reading the file directly from the website, you can also do that. Just copy the file address shown in the browser and pass it to the <code>file</code> argument. Paths passed to the <code>file</code> argument starting with <code>http://</code>, <code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> result in automatic download and reading of the file.</p>
+<pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
+<pre><code>## Rows: 1599 Columns: 12</code></pre>
+<pre><code>## ── Column specification ──────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;;&quot;
+## chr (5): volatile acidity, citric acid, chlorides, density, sulphates
+## dbl (2): total sulfur dioxide, quality
+## num (5): fixed acidity, residual sugar, free sulfur dioxide, pH, alcohol
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>Once the file is read, the functions print to the console the names of each column and the ways they were read. This allows the user to check if everything went well during reading. If any column wasn’t read in the format you expected, just copy the output and run the function again, changing the specification of that particular column.</p>
+<p>For example, let’s change the quality column from double (which takes up more memory) to be read as an integer. We make this specification in the <code>col_types</code> argument.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="m2.html#cb177-1" aria-hidden="true" tabindex="-1"></a>wine_data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="at">file=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv&quot;</span>,</span>
+<span id="cb177-2"><a href="m2.html#cb177-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb177-3"><a href="m2.html#cb177-3" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">fixed acidity</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-4"><a href="m2.html#cb177-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">volatile acidity</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-5"><a href="m2.html#cb177-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">citric acid</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-6"><a href="m2.html#cb177-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">residual sugar</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-7"><a href="m2.html#cb177-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">chlorides =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-8"><a href="m2.html#cb177-8" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">free sulfur dioxide</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-9"><a href="m2.html#cb177-9" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">total sulfur dioxide</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-10"><a href="m2.html#cb177-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">density =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-11"><a href="m2.html#cb177-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">pH =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-12"><a href="m2.html#cb177-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sulphates =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-13"><a href="m2.html#cb177-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alcohol =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb177-14"><a href="m2.html#cb177-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">quality =</span> <span class="fu">col_integer</span>()</span>
+<span id="cb177-15"><a href="m2.html#cb177-15" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb177-16"><a href="m2.html#cb177-16" aria-hidden="true" tabindex="-1"></a>                     )</span></code></pre></div>
+<pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
+<p>Once the file is read, we can inspect it by calling the created object, or by clicking on the object name in our <em>environment</em>.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="m2.html#cb180-1" aria-hidden="true" tabindex="-1"></a>wine_data</span></code></pre></div>
+<pre><code>## # A tibble: 1,599 × 12
+##    `fixed acidity` `volatile acidity` `citric acid` `residual sugar` chlorides `free sulfur dioxide`
+##              &lt;dbl&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;                 &lt;dbl&gt;
+##  1              NA                 NA             0               NA        NA                    11
+##  2              NA                 NA             0               NA        NA                    25
+##  3              NA                 NA            NA               NA        NA                    15
+##  4              NA                 NA            NA               NA        NA                    17
+##  5              NA                 NA             0               NA        NA                    11
+##  6              NA                 NA             0               NA        NA                    13
+##  7              NA                 NA            NA               NA        NA                    15
+##  8              NA                 NA             0               NA        NA                    15
+##  9              NA                 NA            NA                2        NA                     9
+## 10              NA                 NA            NA               NA        NA                    17
+## # ℹ 1,589 more rows
+## # ℹ 6 more variables: `total sulfur dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;,
+## #   alcohol &lt;dbl&gt;, quality &lt;int&gt;</code></pre>
+<p>Note that this file doesn’t look much like the classic Dataframe format we saw in Module <a href="m1.html#m1">1</a>. It’s actually a new type of object, which follows the <em>Tidyverse</em> philosophy, commented on in the previous section. We have here a <code>tibble</code>, which is nothing more than a friendlier Dataframe. In general terms, the difference between a classic Dataframe and a <code>tibble</code> is mainly in the information presented to us when we print the object’s content to the console. Unlike a Dataframe, a <code>tibble</code> shows us only the first 10 rows of the table, the column types, and only the content of columns that fit on our screen.</p>
+<p>Another difference is in the result when we perform indexing. We can still use <code>[row_index, column_index]</code> or <code>dataframe_name$column_name</code>. The thing is that indexing with brackets will return a <code>tibble</code>, even if the operation results in a single column. Indexing via <code>$</code> will return a vector. In summary, the first doesn’t change the object type - we continue with a <code>tibble</code>. The second changes the object type.</p>
+<p>Test this in practice:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="m2.html#cb182-1" aria-hidden="true" tabindex="-1"></a>wine_data[,<span class="st">&quot;quality&quot;</span>] <span class="co"># or wine_data[,12]</span></span>
+<span id="cb182-2"><a href="m2.html#cb182-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-3"><a href="m2.html#cb182-3" aria-hidden="true" tabindex="-1"></a>wine_data<span class="sc">$</span>quality</span></code></pre></div>
+<p>Other advantages of <code>tibble</code> are:</p>
+<ul>
+<li>we no longer need to worry about <code>stringsAsFactors=FALSE</code>;</li>
+<li>it works much more fluidly with the other tidyverse packages we’ll use later in the course;</li>
+</ul>
+<div id="alternatives" class="section level4 hasAnchor" number="2.1.2.1">
+<h4><span class="header-section-number">2.1.2.1</span> Alternatives<a href="m2.html#alternatives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>When it comes to reading data, there are many alternatives in R. Although not within the scope of this course, we suggest you study how the <code>read.table()</code> family functions from <code>base R</code> work. These functions are slower than <code>readr</code> package functions, but offer greater flexibility regarding parameter specification.</p>
+<p>Regarding large databases, with millions of observations, we suggest the <code>fread()</code> function from the <code>data.table</code> package. But this speed comes with the price of having to learn a slightly different programming paradigm, even though it’s within R.</p>
+<p>Many people are also interested in reading data from Excel spreadsheets or sheet tabs in <code>.xls</code> and <code>.xlsx</code> formats. Although it’s not the most appropriate way to store data, it’s worth knowing there’s an alternative for reading Excel data. Read about the <code>readxl</code> package and the <code>read_excel()</code> function.</p>
+</div>
+</div>
+<div id="writing-and-exporting-data" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Writing and exporting data<a href="m2.html#writing-and-exporting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Despite its name, the <code>readr</code> package also has functions for writing data. To export the results of our analyses in R to a table with <code>.txt</code> or <code>.csv</code> extension, for example, we’ll use functions very similar to reading ones, changing only the prefixes from <em>read</em> to <em>write</em>. The suffixes, again, will depend on the type of file you want to save.</p>
+<p>The most used functions are: <code>write_csv()</code>; <code>write_csv2</code>; <code>write_table()</code>; and <code>write_delim()</code>.</p>
+<p>Let’s modify the <code>wine_data</code> file and then export the new version as a new <code>.csv</code> file in European format. Using the knowledge about object indexing from Module <a href="m1.html#m1">1</a>, let’s replace the first 500 rows of the <code>quality</code> column to <code>8</code>, and eliminate a column.</p>
+<p><strong>1) changing the quality</strong></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="m2.html#cb183-1" aria-hidden="true" tabindex="-1"></a>wine_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>, <span class="st">&quot;quality&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">8</span>, <span class="dv">500</span>)</span>
+<span id="cb183-2"><a href="m2.html#cb183-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-3"><a href="m2.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb183-4"><a href="m2.html#cb183-4" aria-hidden="true" tabindex="-1"></a>wine_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>, <span class="dv">12</span>] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">8</span>, <span class="dv">500</span>)</span>
+<span id="cb183-5"><a href="m2.html#cb183-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-6"><a href="m2.html#cb183-6" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb183-7"><a href="m2.html#cb183-7" aria-hidden="true" tabindex="-1"></a>wine_data<span class="sc">$</span>quality[<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">8</span>, <span class="dv">500</span>)</span></code></pre></div>
+<p><strong>2) excluding the first column</strong></p>
+<p>In R, we have a word reserved by the language that transforms objects or object elements into empty. It’s the word <code>NULL</code>.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="m2.html#cb184-1" aria-hidden="true" tabindex="-1"></a>wine_data[, <span class="st">&quot;fixed acidity&quot;</span>] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="m2.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb185-2"><a href="m2.html#cb185-2" aria-hidden="true" tabindex="-1"></a>wine_data[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb185-3"><a href="m2.html#cb185-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-4"><a href="m2.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb185-5"><a href="m2.html#cb185-5" aria-hidden="true" tabindex="-1"></a>wine_data_modified <span class="ot">&lt;-</span> wine_data[, <span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(wine_data)]</span>
+<span id="cb185-6"><a href="m2.html#cb185-6" aria-hidden="true" tabindex="-1"></a><span class="co"># we replace the complete version of the tibble with a version that brings...</span></span>
+<span id="cb185-7"><a href="m2.html#cb185-7" aria-hidden="true" tabindex="-1"></a><span class="co">#...only data from column 2 onwards</span></span></code></pre></div>
+<p><strong>3) saving the new tibble in a file</strong></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="m2.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv2</span>(<span class="at">x=</span>wine_data,</span>
+<span id="cb186-2"><a href="m2.html#cb186-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">path=</span><span class="st">&quot;C://path//...//wine_data_modified.csv&quot;</span>)</span>
+<span id="cb186-3"><a href="m2.html#cb186-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-4"><a href="m2.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb186-5"><a href="m2.html#cb186-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(<span class="at">x=</span>wine_data,</span>
+<span id="cb186-6"><a href="m2.html#cb186-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">path=</span><span class="st">&quot;C://path//...//wine_data_modified.csv&quot;</span>,</span>
+<span id="cb186-7"><a href="m2.html#cb186-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">delim=</span><span class="st">&quot;;&quot;</span>)</span></code></pre></div>
+<p><strong>TIP:</strong> It’s very common to have doubts about what the parameters of a function are and how it works. Don’t forget to always consult R’s <em>Help</em>, or type the <code>function_name</code> in the Console to see all its parameters.</p>
+</div>
+<div id="reading-data-from-stata-sas-and-spss" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Reading data from Stata, SAS and SPSS<a href="m2.html#reading-data-from-stata-sas-and-spss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve seen that in these 20 years of history, <strong>R</strong> has grown considerably. During this time, several researchers and professionals from various areas migrated to R, mainly from Stata, SAS, and SPSS. When facing the cost of change, many people encounter the challenge of “translating” their scripts from one language to another, as well as reading data written or stored in extensions used by those languages.</p>
+<p>R’s standard installation already offers a library to read databases from other languages. The package name makes perfect sense: <code>foreign</code>. It brings several functions that make importing simple. Additionally, installing and using the <code>Hmisc</code> package is also recommended.</p>
+<p>Below, we present just some ideas on how to handle “foreign” datasets in R:</p>
+<ul>
+<li>SPSS:</li>
+</ul>
+<pre class="sas"><code># saving the dataset in SPSS in transport format (XPORT)
+get file=&#39;C:/my_data.sav&#39;.
+export outfile=&#39;C:/my_data.por&#39;.</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="m2.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in R</span></span>
+<span id="cb188-2"><a href="m2.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;Hmisc&quot;) # if necessary</span></span>
+<span id="cb188-3"><a href="m2.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb188-4"><a href="m2.html#cb188-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">spss.get</span>(<span class="st">&quot;C:/my_SPSS_data.por&quot;</span>, <span class="at">use.value.labels=</span><span class="cn">TRUE</span>)</span>
+<span id="cb188-5"><a href="m2.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use.value.labels=TRUE converts label values to factors</span></span></code></pre></div>
+<ul>
+<li>SAS:</li>
+</ul>
+<pre class="sas"><code># save the SAS dataset in transport format (XPORT)
+libname out xport &#39;C:/my_SAS_data.xpt&#39;;
+data out.mydata;
+set sasuser.mydata;
+run;</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="m2.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in R</span></span>
+<span id="cb190-2"><a href="m2.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb190-3"><a href="m2.html#cb190-3" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">sasxport.get</span>(<span class="st">&quot;C:/my_SAS_data.xpt&quot;</span>)</span>
+<span id="cb190-4"><a href="m2.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="co"># character type variables will be converted to factors</span></span></code></pre></div>
+<ul>
+<li>Stata:</li>
+</ul>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="m2.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb191-2"><a href="m2.html#cb191-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.dta</span>(<span class="st">&quot;C:/my_stata_data.dta&quot;</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="section-references" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Section References<a href="m2.html#section-references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><em>Quick R website</em>. (2020). URL <a href="https://www.statmethods.net/">https://www.statmethods.net/</a>.</p></li>
+<li><p>Wickham, H.; Hester, J.; François R. (2018). <em>readr: Read Rectangular Text Data</em>. R package version 1.3.1. URL <a href="https://readr.tidyverse.org/index.html">https://CRAN.R-project.org/package=readr</a>.</p></li>
+<li><p>____. (2020). <em>readr official website</em>. URL <a href="https://readr.tidyverse.org/index.html">https://readr.tidyverse.org/index.html</a>.</p></li>
+<li><p>Wickham, H.; Grolemund, G. (2016). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media. december 2016. 522 pages. Available at: <a href="https://www.r4ds.co.nz">https://www.r4ds.co.nz</a>.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+</div>
+<div id="data-manipulation-with-dplyr" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data Manipulation with <code>dplyr</code><a href="m2.html#data-manipulation-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section, we’ll cover the <code>dplyr</code> package, which is one of the most important packages in the <em>tidyverse</em> collection. It brings a specific “grammar” of data manipulation, providing a set of functions that help solve the most common challenges in data manipulation. The goal is for you to become familiar with <code>dplyr</code> package functions; with the tasks they perform; and see examples of how to apply them to <em>data.frames</em>.</p>
+<p>As the package authors themselves point out, when we work with data, we need to:</p>
+<ul>
+<li><p>Discover what we want to do;</p></li>
+<li><p>Describe these tasks in the form of a computer program;</p></li>
+<li><p>Execute the program.</p></li>
+</ul>
+<p>The <code>dplyr</code> package makes these steps faster and easier to execute, because:</p>
+<ul>
+<li><p>instead of providing a multitude of functions, like we have in <em>base R</em> and other packages, it restricts our options and thereby helps us think more directly about what we want and can do with the data;</p></li>
+<li><p>provides simpler “verbs” (or functions), i.e., functions that correspond to the most common data manipulation tasks, helping us translate thoughts into code;</p></li>
+<li><p>uses efficient backends (end-process codes, i.e., closer to the user), so we spend less time waiting for the computer.</p></li>
+</ul>
+<p>The <code>dplyr</code> package provides a function for each “verb” considered important in data manipulation:</p>
+<ul>
+<li><p><code>filter()</code> to select “cases” based on their values;</p></li>
+<li><p><code>arrange()</code> to reorder “cases”;</p></li>
+<li><p><code>select()</code> and rename() to select variables based on their names;</p></li>
+<li><p><code>mutate()</code> and <code>transmute()</code> to add new variables that are functions of variables already existing in the data;</p></li>
+<li><p><code>summarise()</code> or <code>summarize()</code> to condense multiple values into a single one;</p></li>
+<li><p><code>group_by()</code> although not considered one of the “verbs”, serves to group data around one or more variables. Functions considered “verbs” can be used before or after data grouping.</p></li>
+</ul>
+<p>We’ll now see some examples of applying these functions.</p>
+<p>Let’s use a different dataset now. We’ll use the built-in <code>mtcars</code> dataset that comes with R, which contains information about car models.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="m2.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb192-2"><a href="m2.html#cb192-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-3"><a href="m2.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the mtcars dataset</span></span>
+<span id="cb192-4"><a href="m2.html#cb192-4" aria-hidden="true" tabindex="-1"></a>cars_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb192-5"><a href="m2.html#cb192-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-6"><a href="m2.html#cb192-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cars_data)</span></code></pre></div>
+<pre><code>## [1] 32 11</code></pre>
+<p>Note that by <em>print</em> we again have a <em>tibble</em>, which is a modern form of data.frame implemented by the <strong>tidyverse</strong> folks. This format is particularly useful for large <em>datasets</em> because only the first lines and various summaries/information about our variables are printed on screen. To convert data.frames to tibbles, we use <code>as_tibble()</code>.</p>
+<div id="filtering-rows-with-filter" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Filtering rows with <code>filter()</code><a href="m2.html#filtering-rows-with-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>filter()</code> allows making a <em>subset</em> of rows from a tibble/dataframe. Like all simple verbs in <code>dplyr</code>, the first argument will be a <em>tibble</em> (or data.frame). The second argument and subsequent ones refer to variables within the data.frame, where rows are selected where the expression is true (TRUE).</p>
+<p>Let’s select all rows where miles per gallon (mpg) is greater than 20 and the number of cylinders is 4:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="m2.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(cars_data, mpg <span class="sc">&gt;</span> <span class="dv">20</span>, cyl <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 11 × 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  22.8     4 108      93  3.85  2.32  18.6     1     1     4     1
+##  2  24.4     4 147.     62  3.69  3.19  20       1     0     4     2
+##  3  22.8     4 141.     95  3.92  3.15  22.9     1     0     4     2
+##  4  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+##  5  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+##  6  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1
+##  7  21.5     4 120.     97  3.7   2.46  20.0     1     0     3     1
+##  8  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
+##  9  26       4 120.     91  4.43  2.14  16.7     0     1     5     2
+## 10  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
+## 11  21.4     4 121     109  4.11  2.78  18.6     1     1     4     2</code></pre>
+<p><strong>TIP:</strong> In <code>base R</code>, this would be equivalent to the code: <code>cars_data[cars_data$mpg &gt; 20 &amp; cars_data$cyl == 4, ]</code>.</p>
+</div>
+<div id="ordering-rows-with-arrange" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Ordering rows with <code>arrange()</code><a href="m2.html#ordering-rows-with-arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>arrange()</code> works similarly to <em>filter</em>, but instead of filtering and selecting rows, it just reorders them according to some condition we pass. This function takes a data.frame and a set of <em>column names</em> by which it will sort. If you provide more than one column name, each additional column passed will be used as a tiebreaker.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="m2.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(cars_data, cyl, mpg, hp)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21.4     4 121     109  4.11  2.78  18.6     1     1     4     2
+##  2  21.5     4 120.     97  3.7   2.46  20.0     1     0     3     1
+##  3  22.8     4 108      93  3.85  2.32  18.6     1     1     4     1
+##  4  22.8     4 141.     95  3.92  3.15  22.9     1     0     4     2
+##  5  24.4     4 147.     62  3.69  3.19  20       1     0     4     2
+##  6  26       4 120.     91  4.43  2.14  16.7     0     1     5     2
+##  7  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
+##  8  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+##  9  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
+## 10  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+## # ℹ 22 more rows</code></pre>
+<p>If you want to sort in descending order, use the <code>desc(column_name)</code> function inside <code>arrange()</code>. This would be particularly interesting if you wanted to sort data in the final column from highest to lowest.</p>
+</div>
+<div id="selecting-columns-with-select" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Selecting columns with <code>select()</code><a href="m2.html#selecting-columns-with-select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We usually work with large <em>datasets</em> with many columns, but only a few columns will be of interest. <code>select()</code> allows us to quickly focus on a subset of the data. The best part is that we can use operations - which normally only work with column positions - directly on variable names.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="m2.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selection by name</span></span>
+<span id="cb198-2"><a href="m2.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data, mpg, cyl, hp)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 3
+##      mpg   cyl    hp
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6   110
+##  2  21       6   110
+##  3  22.8     4    93
+##  4  21.4     6   110
+##  5  18.7     8   175
+##  6  18.1     6   105
+##  7  14.3     8   245
+##  8  24.4     4    62
+##  9  22.8     4    95
+## 10  19.2     6   123
+## # ℹ 22 more rows</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="m2.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting all columns in a range (inclusive)</span></span>
+<span id="cb200-2"><a href="m2.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data, mpg<span class="sc">:</span>wt)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 6
+##      mpg   cyl  disp    hp  drat    wt
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62
+##  2  21       6  160    110  3.9   2.88
+##  3  22.8     4  108     93  3.85  2.32
+##  4  21.4     6  258    110  3.08  3.22
+##  5  18.7     8  360    175  3.15  3.44
+##  6  18.1     6  225    105  2.76  3.46
+##  7  14.3     8  360    245  3.21  3.57
+##  8  24.4     4  147.    62  3.69  3.19
+##  9  22.8     4  141.    95  3.92  3.15
+## 10  19.2     6  168.   123  3.92  3.44
+## # ℹ 22 more rows</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="m2.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting all columns except those in a range (inclusive)</span></span>
+<span id="cb202-2"><a href="m2.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data, <span class="sc">-</span>(mpg<span class="sc">:</span>wt))</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 5
+##     qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  16.5     0     1     4     4
+##  2  17.0     0     1     4     4
+##  3  18.6     1     1     4     1
+##  4  19.4     1     0     3     1
+##  5  17.0     0     0     3     2
+##  6  20.2     1     0     3     1
+##  7  15.8     0     0     3     4
+##  8  20       1     0     4     2
+##  9  22.9     1     0     4     2
+## 10  18.3     1     0     4     4
+## # ℹ 22 more rows</code></pre>
+<p><strong>TIP:</strong> There are <em>helper functions</em> we can use inside <code>select()</code>. They are functions that resemble the functioning of a <em>regular expression</em> (a concept we’ll see in Module <a href="m3.html#m3">3</a>) to identify column names that meet a certain criterion. They’re very useful with large datasets: <code>starts_with()</code>, <code>ends_with()</code>, <code>matches()</code> and <code>contains()</code>.</p>
+<p>Let’s for example select all columns that start with “d”:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="m2.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data, <span class="fu">starts_with</span>(<span class="st">&quot;d&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 2
+##     disp  drat
+##    &lt;dbl&gt; &lt;dbl&gt;
+##  1  160   3.9 
+##  2  160   3.9 
+##  3  108   3.85
+##  4  258   3.08
+##  5  360   3.15
+##  6  225   2.76
+##  7  360   3.21
+##  8  147.  3.69
+##  9  141.  3.92
+## 10  168.  3.92
+## # ℹ 22 more rows</code></pre>
+<p><code>select()</code> can even be used to rename variables:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="m2.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data, <span class="at">miles_per_gallon =</span> mpg)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 1
+##    miles_per_gallon
+##               &lt;dbl&gt;
+##  1             21  
+##  2             21  
+##  3             22.8
+##  4             21.4
+##  5             18.7
+##  6             18.1
+##  7             14.3
+##  8             24.4
+##  9             22.8
+## 10             19.2
+## # ℹ 22 more rows</code></pre>
+<p>The new variable will be called <em>miles_per_gallon</em> and will receive all information from the original <em>mpg</em>.</p>
+<p>However, <code>select()</code> “abandons” all other variables when you do a renaming. It’s better then to use <code>rename()</code>:</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="m2.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(cars_data, <span class="at">miles_per_gallon =</span> mpg)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 11
+##    miles_per_gallon   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1             21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2             21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3             22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4             21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5             18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6             18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7             14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8             24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9             22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10             19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ℹ 22 more rows</code></pre>
+</div>
+<div id="adding-new-columns-with-mutate" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Adding new columns with <code>mutate()</code><a href="m2.html#adding-new-columns-with-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In addition to selecting sets of existing columns, it’s generally useful to add new columns that are functions of columns already present in the tibble/dataframe. See an example with <code>mutate()</code>, where we want to calculate the power-to-weight ratio:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="m2.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(cars_data,</span>
+<span id="cb210-2"><a href="m2.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt</span>
+<span id="cb210-3"><a href="m2.html#cb210-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 12
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb power_to_weight
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4            42.0
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4            38.3
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1            40.1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1            34.2
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2            50.9
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1            30.3
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4            68.6
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2            19.4
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2            30.2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4            35.8
+## # ℹ 22 more rows</code></pre>
+<p><code>mutate()</code> even allows us to refer to columns we just created in the same command. Let’s save this change in a new <em>tibble</em>, called <code>cars_data2</code></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="m2.html#cb212-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cars_data,</span>
+<span id="cb212-2"><a href="m2.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt,</span>
+<span id="cb212-3"><a href="m2.html#cb212-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight_scaled =</span> power_to_weight <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb212-4"><a href="m2.html#cb212-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>If we’re only interested in the new variables, we would use <em>transmute()</em>:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="m2.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">transmute</span>(cars_data,</span>
+<span id="cb213-2"><a href="m2.html#cb213-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt,</span>
+<span id="cb213-3"><a href="m2.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight_scaled =</span> power_to_weight <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb213-4"><a href="m2.html#cb213-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 2
+##    power_to_weight power_to_weight_scaled
+##              &lt;dbl&gt;                  &lt;dbl&gt;
+##  1            42.0                  4198.
+##  2            38.3                  3826.
+##  3            40.1                  4009.
+##  4            34.2                  3421.
+##  5            50.9                  5087.
+##  6            30.3                  3035.
+##  7            68.6                  6863.
+##  8            19.4                  1944.
+##  9            30.2                  3016.
+## 10            35.8                  3576.
+## # ℹ 22 more rows</code></pre>
+</div>
+<div id="modifying-entries-with-mutate-or-transmute-case_when" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Modifying entries with <code>mutate()</code> or <code>transmute()</code> + <code>case_when()</code><a href="m2.html#modifying-entries-with-mutate-or-transmute-case_when" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>case_when()</code> is a function from the <code>dplyr</code> package that allows us to modify variables from a sequence of conditions that must be respected.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb215-1"><a href="m2.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="ex">IF</span> CONDITION1 TRUE ~ DO SUCH THING<span class="kw">;</span></span>
+<span id="cb215-2"><a href="m2.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ELSE</span> ~ DO ANOTHER THING</span></code></pre></div>
+<p>It replaces R’s native conditional structures (<code>ifelse()</code> function) and is inspired by the equivalent statement in <em>SQL</em> <code>CASE WHEN</code>. The arguments of the <code>case_when()</code> function follow the following structure: <code>conditional operation ~ new value</code>. On the left side of <code>~</code>, you have the comparison to be made. On the right side, we have the new value to be assigned if the comparison result is <code>TRUE</code>. You can even handle more than one condition, as long as you go from the most specific case to the most general.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="m2.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">case_when</span>(</span>
+<span id="cb216-2"><a href="m2.html#cb216-2" aria-hidden="true" tabindex="-1"></a>  condition1 <span class="sc">~</span> <span class="st">&quot;new_value1&quot;</span>,</span>
+<span id="cb216-3"><a href="m2.html#cb216-3" aria-hidden="true" tabindex="-1"></a>  condition2 <span class="sc">~</span> <span class="st">&quot;new_value2&quot;</span>,</span>
+<span id="cb216-4"><a href="m2.html#cb216-4" aria-hidden="true" tabindex="-1"></a>  condition3 <span class="sc">~</span> <span class="st">&quot;new_value3&quot;</span>,</span>
+<span id="cb216-5"><a href="m2.html#cb216-5" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;value for other cases not met by conditions above&quot;</span></span>
+<span id="cb216-6"><a href="m2.html#cb216-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Generally, in the context of data analysis with <code>dplyr</code>, we use <code>case_when()</code> inside a <code>mutate()</code> or <code>transmute</code> function (which brings only the newly created column), since we intend to change column entries, thus changing the column itself.</p>
+<p>In the <strong><code>cars_data2</code></strong> <em>tibble</em>, let’s create a new character column called <code>efficiency_level</code>, where we’ll classify efficiency as: <code>high</code> if <code>mpg &gt; 20</code>; <code>low</code> if <code>mpg &lt; 15</code> or <code>moderate</code> in other cases:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="m2.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">transmute</span>(cars_data2,</span>
+<span id="cb217-2"><a href="m2.html#cb217-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">efficiency_level =</span></span>
+<span id="cb217-3"><a href="m2.html#cb217-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">case_when</span>(</span>
+<span id="cb217-4"><a href="m2.html#cb217-4" aria-hidden="true" tabindex="-1"></a>           mpg <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">~</span> <span class="st">&quot;high&quot;</span>,</span>
+<span id="cb217-5"><a href="m2.html#cb217-5" aria-hidden="true" tabindex="-1"></a>           mpg <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">&quot;low&quot;</span>,</span>
+<span id="cb217-6"><a href="m2.html#cb217-6" aria-hidden="true" tabindex="-1"></a>           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;moderate&quot;</span></span>
+<span id="cb217-7"><a href="m2.html#cb217-7" aria-hidden="true" tabindex="-1"></a>         ))</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 1
+##    efficiency_level
+##    &lt;chr&gt;           
+##  1 high            
+##  2 high            
+##  3 high            
+##  4 high            
+##  5 moderate        
+##  6 moderate        
+##  7 low             
+##  8 high            
+##  9 high            
+## 10 moderate        
+## # ℹ 22 more rows</code></pre>
+<p><strong>TIP:</strong> If newly created column values are displayed in exponential (scientific) notation, run the code below to force decimal places to be displayed in conventional mode and then print the columns again.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="m2.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scipen is a kind of penalty for using exponential notation values</span></span>
+<span id="cb219-2"><a href="m2.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="co"># positive values penalize exponential notation display</span></span>
+<span id="cb219-3"><a href="m2.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="co"># negative values penalize fixed/regular notation display</span></span>
+<span id="cb219-4"><a href="m2.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span></code></pre></div>
+</div>
+<div id="summarizing-values-with-summarise" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Summarizing values with <code>summarise()</code><a href="m2.html#summarizing-values-with-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last <code>dplyr</code> “verb” is <code>summarise()</code> (or <code>summarize</code>). It collapses a tibble/dataframe into a single row.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="m2.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(cars_data2,</span>
+<span id="cb220-2"><a href="m2.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_mpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb220-3"><a href="m2.html#cb220-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   mean_mpg
+##      &lt;dbl&gt;
+## 1     20.1</code></pre>
+<p><strong>TIP:</strong> The <code>na.rm = TRUE</code> parameter inside the <code>mean()</code> function makes it disregard missing values (<code>NA</code>) when calculating the mean. Otherwise, in the existence of <em>missing values</em> <code>NA</code>, the function will always return <code>NA</code>. This also applies to other vectorized mathematical functions, like <code>sum()</code>, for example.</p>
+<p>Depending on your goal, it may be more useful to use the “verb” <code>group_by()</code> which we’ll see later. With it we can calculate the average by category, i.e., by number of cylinders, transmission type, etc.</p>
+</div>
+<div id="dplyr-structure" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> <code>dplyr</code> Structure<a href="m2.html#dplyr-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Note that the syntax and functioning of all <code>dplyr</code> verbs presented so far are quite similar:</p>
+<ul>
+<li><p>the first argument is a tibble/dataframe;</p></li>
+<li><p>subsequent arguments describe what to do with the data. We can refer to tibble/dataframe columns directly without the need to use <code>$</code> or <code>[]</code> indexing.</p></li>
+<li><p>the result is a new tibble/dataframe.</p></li>
+</ul>
+<p>Together, these properties make it easy to chain multiple simple steps to achieve a complex result. The rest of what <code>dplyr</code> does comes from applying the 5 functions we’ve seen so far to different types of data. Instead of working with disaggregated data, we’ll now start working with data grouped by one or more variables.</p>
+<div id="grouped-operations" class="section level4 hasAnchor" number="2.2.7.1">
+<h4><span class="header-section-number">2.2.7.1</span> Grouped operations<a href="m2.html#grouped-operations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>dplyr</code> verbs become even more powerful when we apply them to groups of observations within a dataset. We do this with the <code>group_by()</code> function. It “breaks” the dataset into specific groups of rows. At first, we don’t see any change. It’s as if they stay in the background. However, when we apply any of the main verbs to the dataset “altered” by <code>group_by</code>, they will automatically be applied by group or “by group”.</p>
+<p>Using grouping affects the result of main verbs as follows:</p>
+<ul>
+<li><p>grouped <code>select()</code> is the same as ungrouped, except that grouping variables are always preserved.</p></li>
+<li><p>grouped <code>arrange()</code> is the same as ungrouped, unless we use <code>.by_group = TRUE</code>, in which case it sorts first by grouping variables;</p></li>
+<li><p><code>mutate()</code> and <code>filter()</code> are quite useful together with window functions (like <code>rank()</code> or <code>min(x) == x</code>) (See <code>dplyr</code> “window-functions” vignette);</p></li>
+<li><p><code>summarise()</code> calculates the summary for each group.</p></li>
+</ul>
+<p>In the following example, we separate the dataset by <code>cyl</code>, counting the number of records for each number of cylinders (<code>count = n()</code>), computing the average miles per gallon by cylinder group (<code>mean_mpg = mean(mpg, na.rm = TRUE)</code>).</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="m2.html#cb222-1" aria-hidden="true" tabindex="-1"></a>by_cyl <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cars_data2, cyl)</span>
+<span id="cb222-2"><a href="m2.html#cb222-2" aria-hidden="true" tabindex="-1"></a>summary_by_cyl <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
+<span id="cb222-3"><a href="m2.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  by_cyl,</span>
+<span id="cb222-4"><a href="m2.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb222-5"><a href="m2.html#cb222-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_mpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb222-6"><a href="m2.html#cb222-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb222-7"><a href="m2.html#cb222-7" aria-hidden="true" tabindex="-1"></a>summary_by_cyl</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##     cyl count mean_mpg
+##   &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;
+## 1     4    11     26.7
+## 2     6     7     19.7
+## 3     8    14     15.1</code></pre>
+<p>Note that <code>summarise()</code> is normally used with <strong>aggregate functions</strong>, which take a vector of values and return a single number. There are many useful examples from <em>base R</em> that can be used, such as <code>min()</code>, <code>max()</code>, <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, <code>median()</code>, etc. <code>dplyr</code> provides some other very useful ones:</p>
+<ul>
+<li><code>n()</code>: number of observations in the current group;</li>
+<li><code>n_distinct(x)</code>: number of unique values in x;</li>
+<li><code>first(x)</code>, <code>last(x)</code> and <code>nth(x, n)</code> work similarly to <code>x[1]</code>, <code>x[length(x)]</code> and <code>x[n]</code>, but give us more control over the result if any value is <em>missing</em>.</li>
+</ul>
+<p>See an example where we use these functions to find the number of distinct transmission types for each cylinder group and total number of cars:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="m2.html#cb224-1" aria-hidden="true" tabindex="-1"></a>by_cyl_am <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cars_data2, cyl)</span>
+<span id="cb224-2"><a href="m2.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_cyl_am,</span>
+<span id="cb224-3"><a href="m2.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_transmission_types =</span> <span class="fu">n_distinct</span>(am),</span>
+<span id="cb224-4"><a href="m2.html#cb224-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_cars =</span> <span class="fu">n</span>()</span>
+<span id="cb224-5"><a href="m2.html#cb224-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##     cyl n_transmission_types total_cars
+##   &lt;dbl&gt;                &lt;int&gt;      &lt;int&gt;
+## 1     4                    2         11
+## 2     6                    2          7
+## 3     8                    2         14</code></pre>
+<p>When we group more than one variable, each <code>summarise()</code> we execute eliminates one level of grouping.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="m2.html#cb226-1" aria-hidden="true" tabindex="-1"></a>by_cyl_am <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cars_data2, cyl, am)</span>
+<span id="cb226-2"><a href="m2.html#cb226-2" aria-hidden="true" tabindex="-1"></a>(summary_by_am <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_cyl_am, <span class="at">count =</span> <span class="fu">n</span>()))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   cyl [3]
+##     cyl    am count
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1     4     0     3
+## 2     4     1     8
+## 3     6     0     4
+## 4     6     1     3
+## 5     8     0    12
+## 6     8     1     2</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="m2.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that from the &quot;Groups:&quot; description of the tibble, i.e., the number of grouping variables decreases</span></span>
+<span id="cb229-2"><a href="m2.html#cb229-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-3"><a href="m2.html#cb229-3" aria-hidden="true" tabindex="-1"></a>(summary_by_cyl <span class="ot">&lt;-</span> <span class="fu">summarise</span>(summary_by_am, <span class="at">count =</span> <span class="fu">sum</span>(count)))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##     cyl count
+##   &lt;dbl&gt; &lt;int&gt;
+## 1     4    11
+## 2     6     7
+## 3     8    14</code></pre>
+</div>
+<div id="care-with-variable-names" class="section level4 hasAnchor" number="2.2.7.2">
+<h4><span class="header-section-number">2.2.7.2</span> Care with variable names<a href="m2.html#care-with-variable-names" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>One of the best features of the <code>dplyr</code> package is that we can refer to variables in a <em>tibble</em> or dataframe as if they were regular variables (those in the <em>Global Environment</em>). However, the reference syntax for column names hides some differences between verbs. For example, a column name or value passed to <code>select()</code> doesn’t have the same meaning as it would in <code>mutate()</code>.</p>
+<p>See equivalent forms from <strong>dplyr</strong>’s point of view:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="m2.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data2, mpg)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 1
+##      mpg
+##    &lt;dbl&gt;
+##  1  21  
+##  2  21  
+##  3  22.8
+##  4  21.4
+##  5  18.7
+##  6  18.1
+##  7  14.3
+##  8  24.4
+##  9  22.8
+## 10  19.2
+## # ℹ 22 more rows</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="m2.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data2, <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 1
+##      mpg
+##    &lt;dbl&gt;
+##  1  21  
+##  2  21  
+##  3  22.8
+##  4  21.4
+##  5  18.7
+##  6  18.1
+##  7  14.3
+##  8  24.4
+##  9  22.8
+## 10  19.2
+## # ℹ 22 more rows</code></pre>
+<p>If there’s a variable in the <em>Global Environment</em> with the same name as a column in our tibble/dataframe, <code>dplyr</code> will prioritize the variable that’s in the <em>tibble</em>.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="m2.html#cb235-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb235-2"><a href="m2.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data2, mpg)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 1
+##      mpg
+##    &lt;dbl&gt;
+##  1  21  
+##  2  21  
+##  3  22.8
+##  4  21.4
+##  5  18.7
+##  6  18.1
+##  7  14.3
+##  8  24.4
+##  9  22.8
+## 10  19.2
+## # ℹ 22 more rows</code></pre>
+<p>This behavior only applies to “raw” names and selection calls like <code>select(tibble, var1, var2, var3)</code> or <code>var1:var3</code>. In all other cases, tibble column names are preferred over “loose” variables in the <em>Global Environment</em>.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="m2.html#cb237-1" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="st">&quot;c&quot;</span></span>
+<span id="cb237-2"><a href="m2.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(cars_data2, <span class="fu">starts_with</span>(var1))</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 2
+##      cyl  carb
+##    &lt;dbl&gt; &lt;dbl&gt;
+##  1     6     4
+##  2     6     4
+##  3     4     1
+##  4     6     1
+##  5     8     2
+##  6     6     1
+##  7     8     4
+##  8     4     2
+##  9     4     2
+## 10     6     4
+## # ℹ 22 more rows</code></pre>
+<p>Note that in this last case, <code>dplyr</code> looked at the content of the <code>var1</code> variable and not the literal variable name.</p>
+</div>
+</div>
+<div id="using-the-pipe" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Using the Pipe <code>%&gt;%</code><a href="m2.html#using-the-pipe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>dplyr</strong> is functional in the sense that function calls have no side effects. That is, you always need to save your results. This makes our code not so elegant, especially when we’re going to do several operations, one at a time:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="m2.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grouping by cyl, am</span></span>
+<span id="cb239-2"><a href="m2.html#cb239-2" aria-hidden="true" tabindex="-1"></a>level1 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cars_data2, cyl, am)</span>
+<span id="cb239-3"><a href="m2.html#cb239-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-4"><a href="m2.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting only columns mpg, hp, power_to_weight</span></span>
+<span id="cb239-5"><a href="m2.html#cb239-5" aria-hidden="true" tabindex="-1"></a>level2 <span class="ot">&lt;-</span> <span class="fu">select</span>(level1, mpg, hp, power_to_weight)</span>
+<span id="cb239-6"><a href="m2.html#cb239-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-7"><a href="m2.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating total car count and average horsepower by group</span></span>
+<span id="cb239-8"><a href="m2.html#cb239-8" aria-hidden="true" tabindex="-1"></a>level3 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(level2,</span>
+<span id="cb239-9"><a href="m2.html#cb239-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_cars =</span> <span class="fu">n</span>(),</span>
+<span id="cb239-10"><a href="m2.html#cb239-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_hp =</span> <span class="fu">mean</span>(hp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb239-11"><a href="m2.html#cb239-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb239-12"><a href="m2.html#cb239-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-13"><a href="m2.html#cb239-13" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering groups with car count above 5</span></span>
+<span id="cb239-14"><a href="m2.html#cb239-14" aria-hidden="true" tabindex="-1"></a>level4 <span class="ot">&lt;-</span> <span class="fu">filter</span>(level3, total_cars <span class="sc">&gt;</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>Note that there are many intermediate results we’re saving, when actually we’d only be interested in the final one. To solve this we could call one function inside another:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="m2.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(</span>
+<span id="cb240-2"><a href="m2.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb240-3"><a href="m2.html#cb240-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb240-4"><a href="m2.html#cb240-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(cars_data2, cyl, am),</span>
+<span id="cb240-5"><a href="m2.html#cb240-5" aria-hidden="true" tabindex="-1"></a>      mpg, hp, power_to_weight</span>
+<span id="cb240-6"><a href="m2.html#cb240-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb240-7"><a href="m2.html#cb240-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cars =</span> <span class="fu">n</span>(),</span>
+<span id="cb240-8"><a href="m2.html#cb240-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hp =</span> <span class="fu">mean</span>(hp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb240-9"><a href="m2.html#cb240-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb240-10"><a href="m2.html#cb240-10" aria-hidden="true" tabindex="-1"></a>  total_cars <span class="sc">&gt;</span> <span class="dv">5</span></span>
+<span id="cb240-11"><a href="m2.html#cb240-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Although it solves the problem of saving intermediate objects, this approach is difficult to read the steps because the order of operations goes from inside to outside. So, arguments end up being far from the function itself. To give an elegant solution to the problem, <strong>dplyr</strong> uses the pipe operator <code>%&gt;%</code> from the <code>magrittr</code> package. <code>x %&gt;% f()</code> is equivalent to <code>f(x)</code>. So, we can use this operator to rewrite multiple operations that we can read from left to right and top to bottom. It’s as if each line of code functioned as a distinct department of a company. Production begins on the first line. Once changes in this first department are finished, the unfinished product (data) is “thrown” to the department below via the <em>pipe</em>, where production continues. From there it goes to the next department, and so on until all data changes have been made.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="m2.html#cb241-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb241-2"><a href="m2.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb241-3"><a href="m2.html#cb241-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, hp, power_to_weight) <span class="sc">%&gt;%</span></span>
+<span id="cb241-4"><a href="m2.html#cb241-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb241-5"><a href="m2.html#cb241-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cars =</span> <span class="fu">n</span>(),</span>
+<span id="cb241-6"><a href="m2.html#cb241-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hp =</span> <span class="fu">mean</span>(hp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb241-7"><a href="m2.html#cb241-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb241-8"><a href="m2.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_cars <span class="sc">&gt;</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## Adding missing grouping variables: `cyl`, `am`
+## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 2 × 4
+## # Groups:   cyl [2]
+##     cyl    am total_cars avg_hp
+##   &lt;dbl&gt; &lt;dbl&gt;      &lt;int&gt;  &lt;dbl&gt;
+## 1     4     1          8   81.9
+## 2     8     0         12  194.</code></pre>
+<p><strong>TIP:</strong> Note that the <em>tibble</em> or dataframe name only needs to be informed once at the beginning of the process.</p>
+<hr />
+</div>
+<div id="section-references-1" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Section References<a href="m2.html#section-references-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Wickham H.; François, R.; Henry, L.; Müller K. (2019). <em>dplyr: A Grammar of Data Manipulation</em>. R package version 0.8.1. URL <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p></li>
+<li><p>Wickham H.; François, R.; Henry, L.; Müller K. (2020). <em>dplyr vignette: Introduction</em>. URL <a href="http://dplyr.tidyverse.org">http://dplyr.tidyverse.org</a>.</p></li>
+<li><p>Wickham, H.; Grolemund, G. (2016). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media. december 2016. 522 pages. Available at: <a href="https://www.r4ds.co.nz">https://www.r4ds.co.nz</a>.</p></li>
+</ul>
+</div>
+<div id="exercises-1" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> Exercises<a href="m2.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Import the iris dataset (built-in R dataset) or download a dataset from UCI Machine Learning Repository.</p></li>
+<li><p>What is the average sepal length by species? Write a new txt or csv table with this data.</p></li>
+<li><p>Group the data by species and save a separate table (txt or csv) for each grouping. <strong>TIP:</strong> Research about how to split dataframes by groups with dplyr and how to index lists.</p></li>
+<li><p>Identify the species with the longest average petal length.</p></li>
+<li><p>Create and save a new table containing the count of observations by species.</p></li>
+</ol>
+<hr />
+<hr />
+</div>
+</div>
+<div id="graphics-with-ggplot2" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Graphics with <code>ggplot2</code><a href="m2.html#graphics-with-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section we’ll see how to make sophisticated graphics in <strong>R</strong>. These will be just the basics, since <code>ggplot2</code> provides the user with total control of almost all aspects of a graph. However, they’ll already be sufficient tools to create and customize various graphics in <strong>R</strong>. The number of types of graphics we can make with <strong>ggplot2</strong> is immeasurable. The idea is to understand the basic and structural concepts of the package and then walk on our own legs.</p>
+<div id="introduction" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Introduction<a href="m2.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>ggplot2</code> package creates graphics using layers of attributes, using the so-called <strong>grammar of graphics</strong>. This grammar allows building graphics component by component instead of having to edit “prefabricated” graphics as occurs in <code>base R</code> and all other libraries of languages used for <em>Data Science</em>, like <em>matplotlib</em> and <em>seaborn</em> from <em>Python</em>, for example.</p>
+<p>We don’t need to know the grammar to start producing graphics with <strong>ggplot2</strong>. However, by understanding the structure of the grammar of graphics, we can:</p>
+<ul>
+<li><p>build graphics from concepts (of what we want to do) instead of having to remember commands and options;</p></li>
+<li><p>conceive new and improved graphics.</p></li>
+</ul>
+<p><code>ggplot2</code>, although it arose before <em>tidyverse</em>, is also one of the packages from the <em>core</em> of this <em>meta-package</em>. It was written by Hadley Wickham, who published the book titled <em>“ggplot2 Elegant Graphics for Data Analysis”</em>. The success of <code>ggplot2</code> is so expressive that <em>APIs (Application Programming Interface)</em> were made so that the package’s functionalities could be used in other languages, like Python for example.</p>
+</div>
+<div id="the-grammar-of-graphics" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> The grammar of graphics<a href="m2.html#the-grammar-of-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The grammar of graphics was a concept developed by Leland Wilkinson in 1999 and published by him in <em>The Grammar of Graphics</em> in 2005. This grammar defines rules for structuring mathematical and aesthetic elements (<em>aesthetics</em>) in a graphic itself. <code>ggplot2</code> is written under the rules of this grammar.</p>
+<div id="structure-of-the-grammar-of-graphics-in-ggplot2" class="section level4 hasAnchor" number="2.3.2.1">
+<h4><span class="header-section-number">2.3.2.1</span> Structure of the grammar of graphics in <code>ggplot2</code>:<a href="m2.html#structure-of-the-grammar-of-graphics-in-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>data</strong>
+<ul>
+<li>data containing variables to be plotted;</li>
+<li>variables to be portrayed in the graph;</li>
+<li>variables to be mapped to the <em>aesthetics</em> (perceptible elements) of the graph;</li>
+</ul></li>
+<li><strong>Geoms</strong> (geometric shapes)
+<ul>
+<li>objects and shapes of the graph (bars, points, lines, etc)</li>
+</ul></li>
+<li><strong>Stats</strong>
+<ul>
+<li>statistical transformations, generally to summarize data (mean, variance, median, etc)</li>
+</ul></li>
+<li><strong>Scales</strong>
+<ul>
+<li>defines which aesthetic elements (<em>aesthetics</em>) of the graph will be mapped to variables (e.g.: which colors will be mapped to which values)</li>
+</ul></li>
+<li><strong>Coordinate Systems</strong>
+<ul>
+<li>defines how data will be mapped to the graph plane/area (Cartesian, Polar, etc)</li>
+</ul></li>
+<li><strong>Facetting</strong>
+<ul>
+<li>divides data into subsets to create multiple variations of the same graph (e.g.: panel graphs)</li>
+</ul></li>
+</ul>
+<p>All these elements are treated as <em>layers</em> and can be added to the main part of the graph using the <code>+</code> sign.</p>
+<p>In this course, we’ll see in more detail the <em>data</em>, <em>aesthetics</em>, <em>stats</em> and <em>facetting</em> elements and what each of these elements means in the structure of the grammar of graphics. We’ll use the <code>mtcars</code> and <code>iris</code> datasets that come built-in with R.</p>
+<p>Let’s load the necessary packages and prepare our data.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="m2.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb244-2"><a href="m2.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb244-3"><a href="m2.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb244-4"><a href="m2.html#cb244-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-5"><a href="m2.html#cb244-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the mtcars dataset</span></span>
+<span id="cb244-6"><a href="m2.html#cb244-6" aria-hidden="true" tabindex="-1"></a>cars_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb244-7"><a href="m2.html#cb244-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-8"><a href="m2.html#cb244-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the iris dataset</span></span>
+<span id="cb244-9"><a href="m2.html#cb244-9" aria-hidden="true" tabindex="-1"></a>iris_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(iris)</span></code></pre></div>
+</div>
+</div>
+<div id="data" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Data<a href="m2.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Data used with <code>ggplot2</code> functions <strong>MUST</strong> be stored as a tibble or dataframe. There’s even the possibility of using more than one dataframe in a graph. The recommendation is to define and be sure about variable types (<em>numeric</em>, <em>factor</em>, etc) before starting to build a graph.</p>
+</div>
+<div id="the-ggplot-function" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> The <code>ggplot()</code> function<a href="m2.html#the-ggplot-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The data to be used for plotting will be specified inside the <code>ggplot()</code> function. Note that it’s <strong>ggplot()</strong> and not <strong>ggplot2()</strong>. Our data.frame or tibble will always be the first argument of this function.</p>
+<p>Another argument to be passed to the <code>ggplot()</code> function are the <em>aesthetics</em>, using the auxiliary function <code>aes()</code> which maps data variables to perceptible graphic elements (aesthetic), such as position on graph axes, definition of colors by categories, etc.</p>
+<p>Any subsequent function will inherit the data and <em>aesthetics</em> from <code>ggplot()</code>, unless these parameters are overwritten in another layer. To chain other functions to the <code>ggplot()</code> function, we always use <code>+</code>.</p>
+</div>
+<div id="aesthetics-aesthetic-elements-of-graphics" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Aesthetics (aesthetic elements of graphics)<a href="m2.html#aesthetics-aesthetic-elements-of-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variables are mapped to <strong>aesthetics</strong>, which means they are translated to graphic aesthetic elements. The <code>aes()</code> function, as we’ve seen, does this mapping. It can also be specified within other layers that make up the graph, such as <em>geoms</em> or <em>stats</em>, for example. The most used <strong>aesthetics</strong> are:</p>
+<ul>
+<li><p><code>x</code> - position on x-axis;</p></li>
+<li><p><code>y</code> - position on y-axis;</p></li>
+<li><p><code>color</code> or <code>colour</code> - “outside color” or object outline;</p></li>
+<li><p><code>fill</code> - “inside color” of object;</p></li>
+<li><p><code>alpha</code> - graph transparency level;</p></li>
+<li><p><code>shape</code> - marker shapes (points, triangles, cross, etc);</p></li>
+<li><p><code>size</code> - size (radius) of objects.</p></li>
+</ul>
+</div>
+<div id="examples-for-aesthetics" class="section level3 hasAnchor" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> Examples for <em>aesthetics</em><a href="m2.html#examples-for-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To make a graph, we first need to indicate the data and map variables to <strong>aesthetics</strong>. This reserves a graph area to be used.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="m2.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span> <span class="dv">999</span>) <span class="co"># to avoid exponential notation display</span></span>
+<span id="cb245-2"><a href="m2.html#cb245-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-3"><a href="m2.html#cb245-3" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb245-4"><a href="m2.html#cb245-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>cars_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-88-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Let’s see a first example for the relationship between <em>weight (wt)</em> vs <em>miles per gallon (mpg)</em>.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="m2.html#cb246-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb246-2"><a href="m2.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb246-3"><a href="m2.html#cb246-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-89-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Note that there was no need to re-specify the <code>data</code> and <code>aes()</code> arguments for the <code>geom_point()</code> function.</p>
+<p>We could improve our graph by adding colors inside <code>aes()</code>. This would add more information. We could assign different colors for each number of cylinders:</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="m2.html#cb247-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb247-2"><a href="m2.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb247-3"><a href="m2.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">factor</span>(cyl)))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-90-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="m2.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb248-2"><a href="m2.html#cb248-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-3"><a href="m2.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cars_data %&gt;%</span></span>
+<span id="cb248-4"><a href="m2.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   ggplot(mapping = aes(x=wt, y=mpg, color=factor(cyl))) +</span></span>
+<span id="cb248-5"><a href="m2.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_point()</span></span></code></pre></div>
+<p>We can assign different intensities to points, depending on the value of a third variable (preferably continuous between 0 and 1), using the <code>alpha</code> argument. Let’s create a continuous variable by simulating values within a Normal probability distribution (<span class="math inline">\(N(0,1)\)</span>):</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="m2.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simulating values</span></span>
+<span id="cb249-2"><a href="m2.html#cb249-2" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="ot">&lt;-</span> cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb249-3"><a href="m2.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sim_value =</span> <span class="fu">rnorm</span>(<span class="fu">n</span>()),</span>
+<span id="cb249-4"><a href="m2.html#cb249-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">prob_sim =</span> <span class="fu">pnorm</span>(sim_value)</span>
+<span id="cb249-5"><a href="m2.html#cb249-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb249-6"><a href="m2.html#cb249-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-7"><a href="m2.html#cb249-7" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb249-8"><a href="m2.html#cb249-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">alpha=</span>prob_sim)) <span class="sc">+</span></span>
+<span id="cb249-9"><a href="m2.html#cb249-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning in grid.Call.graphics(C_points, x$x, x$y, x$pch, x$size): semi-transparency is not supported
+## on this device: reported only once per page</code></pre>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-91-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In our case, this graph isn’t very useful because we have several overlapping points and this makes it difficult to perceive how colors are varying. However, it serves to illustrate this possibility with <code>ggplot2</code>.</p>
+<p>A better way to demonstrate different cylinder numbers would be to use different shapes (<code>shape</code> argument):</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="m2.html#cb251-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb251-2"><a href="m2.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">shape=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb251-3"><a href="m2.html#cb251-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-92-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="mapping-vs-setting-aesthetics" class="section level4 hasAnchor" number="2.3.6.1">
+<h4><span class="header-section-number">2.3.6.1</span> Mapping vs Setting aesthetics<a href="m2.html#mapping-vs-setting-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the previous examples, we could choose to use only a single color or single shape that wasn’t the default “dot” in black. What we should do then, instead of <strong>mapping</strong> variables to <strong>aesthetic</strong>, is <strong>set</strong> the <strong>aesthetic</strong> as constant.</p>
+<p>When we’re going to map an <strong>aesthetic</strong>, variables are passed <strong>inside</strong> <code>aes()</code>; whereas when we’re going to set an <strong>aesthetic</strong> as constant, the value is passed outside <code>aes()</code>.</p>
+<p>Let’s see the previous examples with a constant <em>aesthetic</em> for color and shape:</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="m2.html#cb252-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb252-2"><a href="m2.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb252-3"><a href="m2.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-93-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="m2.html#cb253-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="m2.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb253-3"><a href="m2.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-94-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Note that we must pass constants to <code>geom_point()</code> (outside <code>aes()</code>) - the geometric objects function - and not to <code>ggplot()</code>.</p>
+<p>See how many <em>shapes</em> we can <em>use</em> in <strong>R</strong>:</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="m2.html#cb254-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">p=</span><span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>,<span class="dv">32</span><span class="sc">:</span><span class="dv">127</span>))</span>
+<span id="cb254-2"><a href="m2.html#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-3"><a href="m2.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb254-4"><a href="m2.html#cb254-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb254-5"><a href="m2.html#cb254-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb254-6"><a href="m2.html#cb254-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_identity</span>() <span class="sc">+</span></span>
+<span id="cb254-7"><a href="m2.html#cb254-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>d, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>p<span class="sc">%%</span><span class="dv">16</span>, <span class="at">y=</span>p<span class="sc">%/%</span><span class="dv">16</span>, <span class="at">shape=</span>p), <span class="at">size=</span><span class="dv">5</span>, <span class="at">fill=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb254-8"><a href="m2.html#cb254-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>d, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>p<span class="sc">%%</span><span class="dv">16</span>, <span class="at">y=</span>p<span class="sc">%/%</span><span class="dv">16</span><span class="fl">+0.25</span>, <span class="at">label=</span>p), <span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-95-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="m2.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="co"># http://sape.inf.usi.ch/quick-reference/ggplot2/shape</span></span></code></pre></div>
+<p>Be careful when setting an <em>aesthetic</em> as constant inside <code>aes()</code>, as this can result in unexpected behavior.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="m2.html#cb256-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb256-2"><a href="m2.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb256-3"><a href="m2.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-96-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Although we set the color as <code>"green"</code>, having done it inside <code>aes()</code> makes <code>ggplot</code> treat it differently.</p>
+</div>
+</div>
+<div id="geoms" class="section level3 hasAnchor" number="2.3.7">
+<h3><span class="header-section-number">2.3.7</span> Geoms<a href="m2.html#geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Geoms</strong> are the geometric shapes to be plotted in graphs, example <code>geom_line()</code>, <code>geom_col()</code>, <code>geom_point()</code>, etc. They differ from each other in the types of <em>aesthetics</em> they <em>require</em> or <em>understand</em>. For example: <code>geom_point()</code> requires aes(x, y), whereas <code>geom_bar()</code> requires aes(x) only.</p>
+<p>To get help type <code>?geom_x</code>.</p>
+</div>
+<div id="examples-for-geoms" class="section level3 hasAnchor" number="2.3.8">
+<h3><span class="header-section-number">2.3.8</span> Examples for <em>Geoms</em><a href="m2.html#examples-for-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong><em>geoms</em> for one numerical variable (preferably continuous)</strong></p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="m2.html#cb257-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb257-2"><a href="m2.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>sim_value))</span></code></pre></div>
+<p><strong>TIP:</strong> Note that we can assign the graph result to an object in R and add other <em>layers</em> later.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="m2.html#cb258-1" aria-hidden="true" tabindex="-1"></a>c <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-98-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="m2.html#cb259-1" aria-hidden="true" tabindex="-1"></a>c <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-98-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong><em>geoms</em> for one discrete numerical variable</strong></p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="m2.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count</span></span>
+<span id="cb261-2"><a href="m2.html#cb261-2" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb261-3"><a href="m2.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb261-4"><a href="m2.html#cb261-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-99-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong><em>geoms</em> for two variables (continuous)</strong></p>
+<p><code>geom_point()</code> can also be used in this case:</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="m2.html#cb262-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb262-2"><a href="m2.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg))</span>
+<span id="cb262-3"><a href="m2.html#cb262-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-4"><a href="m2.html#cb262-4" aria-hidden="true" tabindex="-1"></a>e <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-100-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong><em>geoms</em> for two variables (one qualitative and one numerical)</strong></p>
+<p>The graphs below are ideal for checking how values are distributed, separating them into different categories.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="m2.html#cb263-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb263-2"><a href="m2.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="fu">factor</span>(cyl), mpg))</span>
+<span id="cb263-3"><a href="m2.html#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-4"><a href="m2.html#cb263-4" aria-hidden="true" tabindex="-1"></a>f <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-101-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="m2.html#cb264-1" aria-hidden="true" tabindex="-1"></a>f <span class="sc">+</span> <span class="fu">geom_violin</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-101-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong><em>geoms</em> for line plots</strong></p>
+<p>For line plots, it’s best to use actual time series data. Let’s use the <code>economics</code> dataset that comes with <code>ggplot2</code>, which contains US economic data over time.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="m2.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The economics dataset has US economic time series data</span></span>
+<span id="cb265-2"><a href="m2.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(economics)</span>
+<span id="cb265-3"><a href="m2.html#cb265-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-4"><a href="m2.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple line plot of unemployment over time</span></span>
+<span id="cb265-5"><a href="m2.html#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
+<span id="cb265-6"><a href="m2.html#cb265-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb265-7"><a href="m2.html#cb265-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;US Unemployment Over Time&quot;</span>,</span>
+<span id="cb265-8"><a href="m2.html#cb265-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb265-9"><a href="m2.html#cb265-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Unemployed (in thousands)&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-102-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can also plot multiple variables on the same graph. Let’s compare unemployment and personal savings rate:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="m2.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb266-2"><a href="m2.html#cb266-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-3"><a href="m2.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we need to reshape the data to long format</span></span>
+<span id="cb266-4"><a href="m2.html#cb266-4" aria-hidden="true" tabindex="-1"></a>economics_long <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
+<span id="cb266-5"><a href="m2.html#cb266-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, unemploy, psavert) <span class="sc">%&gt;%</span></span>
+<span id="cb266-6"><a href="m2.html#cb266-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(unemploy, psavert), </span>
+<span id="cb266-7"><a href="m2.html#cb266-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>, </span>
+<span id="cb266-8"><a href="m2.html#cb266-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb266-9"><a href="m2.html#cb266-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-10"><a href="m2.html#cb266-10" aria-hidden="true" tabindex="-1"></a><span class="co"># This won&#39;t work well because the scales are different</span></span>
+<span id="cb266-11"><a href="m2.html#cb266-11" aria-hidden="true" tabindex="-1"></a><span class="co"># We&#39;ll normalize the data first</span></span>
+<span id="cb266-12"><a href="m2.html#cb266-12" aria-hidden="true" tabindex="-1"></a>economics_normalized <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
+<span id="cb266-13"><a href="m2.html#cb266-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, unemploy, psavert) <span class="sc">%&gt;%</span></span>
+<span id="cb266-14"><a href="m2.html#cb266-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unemploy_scaled =</span> <span class="fu">scale</span>(unemploy),</span>
+<span id="cb266-15"><a href="m2.html#cb266-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">psavert_scaled =</span> <span class="fu">scale</span>(psavert)) <span class="sc">%&gt;%</span></span>
+<span id="cb266-16"><a href="m2.html#cb266-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, unemploy_scaled, psavert_scaled) <span class="sc">%&gt;%</span></span>
+<span id="cb266-17"><a href="m2.html#cb266-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(unemploy_scaled, psavert_scaled),</span>
+<span id="cb266-18"><a href="m2.html#cb266-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>,</span>
+<span id="cb266-19"><a href="m2.html#cb266-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb266-20"><a href="m2.html#cb266-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-21"><a href="m2.html#cb266-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_normalized, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> variable)) <span class="sc">+</span></span>
+<span id="cb266-22"><a href="m2.html#cb266-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb266-23"><a href="m2.html#cb266-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;US Economic Indicators (Normalized)&quot;</span>,</span>
+<span id="cb266-24"><a href="m2.html#cb266-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb266-25"><a href="m2.html#cb266-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Standardized Value&quot;</span>,</span>
+<span id="cb266-26"><a href="m2.html#cb266-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Indicator&quot;</span>) <span class="sc">+</span></span>
+<span id="cb266-27"><a href="m2.html#cb266-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb266-28"><a href="m2.html#cb266-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Personal Savings Rate&quot;</span>, <span class="st">&quot;Unemployment&quot;</span>))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-103-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>For line graphs, instead of using different colors, we could also change the line type according to categories of a variable, through the <code>linetype</code> argument:</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="m2.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_normalized, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">linetype =</span> variable)) <span class="sc">+</span></span>
+<span id="cb267-2"><a href="m2.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb267-3"><a href="m2.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;US Economic Indicators (Normalized)&quot;</span>,</span>
+<span id="cb267-4"><a href="m2.html#cb267-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb267-5"><a href="m2.html#cb267-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Standardized Value&quot;</span>,</span>
+<span id="cb267-6"><a href="m2.html#cb267-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">linetype =</span> <span class="st">&quot;Indicator&quot;</span>) <span class="sc">+</span></span>
+<span id="cb267-7"><a href="m2.html#cb267-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>),</span>
+<span id="cb267-8"><a href="m2.html#cb267-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Personal Savings Rate&quot;</span>, <span class="st">&quot;Unemployment&quot;</span>))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-104-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Another time series example: Air Passengers</strong></p>
+<p>The <code>AirPassengers</code> dataset shows monthly totals of international airline passengers from 1949 to 1960:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="m2.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to data frame</span></span>
+<span id="cb268-2"><a href="m2.html#cb268-2" aria-hidden="true" tabindex="-1"></a>air_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb268-3"><a href="m2.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(<span class="fu">rep</span>(<span class="dv">1949</span><span class="sc">:</span><span class="dv">1960</span>, <span class="at">each =</span> <span class="dv">12</span>), </span>
+<span id="cb268-4"><a href="m2.html#cb268-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">12</span>), </span>
+<span id="cb268-5"><a href="m2.html#cb268-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;01&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)),</span>
+<span id="cb268-6"><a href="m2.html#cb268-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">passengers =</span> <span class="fu">as.numeric</span>(AirPassengers)</span>
+<span id="cb268-7"><a href="m2.html#cb268-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb268-8"><a href="m2.html#cb268-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb268-9"><a href="m2.html#cb268-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(air_df, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> passengers)) <span class="sc">+</span></span>
+<span id="cb268-10"><a href="m2.html#cb268-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb268-11"><a href="m2.html#cb268-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Monthly International Air Passengers (1949-1960)&quot;</span>,</span>
+<span id="cb268-12"><a href="m2.html#cb268-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb268-13"><a href="m2.html#cb268-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Passengers (thousands)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb268-14"><a href="m2.html#cb268-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-105-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Combining lines and points:</strong></p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="m2.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s look at just the last few years of economics data</span></span>
+<span id="cb269-2"><a href="m2.html#cb269-2" aria-hidden="true" tabindex="-1"></a>recent_econ <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
+<span id="cb269-3"><a href="m2.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2010-01-01&quot;</span>))</span>
+<span id="cb269-4"><a href="m2.html#cb269-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-5"><a href="m2.html#cb269-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(recent_econ, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
+<span id="cb269-6"><a href="m2.html#cb269-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb269-7"><a href="m2.html#cb269-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb269-8"><a href="m2.html#cb269-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;US Unemployment (2010-2015)&quot;</span>,</span>
+<span id="cb269-9"><a href="m2.html#cb269-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb269-10"><a href="m2.html#cb269-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Unemployed (thousands)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb269-11"><a href="m2.html#cb269-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>TIP:</strong> There are also other <em>geoms</em> you’ll find on the help page.</p>
+<div id="positions" class="section level4 hasAnchor" number="2.3.8.1">
+<h4><span class="header-section-number">2.3.8.1</span> Positions<a href="m2.html#positions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>An aspect of <code>ggplot2</code> graphics that doesn’t quite become a <em>layer</em>, but which will be important for us to observe concerns position adjustments. They’ll be very important for bar charts with two variables.</p>
+<p>Position adjustments will define how <em>geoms</em> are located in the graph, so they don’t occupy the same space. In the bar chart example, we can make juxtaposed or stacked bar charts.</p>
+<p>-<code>position="stack"</code> is the default adjustment of <code>geom_bar()</code>. It places each object in the exact position of the graph context. In the case of bar charts, we’d have stacked bars (<em>stacked</em>):</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="m2.html#cb270-1" aria-hidden="true" tabindex="-1"></a>iris_data <span class="sc">%&gt;%</span></span>
+<span id="cb270-2"><a href="m2.html#cb270-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Species, <span class="at">fill=</span><span class="fu">cut</span>(Sepal.Length, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb270-3"><a href="m2.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;stack&quot;</span>) <span class="co"># or simply geom_bar()</span></span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-107-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>position = “dodge”</strong> places overlapping objects side by side. In this case, we’ll have juxtaposed bars:</li>
+</ul>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="m2.html#cb271-1" aria-hidden="true" tabindex="-1"></a>gg_bars <span class="ot">&lt;-</span> iris_data <span class="sc">%&gt;%</span></span>
+<span id="cb271-2"><a href="m2.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Species, <span class="at">fill=</span><span class="fu">cut</span>(Sepal.Length, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb271-3"><a href="m2.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)</span>
+<span id="cb271-4"><a href="m2.html#cb271-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="m2.html#cb271-5" aria-hidden="true" tabindex="-1"></a>gg_bars</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-108-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>TIP:</strong> If you want to invert graph coordinates, you can do this by swapping the <code>x</code> and <code>y</code> parameters in <code>aes()</code>, or using the <code>coord_flip()</code> function:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="m2.html#cb272-1" aria-hidden="true" tabindex="-1"></a>gg_bars <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-109-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>position=“fill”</strong> will also stack elements, but will normalize the height of all bars so they’re on the same scale. This makes it easier to compare proportions between groups:</li>
+</ul>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="m2.html#cb273-1" aria-hidden="true" tabindex="-1"></a>iris_data <span class="sc">%&gt;%</span></span>
+<span id="cb273-2"><a href="m2.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Species, <span class="at">fill=</span><span class="fu">cut</span>(Sepal.Length, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb273-3"><a href="m2.html#cb273-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-110-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>position=“jitter”</strong> is useful for scatter plots, since there’s a very common problem in this type of graph which is point overlap (<em>overplotting</em>). With <em>jitter</em>, <em>ggplot2</em> adds random noise to X and Y positions so they don’t overlap:</li>
+</ul>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="m2.html#cb274-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb274-2"><a href="m2.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb274-3"><a href="m2.html#cb274-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position=</span><span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-111-1.png" width="288" style="display: block; margin: auto;" /></p>
+<p>There are other very useful position adjustments, such as:</p>
+<ul>
+<li><strong>position=“nudge”</strong> moves labels away from points;</li>
+<li><strong>position=“identity”</strong> overlaps elements on top of each other.</li>
+</ul>
+</div>
+</div>
+<div id="facetting" class="section level3 hasAnchor" number="2.3.9">
+<h3><span class="header-section-number">2.3.9</span> Facetting<a href="m2.html#facetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Facets</strong> in <code>ggplot2</code> allow us to create multiple graphics based on data subsets and plot them in the same area. It’s a very useful technique (when we have categorical variables) and we want to visualize the behavior of different categories in the same graph.</p>
+<p>There are two functions that allow creating facets: <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
+<p>Both <strong>facet_wrap</strong> and <strong>facet_grid</strong> allow splitting the plot of variable(s) passed in <code>aes()</code> according to categories of a 3rd or 3rd and 4th variables.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="m2.html#cb275-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb275-2"><a href="m2.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb275-3"><a href="m2.html#cb275-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb275-4"><a href="m2.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(am <span class="sc">~</span> cyl, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-112-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Note above that we can define the desired number of rows for plotting with the <code>nrow</code> argument or number of columns with <code>ncol</code> and the other argument will be automatically determined. The <code>~</code> symbol is widely used in <strong>R</strong>. In these cases, it means that variables from <code>aes()</code> will be plotted as a function of variables after the tilde, i.e., for each combination of categories of these variables, a plot will be made with variables passed in <code>aes()</code>.</p>
+<p>In the case of <code>facet_grid()</code>, the organization of <em>output</em> will be a bit different. A <em>grid</em> will be made, as the function name itself says, where rows will concern one of the variables and column the other variable. It’s like a matrix of small graphs.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="m2.html#cb276-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb276-2"><a href="m2.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb276-3"><a href="m2.html#cb276-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
+<span id="cb276-4"><a href="m2.html#cb276-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(am <span class="sc">~</span> cyl)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="titles-labels-themes-and-legends" class="section level3 hasAnchor" number="2.3.10">
+<h3><span class="header-section-number">2.3.10</span> Titles, labels, themes and legends<a href="m2.html#titles-labels-themes-and-legends" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two ways to change titles and axis labels in <code>ggplot2</code>. You can choose <code>ggtitle("graph title")</code>, <code>xlab("x-axis label")</code>, <code>ylab("y-axis label")</code>. Or you can use <code>labs()</code>. If using labs, you can change all these fields and others, like legend within the same function.</p>
+<p>Note, however, that the parameter controlling the legend title changes depending on the parameter within <code>mapping = aes()</code> from which the legend was generated. Normally, the legend is generated by either the <code>colour</code>, <code>fill</code>, <code>size</code>, <code>shape</code>, <code>linetype</code> and <code>alpha</code> parameters. These same parameters, depending on the case, should be passed within the <code>labs()</code> function to control the legend title, such as: <code>labs(..., shape = "Legend Title")</code>.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="m2.html#cb277-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb277-2"><a href="m2.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb277-3"><a href="m2.html#cb277-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb277-4"><a href="m2.html#cb277-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Graph Title&quot;</span>,</span>
+<span id="cb277-5"><a href="m2.html#cb277-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;X-axis Label&quot;</span>,</span>
+<span id="cb277-6"><a href="m2.html#cb277-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Y-axis Label&quot;</span>,</span>
+<span id="cb277-7"><a href="m2.html#cb277-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Legend Title&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-114-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="m2.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OR</span></span>
+<span id="cb278-2"><a href="m2.html#cb278-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb278-3"><a href="m2.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cars_data %&gt;%</span></span>
+<span id="cb278-4"><a href="m2.html#cb278-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   ggplot() +</span></span>
+<span id="cb278-5"><a href="m2.html#cb278-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_point(mapping=aes(x=wt, y=mpg, colour=factor(cyl))) +</span></span>
+<span id="cb278-6"><a href="m2.html#cb278-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   ggtitle(&quot;Graph Title&quot;) +</span></span>
+<span id="cb278-7"><a href="m2.html#cb278-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   xlab(&quot;X-axis Label&quot;) +</span></span>
+<span id="cb278-8"><a href="m2.html#cb278-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   ylab(&quot;Y-axis Label&quot;) +</span></span>
+<span id="cb278-9"><a href="m2.html#cb278-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   labs(colour=&quot;Legend Title&quot;)</span></span></code></pre></div>
+<p>There are also specific functions that also control the legend name depending on the argument used to generate the legend inside <code>aes()</code> and also from which data type, whether continuous or discrete. We have the following cases:</p>
+<ul>
+<li><p><code>scale_GENERATOR_discrete(name="legend title")</code></p></li>
+<li><p><code>scale_GENERATOR_continuous(name="legend title")</code></p></li>
+</ul>
+<p>Thus, we have: <code>scale_fill_discrete(name="legend title")</code>, <code>scale_fill_continuous(name="legend title")</code>, <code>scale_colour_discrete(name="legend title")</code>, <code>scale_colour_continuous(name="legend title")</code>, and so on for other legend-generating arguments, like <code>size</code>, <code>linetype</code>, <code>alpha</code> and <code>shape</code>.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="m2.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using txhousing dataset from ggplot2 package</span></span>
+<span id="cb279-2"><a href="m2.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;txhousing&quot;</span>)</span>
+<span id="cb279-3"><a href="m2.html#cb279-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-4"><a href="m2.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># to modify dates</span></span>
+<span id="cb279-5"><a href="m2.html#cb279-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a Date (first day of each month) and pick a few cities</span></span>
+<span id="cb279-6"><a href="m2.html#cb279-6" aria-hidden="true" tabindex="-1"></a>tx_subset <span class="ot">&lt;-</span> txhousing <span class="sc">%&gt;%</span></span>
+<span id="cb279-7"><a href="m2.html#cb279-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_date</span>(year, month, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb279-8"><a href="m2.html#cb279-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Austin&quot;</span>, <span class="st">&quot;Dallas&quot;</span>, <span class="st">&quot;Houston&quot;</span>))</span>
+<span id="cb279-9"><a href="m2.html#cb279-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-10"><a href="m2.html#cb279-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Line type by city</span></span>
+<span id="cb279-11"><a href="m2.html#cb279-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tx_subset, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> median, <span class="at">linetype =</span> city)) <span class="sc">+</span></span>
+<span id="cb279-12"><a href="m2.html#cb279-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb279-13"><a href="m2.html#cb279-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">name =</span> <span class="st">&quot;City&quot;</span>) <span class="sc">+</span></span>
+<span id="cb279-14"><a href="m2.html#cb279-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Median Home Price in Texas (by city)&quot;</span>,</span>
+<span id="cb279-15"><a href="m2.html#cb279-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb279-16"><a href="m2.html#cb279-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Median price (USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb279-17"><a href="m2.html#cb279-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can even have more than one <em>mapping</em> argument inside <code>aes()</code> and we can control legends of each one, adding one more layer to the graph:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="m2.html#cb280-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb280-2"><a href="m2.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb280-3"><a href="m2.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb280-4"><a href="m2.html#cb280-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb280-5"><a href="m2.html#cb280-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb280-6"><a href="m2.html#cb280-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-7"><a href="m2.html#cb280-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-8"><a href="m2.html#cb280-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-9"><a href="m2.html#cb280-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-10"><a href="m2.html#cb280-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>(<span class="at">name=</span><span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-116-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="changing-colors-and-color-palette" class="section level3 hasAnchor" number="2.3.11">
+<h3><span class="header-section-number">2.3.11</span> Changing colors and color palette<a href="m2.html#changing-colors-and-color-palette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You must have noticed that in most graphs, <code>ggplot2</code> uses the library’s default colors for plotting. If you’re not happy with the default color palette used by the package in <em>mapping</em> your variables, you can manually define these colors using another palette or other colors of your preference.</p>
+<p>The way to change the color palette used in a <em>mapping</em> argument inside <code>aes()</code> is through functions of type <code>scale_GENERATOR_manual()</code>, changing the <code>values</code> parameter.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="m2.html#cb281-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb281-2"><a href="m2.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb281-3"><a href="m2.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb281-4"><a href="m2.html#cb281-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb281-5"><a href="m2.html#cb281-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb281-6"><a href="m2.html#cb281-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-7"><a href="m2.html#cb281-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-8"><a href="m2.html#cb281-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-9"><a href="m2.html#cb281-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb281-10"><a href="m2.html#cb281-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-117-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Through these same functions of type <code>scale_GENERATOR_manual()</code>, we can also change category labels displayed in the legend using the <code>labels</code> argument.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="m2.html#cb282-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb282-2"><a href="m2.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb282-3"><a href="m2.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb282-4"><a href="m2.html#cb282-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb282-5"><a href="m2.html#cb282-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb282-6"><a href="m2.html#cb282-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-7"><a href="m2.html#cb282-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-8"><a href="m2.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-9"><a href="m2.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-10"><a href="m2.html#cb282-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb282-11"><a href="m2.html#cb282-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;4 cyl&quot;</span>, <span class="st">&quot;6 cyl&quot;</span>, <span class="st">&quot;8 cyl&quot;</span>))</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-118-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As we mentioned several times up to this point in the course, in <strong>R</strong> there are several ways to do the same thing. Functions of type <code>scale_GENERATOR_manual()</code> also allow changing the legend title with the <code>name</code> argument:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="m2.html#cb283-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb283-2"><a href="m2.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb283-3"><a href="m2.html#cb283-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb283-4"><a href="m2.html#cb283-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb283-5"><a href="m2.html#cb283-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb283-6"><a href="m2.html#cb283-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-7"><a href="m2.html#cb283-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-8"><a href="m2.html#cb283-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-9"><a href="m2.html#cb283-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-10"><a href="m2.html#cb283-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb283-11"><a href="m2.html#cb283-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;4 cyl&quot;</span>, <span class="st">&quot;6 cyl&quot;</span>, <span class="st">&quot;8 cyl&quot;</span>),</span>
+<span id="cb283-12"><a href="m2.html#cb283-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">name=</span><span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-119-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-area-and-theme" class="section level3 hasAnchor" number="2.3.12">
+<h3><span class="header-section-number">2.3.12</span> Plot Area and Theme<a href="m2.html#plot-area-and-theme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As we stated before, with <code>ggplot2</code> it’s possible to modify practically all parameters of your graph. And there’s usually more than one way to make each of the changes. With the <code>theme()</code> function, it’s possible to control everything from the size of graph plotting elements, through label text size to the size of legend squares or “dots”. However, this will be research to be done by you.</p>
+<p>In this section we’ll bring just some <code>ggplot2</code> functions that bring some pre-formatted themes:</p>
+<ul>
+<li><p><code>theme_gray()</code>: gray background and white grid lines. It brings data forward to facilitate comparisons;</p></li>
+<li><p><code>theme_bw()</code>: white background and gray grid lines. Recommended for presentations using projector;</p></li>
+<li><p><code>theme_linedraw()</code>: white background and grid lines with different width.</p></li>
+<li><p><code>theme_light()</code>: light gray grid lines and with presence of axes. Similar to <code>theme_linedraw()</code>;</p></li>
+<li><p><code>theme_dark()</code>: same as <code>theme_light()</code> but with dark background. Makes thin colored lines stand out;</p></li>
+<li><p><code>theme_minimal()</code>: minimalist theme without background;</p></li>
+<li><p><code>theme_classic()</code>: classic theme without grid lines;</p></li>
+<li><p><code>theme_void()</code>: empty theme, without background colors and grid. Recommended for unusual coordinate plots or drawings.</p></li>
+</ul>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="m2.html#cb284-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb284-2"><a href="m2.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb284-3"><a href="m2.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb284-4"><a href="m2.html#cb284-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Graph Title&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X-axis Label&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y-axis Label&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Legend Title&quot;</span>) <span class="sc">+</span></span>
+<span id="cb284-5"><a href="m2.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="IDAR-T_files/figure-html/unnamed-chunk-120-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>TIP:</strong> Strangely, <code>ggplot2</code> always aligns the graph title to the left. You can center the title using precisely the <code>theme()</code> function, which we commented above, writing <code>theme(plot.title = element_text(hjust=0.5))</code>. <code>0.5</code> indicates that the title should be in the middle of the graph, according to specified horizontal alignment (<code>hjust</code> parameter). <code>element_text()</code> is a <em>helper function</em> that serves to control textual aspects like size (<code>size</code>) and other parameters like horizontal alignment itself.</p>
+<hr />
+</div>
+<div id="section-references-2" class="section level3 hasAnchor" number="2.3.13">
+<h3><span class="header-section-number">2.3.13</span> Section References<a href="m2.html#section-references-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><em>Ggplot themes gallery</em>. (2020). DATANOVIA website. URL <a href="https://www.datanovia.com/en/blog/ggplot-themes-gallery/">https://www.datanovia.com/en/blog/ggplot-themes-gallery/</a></p></li>
+<li><p>Lin, A. <em>Introduction to ggplot2</em>. Slides. IDRE Statistical Consulting Group. URL <a href="https://stats.idre.ucla.edu/stat/data/intro_ggplot2_int/ggplot2_intro_interactive.html#(1)">https://stats.idre.ucla.edu/stat/data/intro_ggplot2_int/ggplot2_intro_interactive.html#(1)</a></p></li>
+<li><p>Lopes, J. G. (2019). <em>The ggplot2 guide: how to make any type of graph in R</em>. Blog: Exploring the Data Science Universe. 05, 2017. URL <a href="http://joseguilhermelopes.com.br/o-guia-do-ggplot2-como-fazer-qualquer-tipo-de-grafico-no-r/">http://joseguilhermelopes.com.br/o-guia-do-ggplot2-como-fazer-qualquer-tipo-de-grafico-no-r/</a></p></li>
+<li><p>Wickham, H.; Grolemund, G. (2016). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media. december 2016. 522 pages. Available at: <a href="https://www.r4ds.co.nz">https://www.r4ds.co.nz</a>.</p></li>
+<li><p>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. 2016. URL <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a></p></li>
+</ul>
+</div>
+<div id="exercises-2" class="section level3 hasAnchor" number="2.3.14">
+<h3><span class="header-section-number">2.3.14</span> Exercises<a href="m2.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Choose a dataset you’ve used recently at work and from which you’ve generated some graph in Excel or other software. Try to reproduce two or three graphs using the <code>ggplot2</code> package. Don’t forget to look for help on the internet, especially on <em>Stack Overflow</em> and the package documentation, in addition to the handout.</p></li>
+<li><p>In the graphs from exercise 1, is there any aspect you’d like to improve? Research how to do it using <code>ggplot2</code>.</p></li>
+<li><p>Enhance your <code>ggplot2</code> graph by means of the <code>ggplotly(object_created_with_ggplot2)</code> function from the <code>plotly</code> package. You can make your graph interactive and also build other different graphs with <code>plotly</code>.</p></li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="m1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="m3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": null,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,882 @@
+# Module III {#m3}
+
+## Accessing Relational Databases with `dbplyr`
+
+### Introduction
+
+The content of this chapter was adapted from the `dbplyr` _vignette_ and the article _Databases using R_ by Edgar Ruiz, package author and member of **RStudio**. `dbplyr` allows combining the easy data manipulation grammar provided by `dplyr` with access to SQL relational databases without actually needing to use **SQL** commands.
+
+Using databases is inevitable for those whose work involves data analysis. At this point, as users of the `R` language, instinct leads us to adopt an _approach_ with databases in the same way we would read a `.txt` or `.csv` data file: we would try to read all the data at once or parts of it until forming the entire dataset. The goal would be to "return" to the database as little as possible, so that our _queries_ would extract as much data as possible. After that, we would spend several cycles analyzing that data saved in our computer's memory. We would follow roughly this scheme:
+
+<!-- \newline -->
+
+![R & Database Access NOT optimized](./fig/todaydb.png)
+Source: _Databases using R_, Edgar Ruiz
+
+This approach has some problems:
+
+- the volume of data we would have to work with would be very large. Therefore, we would spend some time thinking about how to minimize resource consumption and time to arrive at the subset of data we actually need to work with;
+
+- to save resources, we would opt to directly use an external SQL client, work the data as much as possible to then extract what interests us and only then use **R**;
+
+- we would need to know SQL in depth to make as many queries as possible using a "_client_" of _SQL Server_ for example. We would save different scripts so we could repeat the queries again;
+
+What would be the best approach then?
+
+![R & Database Access optimized](./fig/betterdb.png)
+Source: _Databases using R_, Edgar Ruiz
+
+With `dbplyr`, the task of accessing relational databases would be **EXTREMELY** optimized, because:
+
+- 1st) You don't need to know SQL syntax to access data. Just knowing **R** and having a slight notion of SQL and you can already make a considerable number of data manipulations;
+
+- 2nd) You will only need RStudio and no longer an external SQL client to make _queries_;
+
+- 3rd) The code you would need in the first approach will be cut in half with the second
+
+- 4th) Instead of spending hours thinking about which database you really need to import, we can analyze the data within the SQL server;
+
+- 5th) Instead of using your computer's memory, you'll use the SQL server _engine_, because `dbplyr` together with `dplyr` will send _queries_ to the server;
+
+- 6) Manipulating data with **R** commands (and even more with `dplyr`) is much easier than manipulating data with SQL commands. So, you can investigate and manipulate data much more easily just with R to only save the result on your computer at the end
+
+Before we start, you need to install and load the following packages: `DBI` and `dbplyr`. `DBI` is a _backend_ that allows `dplyr` to communicate with various types of SQL databases using the same code. However, when installing and loading `dbplyr`, the `DBI` package will also be automatically loaded.
+
+```{r, warning=FALSE, message=FALSE}
+# install.packages("dbplyr")
+library(dbplyr)
+```
+
+In addition to `dbplyr` (and `DBI`), we'll need a specific _backend_ or _driver_ for the type of SQL server we're going to access. The most common are:
+
+- **RMySQL** connects to MySQL and MariaDB;
+- **RPostgreSQL** connects to Postgres and Redshift;
+- **RSQLite** embeds an embedded SQLite database (very useful for training);
+- **odbc** connects to various commercial databases (SQL Server, for example) using the _open connectivity protocol_;
+- **bigrquery** connects to Google's BigQuery.
+
+These _backends_ are also implemented as R packages.
+
+For the examples in this handout, we'll use `RSQLite`, because we'll need to emulate a SQL-type database.
+
+### Connecting to a database
+
+To be able to work with a database together with `dplyr`, we must first establish a connection with this database, using `DBI::dbConnect()`. We thus create a connection object within R that will make the link in our RStudio session and the database.
+
+```{r, message=FALSE}
+# install.packages("RSQLite")
+library(dplyr)
+con <- DBI::dbConnect(drv = RSQLite::SQLite(), path = ":memory:")
+```
+
+The `drv` argument of *DBI::dbConnect()* can vary from database to database, but the first argument is always the _driver_ of the type of database to which you will connect. It would be `RSQLite::SQLite()` for SQLite, `RMySQL::MySQL()` for MySQL, `RPostgreSQL::PostgreSQL()` for PostgreSQL, `odbc::odbc()` for SQL Server and `bigrquery::bigquery()` for Google BigQuery. SQLite only needs one more argument: the path to the database. In our case, we use the special _string_ `[:memory:]` which will make SQLite build a temporary database in our computer's memory.
+
+However, most databases don't "live" in a file, but on a server. This means that in real life your code would be more like:
+
+```{r, eval=FALSE}
+con <- DBI::dbConnect(RMySQL::MySQL(), 
+  host = "database.company.com",
+  user = "username",
+  password = rstudioapi::askForPassword("Database password")
+)
+```
+
+**TIP:** In real life, when creating the connection object with the actual relational server, you would see a connections tab in RStudio, with the respective _schemas_ and/or tables present on the server. It's like a _Global Environment_ of the database:
+
+![RStudio _Connections_ Tab](./fig/rstudio_connections.png)
+
+The temporary database we created earlier doesn't have any data tables yet. Let's start by copying a sample dataset. We'll use the `mtcars` dataset that comes built-in with R, using the `copy_to()` function. Although this isn't the most recommended way to put data into a database, it's quite useful and easy to use in demonstrations:
+
+```{r, message=FALSE}
+library(readr)
+
+# Using the built-in mtcars dataset
+cars_data <- mtcars
+```
+
+Once done, we can add the data to our fictional relational database:
+
+```{r}
+copy_to(con, cars_data, "cars_db",
+  temporary = FALSE, 
+  indexes = list(
+    "cyl", 
+    "gear"
+  )
+)
+```
+
+The `copy_to()` function has some additional arguments that allow us to provide indexes for the table. We then create indexes that will allow us to quickly process data by `cyl` and `gear`. Creating write indexes is a key point for good database performance when sending _queries_. However, this is beyond the scope of this course.
+
+Once we've copied the data to the server, we can reference (we're not importing yet) this table in **R** using the `tbl()` function, which extracts the table called `"cars_db"` from the database.
+
+```{r}
+cars_db <- tbl(con, "cars_db")
+```
+
+If we print the newly created reference, we'll see it looks like a _tibble_, although it's portrayed as a list in the _Global Environment_.
+
+```{r}
+cars_db 
+```
+
+The only difference is the reference that the data is in a SQLite database.
+
+### Generating queries
+
+To interact with a database we usually use _SQL - Structured Query Language_. SQL is over 40 years old and is used in practically all existing databases. The goal of `dbplyr` is to automatically generate code in _SQL_ so that we're not forced to use it. However, `dbplyr` doesn't do everything that SQL language does. It focuses on the declarative **SELECT** and derivatives, which we consider sufficient for the scope of this course.
+
+See how, most of the time, we don't need to know anything about SQL and can continue using the `dplyr` verbs we're already familiar with.
+
+```{r, message=FALSE, warning=FALSE}
+cars_db %>% select(mpg, cyl, hp)
+
+cars_db %>% filter(mpg > 20)
+
+cars_db %>% 
+  group_by(cyl) %>%
+  summarise(avg_mpg = mean(mpg, na.rm = TRUE))
+```
+
+However, in the long run it's highly recommended that you learn at least the basics of SQL. SQL is a quite important _skill_ for any data scientist or people who deal with data routinely.
+
+The most important difference between ordinary dataframes and _queries_ to remote databases is that our **R** code is translated to _SQL_ language and **executed in the database**, not in **R**. When working with _databases_, `dplyr` tries to be as lazy as possible. `dplyr` relies on a concept widely used in R, which is _lazy evaluation_:
+
+- It never brings data to **R** unless we explicitly request it to do so;
+
+- It "delays" doing any task until the last moment: it collects all commands and sends to the database in a single step.
+
+See the following example:
+
+```{r}
+by_cyl_db <- cars_db %>% 
+  group_by(cyl) %>%
+  summarise(
+    avg_mpg = mean(mpg, na.rm=TRUE),
+    n = n()
+  ) %>% 
+  arrange(desc(avg_mpg)) %>%
+  filter(n > 5)
+```
+
+It's surprising what we're going to say now, but all this code doesn't touch the database at any time; not until we request it, for example by doing a **printing** of the created object `by_cyl_db`. Only then does `dplyr` generate the _SQL_ code and request the results from the database on the SQL server. Still, it tries to minimize what will be printed, bringing only a few lines and not everything. See:
+
+```{r}
+by_cyl_db
+```
+
+Behind the scenes, `dbplyr`/`dplyr` is translating the code in **R** to _SQL_ code. If you want to see (and learn) the SQL code being sent to the server, use `show_query()`:
+
+```{r}
+by_cyl_db %>% show_query()
+```
+
+For those more familiar with SQL, the code above probably wouldn't be what you would write, but it accomplishes the mission. See `vignette("SQL-translation")`.
+
+Even with `dbplyr`/`dplyr`, we'll still do some iterations and attempts until we discover what we'll really need from the data. However, we'll do it much faster. Once we know exactly our goal, we can use `collect()` to bring all the data into a (local) _tibble_ on our machine:
+
+```{r}
+by_cyl_final <- by_cyl_db %>% collect()
+by_cyl_final
+```
+
+`collect()` requires the database to work and therefore the operation may take some time to complete. On the other hand, `dbplyr` tries to prevent you from accidentally making computationally expensive _queries_:
+
+- There's usually no way to determine how many rows a _query_ will return until we actually execute it. Unlike when working with databases on our PC, the `nrow()` command always returns `NA` when firing against relational databases;
+
+- Since we can't find the last few rows without executing the query of all data, we can't use `tail()`, which prints the $n$ last rows of a tibble or dataframe.
+
+```{r, error=TRUE}
+nrow(by_cyl_db)
+
+tail(by_cyl_db)
+```
+
+***
+
+### Section References
+
+- Wickham, H.; Ruiz, E. (2019). _dbplyr: A 'dplyr' Back End for Databases_. R package version 1.4.0. URL [https://CRAN.R-project.org/package=dbplyr](https://CRAN.R-project.org/package=dbplyr).
+
+- ____. (2020). _dbplyr vignette: Introduction_. URL [http://dbplyr.tidyverse.org](http://dbplyr.tidyverse.org).
+
+- Ruiz, E. (2017). _Databases using R_. RViews-RStudio. May 05, 2017. Available at: [https://rviews.rstudio.com/2017/05/17/databases-using-r/](https://rviews.rstudio.com/2017/05/17/databases-using-r/)
+
+### Exercises
+
+1) Practice using the database connection skills learned with a local SQLite database. Create your own sample dataset, upload it to the database, and practice writing queries using `dplyr` verbs.
+
+2) Explore the SQL code generated by `dbplyr` for different operations. Use `show_query()` to see how your R code is translated to SQL.
+
+***
+***
+
+## Data Manipulation with _Two-table verbs_ - `dplyr`
+
+Data analysis, most of the time, involves more than one database. In practice, they are databases from different sources that contribute to reaching a final result. Thus, we need flexible tools to combine them. In the `dplyr` package, there are three families of verbs that work with two tables at once:
+
+- _mutating joins_, which add new variables to a table from matching rows in another;
+- _filtering joins_, which filter observations from a table if these observations match an observation in another table;
+- _set operations_, which combine observations in datasets if they are elements of the informed set.
+
+These items assume your data is in _tidy data_ format, i.e., rows are observations and columns are variables.
+
+All _two-table verbs_ (or two-table functions) work similarly: the first two arguments are `x` and `y` and provide the two tables we want to compare and combine. The _output_ will always be a new table with the same object type as `x`.
+
+### _Mutating joins_
+
+_Mutating joins_ allow us to combine variables from multiple tables. We'll use some datasets from the `nycflights13` package which includes data from 336,776 flights (tibble `flights`), weather conditions (tibble `weather`) and aircraft (tibble `planes`) that landed and took off from 3 airports (tibble `airports`) in New York in 2013. The data comes from the _US Bureau of Transportation Statistics_.
+
+Initially we'll use the `flights` dataset. Let's separate some columns from the original tibble into another. Then we'll try to join the two based on the airline name.
+
+```{r, message=FALSE, warning=FALSE}
+library("nycflights13")
+library(dplyr)
+
+# Drop unimportant variables so it's easier to understand the join results.
+flights2 <- flights %>% select(year:day, hour, origin, dest, tailnum, carrier)
+
+flights2 %>% 
+  left_join(airlines)
+```
+
+#### Controlling how tables match in _mutating joins_
+
+Along with the `x` and `y` arguments, each _mutating join_ also receives a `by` argument which is used as an index to match between tables. There are several ways to specify this argument.
+Let's see examples of how to specify the `by` parameter, using some tables from `nycflights13`.
+
+- 1st way) `NULL`: the _default_. `dplyr` will use all variables that appear in both tables. We call this a **natural join**. In the following example, the `flights` and `weather` tables will be "joined" based on common variables: `year`, `month`, `day`, `hour` and `origin`.
+
+```{r}
+flights2 %>% left_join(weather)
+```
+
+- 2nd way) `by = "var1"` or `by = c("var1", "var2", "var3")`: a character vector. Operates as if it were a _natural join_, but uses only some of the common variables. For example, `flights` and `planes` have a `year` variable, but they mean different things in each tibble/dataframe. So, we want to specify a column we know means the same thing in both tibbles and can serve as an index for _matching_. Let's use `tailnum` which is the plane's (tail) number.
+
+```{r}
+flights2 %>% left_join(planes, by = "tailnum")
+```
+
+Note that when joining all columns from both tibbles, `dplyr` adds a suffix to the second `year` variable.
+
+- 3rd way) `by = c("var1" = "var3")`: a named character vector. This will match variable `var1` in table `x` with variable `var3` in table `y`. Variables from source table `x` will be used in the _output_.
+
+Each flight has an origin and destination airport. So we need to specify which of these variables from the `flights` dataset we want to match with the `faa` column from the `airports` dataset.
+
+```{r}
+flights2 %>% left_join(airports, c("dest" = "faa"))
+```
+
+```{r}
+flights2 %>% left_join(airports, c("origin" = "faa"))
+```
+
+#### Types of _mutating joins_
+
+There are 4 types of _mutating join_, which differ by behavior in rows where **no** *matching* occurs between databases.
+
+Let's create two dataframes and then we'll see examples of each case.
+
+```{r}
+(df1 <- data.frame(x = c(1, 2), y = 2:1))
+
+(df2 <- data.frame(x = c(1, 3), a = 10, b = "a"))
+```
+
+- `inner_join(x, y)`: includes only observations that have correspondence in both `x` and `y` (i.e., equal rows in dataframes).
+
+```{r}
+df1 %>% inner_join(df2)
+```
+
+Note that the `by` argument was omitted. Thus, the function's behavior was the _default_. Column `x` was used as an index to join the two data frames. Equal rows for variable `x` in both dataframes are brought in full (i.e., all columns are presented).
+
+- `left_join(x, y)`: includes all observations in `x`, regardless of whether there's _matching_ between tables. This is the most used type of _join_, because it guarantees we won't lose any information from our primary table `x`.
+
+```{r}
+df1 %>% left_join(df2)
+```
+
+- `right_join(x, y)`: includes all observations from table `y`. It's equivalent to `left_join(**y**, **x**)`, but variable ordering will be different in the latter case:
+
+```{r}
+df1 %>% right_join(df2)
+
+df2 %>% left_join(df1)
+```
+
+- `full_join()`: includes all observations from table `x` and `y`:
+
+```{r}
+df1 %>% full_join(df2)
+```
+
+The _left_, _right_ and _full joins_ are collectively known as **outer joins**. When a row from one table has no correspondence in the other table, in an **outer join**, new variables are filled with _missing values_ (`NA`).
+
+Although _mutating joins_ exist to add new variables, in some cases they can generate new observations. If a match isn't unique, a _join_ will add rows for all possible combinations (Cartesian product) of matching observations. This is an important observation, because often when performing a join between two tables, we don't understand why the table resulting from the _join_ has more observations than the two original tables.
+
+```{r}
+df1 <- data.frame(x = c(1, 1, 2), y = 1:3)
+df2 <- data.frame(x = c(1, 1, 2), z = c("a", "b", "a"))
+
+df1 %>% left_join(df2)
+```
+
+### _Filtering joins_
+
+**Filtering joins** "match" observations in the same way as _mutating joins_, but **affect observations themselves and not variables**. There are two types of _filtering joins_:
+
+- `semi_join()` **KEEPS** all observations in `x` that have correspondence in `y`;
+- `anti_join()` **REMOVES** all observations in `x` that have correspondence in `y`.
+
+These joins are very useful for identifying "mismatches" between tables. For example, there are several flights in the `flights` dataset that don't have matches regarding `tailnum` in the `planes` dataset:
+
+```{r}
+flights %>% 
+  anti_join(planes, by = "tailnum") %>% 
+  count(tailnum, sort = TRUE)
+```
+
+If you're concerned about which observations our _join_ will *match*, it's suggested to start with a `semi_join()` or `anti_join()` for the following reason: these _joins_ never duplicate observations, they only remove or keep them in the same number.
+
+```{r}
+df1 <- data.frame(x = c(1, 1, 3, 4), y = 1:4)
+df2 <- data.frame(x = c(1, 1, 2), z = c("a", "b", "a"))
+
+# Four rows to start with:
+df1 %>% nrow()
+
+# And we get four rows after the join
+df1 %>% inner_join(df2, by = "x") %>% nrow()
+
+# But only two rows actually match
+df1 %>% semi_join(df2, by = "x") %>% nrow()
+```
+
+Finally, it's worth mentioning functions that would be useful if you had to work with 3 or more tables. Read about `purrr::reduce()` or `Reduce()`, as described in _"Advanced R"_, to iteratively combine and expand your knowledge of _two-table verbs_ to handle a larger number of tables.
+
+The content of this chapter was adapted from the *two-table verbs* vignette, available at [http://dplyr.tidyverse.org/articles/two-table.html](http://dplyr.tidyverse.org/articles/two-table.html).
+
+***
+
+### Section References
+
+- Wickham H.; François, R.; Henry, L.; Müller K. (2019). _dplyr: A Grammar of Data Manipulation_. R package version 0.8.1. URL [https://CRAN.R-project.org/package=dplyr](https://CRAN.R-project.org/package=dplyr).
+
+- Wickham H.; François, R.; Henry, L.; Müller K. (2020). _dplyr vignette: Two-table_. Article. Available at: [http://dplyr.tidyverse.org/articles/two-table.html](http://dplyr.tidyverse.org/articles/two-table.html).
+
+- Wickham, H.; Grolemund, G. (2016). _R for Data Science: Import, Tidy, Transform, Visualize, and Model Data_. O'Reilly Media. december 2016. 522 pages. Available at: [https://www.r4ds.co.nz](https://www.r4ds.co.nz).
+
+### Exercises
+
+1) Try to replicate each of the _joins_ presented in this section using the `nycflights13` datasets. Practice joining `flights` with different tables like `airports`, `airlines`, `weather`, and `planes`.
+
+2) Create your own small datasets and practice all four types of joins (`inner_join`, `left_join`, `right_join`, `full_join`). Pay attention to how each handles non-matching rows.
+
+3) Use `anti_join()` to find flights in the `flights` dataset that don't have weather information in the `weather` dataset.
+
+***
+***
+
+## Geographic Data Analysis in **R**
+
+### Introduction
+
+In recent decades there has been a real revolution in geocomputation techniques. Thanks to this great advance, geographic data analysis is no longer restricted to those who have access to expensive hardware and software. In a way, we can say that **R** also contributed to this advance. Although the language had some limitations regarding geocomputation in the early years of language development, recently several **R** packages have taken geocomputation to a new level, especially regarding **reproducibility**.
+
+While software based on Geographic Information Systems (GIS), which has Geography as its base discipline and focus on graphical interfaces, leaves something to be desired in the reproducibility of generated maps, **R**, which is based on Statistics and Computing through command line and programming, makes geographic data analysis much more fluid and capable of reproduction by other users and developers.
+
+In this section, we'll present some of the main packages and techniques used for map production using **R**.
+
+#### Geographic data models: _vector_ vs _raster_
+
+
+```{r setup-all, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  dev = "png",
+  dev.args = list(type = "cairo"),
+  dpi = 300
+)
+```
+
+
+In the field of geocomputation, we need to know how to differentiate the two main types of geographic data: _vector_ and _raster_.
+
+Geographic data in **vector** form uses _points_, _lines_ and _polygons_ to represent a map. In this case, object edges (e.g. States, Municipalities, Countries) are well defined.
+
+```{r vector-example, echo=FALSE, fig.cap="Example of vector plot"}
+library(sf)
+library(spData)
+
+world_NA <- world[world$continent == "North America", ]
+usa <- world[world$name_long == "United States", ]
+
+# Using ggplot2 for better compatibility
+library(ggplot2)
+ggplot() +
+  geom_sf(data = usa, fill = "gray", color = "black", size = 1) +
+  geom_sf(data = world_NA, fill = NA, color = "black") +
+  theme_minimal() +
+  labs(title = "Vector Data Example: North America")
+```
+
+Data in **raster** format divides a map's surface into cells of constant sizes. Datasets in _raster_ format are commonly used to generate maps as background images (_background_). _Raster_ models have been used practically since the origin of Remote Sensing devices and satellites.
+
+In this course, we'll focus on geographic data models in **_vector_**, which is the predominant data model in Social Sciences. This is because spatial arrangements produced by humans tend to have discrete and well-defined boundaries. The _raster_ model is more used in environmental or earth sciences due to the use of data from remote sensing.
+
+Now that we know the conceptual differences between the main geographic data models, let's get practical.
+
+### Map Production in R
+
+#### _Shapefiles_
+
+_Shapefiles_ are files that follow the geographic data model in _vector_, containing graphic elements in the format of _point_, _line_ and/or _polygons_ that can be worked together with geographic coordinates to describe a specific phenomenon, such as population size, disease incidence, unemployment rates, etc. From this information, it's possible to construct a map.
+
+A _shapefile_ normally contains three main files `.shp`, `.shx`, `.dbf`. There are several places from which you can obtain _shapefiles_ for map making.
+
+If your goal is to obtain _shapefiles_ for US territorial boundaries, you can get them from these sources:
+
+* **US Census Bureau - TIGER/Line Shapefiles**: [https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+
+* **Natural Earth Data**: [https://www.naturalearthdata.com/downloads/](https://www.naturalearthdata.com/downloads/)
+
+* **GADM**: [https://gadm.org/download_country_v3.html](https://gadm.org/download_country_v3.html)
+
+**TIP:** The `spData` package already includes geographic data for US states, which makes our work easier for educational purposes.
+
+We'll focus on demonstrating how to work with _shapefiles_ using the `spData` package that already has ready-made data. For any other data source, procedures will be practically the same.
+
+#### Map of US States
+
+##### Obtaining and reading the file
+
+Let's use the `spData` package which already contains the territorial mesh of US states. We'll also need the `sf` package to work with spatial data.
+
+```{r setup-spatial}
+# Loading necessary packages
+library(sf)
+library(spData)
+library(dplyr)
+library(ggplot2)
+
+# Loading US states data
+data("us_states")
+
+# Converting to sf object (simple features)
+shp_us_states <- st_as_sf(us_states)
+
+# Viewing the data structure
+head(shp_us_states)
+```
+
+Note that in addition to state names, region they belong to (`REGION`), area, total population and other variables, this special dataframe has a column called `geom`. This column has the vector geometric elements for map making in the _vector_ data model mentioned earlier.
+
+##### Plotting the Map
+
+**Using ggplot2 (Recommended Method)**
+
+The most reliable way to create maps in R is using `ggplot2` with `geom_sf()`. This approach handles complex geometries better and produces professional-looking maps:
+
+```{r ggplot-basic-map}
+ggplot(data = shp_us_states) +
+  geom_sf(fill = "lightblue", color = "white", size = 0.3) +
+  labs(title = "United States - State Boundaries") +
+  theme_minimal()
+```
+
+Very simple to make maps in **R**, right?
+
+**Alternative: Using base R plot()**
+
+If you prefer base R graphics, here's how to do it with proper configuration:
+
+```{r base-map, eval=FALSE}
+# This requires proper graphics device setup
+par(mar = c(0, 0, 2, 0))
+plot(st_geometry(shp_us_states), 
+     main = "United States - State Boundaries",
+     col = "lightblue",
+     border = "white",
+     lwd = 0.5)
+```
+
+##### Adding data to the map
+
+Normally, when doing geographic analyses, our goal is to represent some phenomenon occurring in the territory, such as unemployment rate behavior by state.
+
+Let's create simulated unemployment rate data for US states in the year 2020:
+
+```{r create-unemployment-data}
+set.seed(123) # for reproducibility
+
+# Creating unemployment rate data
+unemployment_data <- data.frame(
+  NAME = shp_us_states$NAME,
+  unemployment_rate = round(runif(nrow(shp_us_states), min = 3.5, max = 8.5), 1)
+)
+
+head(unemployment_data)
+```
+
+Now we must join this data to the dataframe containing the boundaries of US states. Let's use the `left_join()` function from `dplyr`. We'll join the tables based on the column containing state names.
+
+```{r join-unemployment}
+shape_data_join <- left_join(shp_us_states, 
+                             unemployment_data, 
+                             by = "NAME")
+
+# Check the result
+head(shape_data_join[, c("NAME", "REGION", "unemployment_rate")])
+```
+
+##### Creating a Choropleth Map with ggplot2
+
+Now let's create a professional choropleth map showing unemployment rates:
+
+```{r choropleth-ggplot, fig.width=10, fig.height=7}
+ggplot(data = shape_data_join) +
+  geom_sf(aes(fill = unemployment_rate), color = "white", size = 0.2) +
+  scale_fill_gradient(low = "yellow", high = "red",
+                      name = "Unemployment\nRate (%)",
+                      breaks = seq(3, 9, by = 1)) +
+  labs(title = "Unemployment Rate by State, 2020",
+       subtitle = "Simulated data for educational purposes",
+       caption = "Source: Simulated data") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(size = 10),
+        panel.grid = element_blank())
+```
+
+**Alternative visualization with discrete colors:**
+
+```{r choropleth-discrete, fig.width=10, fig.height=7}
+library(RColorBrewer)
+
+# Create discrete categories
+shape_data_join <- shape_data_join %>%
+  mutate(unemployment_category = cut(unemployment_rate, 
+                                     breaks = seq(3, 9, by = 1),
+                                     labels = c("3-4%", "4-5%", "5-6%", 
+                                               "6-7%", "7-8%", "8-9%"),
+                                     include.lowest = TRUE))
+
+ggplot(data = shape_data_join) +
+  geom_sf(aes(fill = unemployment_category), color = "white", size = 0.2) +
+  scale_fill_brewer(palette = "YlOrRd",
+                    name = "Unemployment\nRate",
+                    na.value = "grey90") +
+  labs(title = "Unemployment Rate by State, 2020",
+       subtitle = "Simulated data for educational purposes") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        plot.title = element_text(face = "bold", size = 14),
+        panel.grid = element_blank())
+```
+
+**TIP:** With `ggplot2` and `geom_sf()`, we can use all the familiar `ggplot2` functions to customize our maps!
+
+##### Adding more data to the map
+
+Let's add GDP growth data and create a more complex visualization:
+
+```{r create-gdp-data}
+set.seed(456)
+
+# Creating GDP growth data
+gdp_growth_data <- data.frame(
+  NAME = shp_us_states$NAME,
+  gdp_growth = round(runif(nrow(shp_us_states), min = -3, max = 5), 1)
+)
+
+# Join with existing data
+shape_data_join2 <- left_join(shape_data_join, 
+                              gdp_growth_data, 
+                              by = "NAME")
+
+head(shape_data_join2[, c("NAME", "unemployment_rate", "gdp_growth")])
+```
+
+Now let's create a bivariate map showing both unemployment and GDP growth:
+
+```{r bivariate-map, fig.width=12, fig.height=8}
+# Get state centroids for bubble plot
+state_centers <- suppressWarnings(st_centroid(shape_data_join2))
+
+# Create the base map with unemployment rate
+ggplot(data = shape_data_join2) +
+  geom_sf(aes(fill = unemployment_rate), color = "white", size = 0.2) +
+  scale_fill_viridis_c(option = "plasma", 
+                       name = "Unemployment\nRate (%)",
+                       direction = -1) +
+  # Add bubbles for GDP growth
+  geom_sf(data = state_centers, 
+          aes(size = abs(gdp_growth),
+              color = gdp_growth > 0),
+          alpha = 0.6,
+          show.legend = "point") +
+  scale_size_continuous(name = "GDP Growth\n(absolute %)",
+                       range = c(1, 8)) +
+  scale_color_manual(values = c("red", "blue"),
+                     labels = c("Negative", "Positive"),
+                     name = "GDP Growth\nDirection") +
+  labs(title = "Unemployment Rate and GDP Growth by State, 2020",
+       subtitle = "Fill color shows unemployment rate; bubble size shows GDP growth magnitude",
+       caption = "Source: Simulated data for educational purposes") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        plot.title = element_text(face = "bold", size = 14),
+        panel.grid = element_blank())
+```
+
+##### Focusing on a specific region: Florida and neighboring states
+
+As an additional example, let's create a map focused on Florida and neighboring states. This is particularly relevant since this course is being taught at the University of North Florida (UNF) in Jacksonville.
+
+```{r florida-map, fig.width=8, fig.height=7}
+# Selecting Florida and neighboring states
+southeast_states <- c("Florida", "Georgia", "Alabama", "South Carolina")
+
+shape_southeast <- shape_data_join2 %>%
+  filter(NAME %in% southeast_states)
+
+# Creating regional map with ggplot2
+ggplot(data = shape_southeast) +
+  geom_sf(aes(fill = unemployment_rate), color = "black", size = 0.5) +
+  geom_sf_text(aes(label = NAME), size = 3.5, fontface = "bold", 
+               check_overlap = TRUE) +
+  scale_fill_gradient(low = "lightblue", high = "darkblue",
+                      name = "Unemployment\nRate (%)") +
+  labs(title = "Unemployment in Southeast US States, 2020",
+       subtitle = "Focus: Florida and neighboring states",
+       caption = "Data: Simulated for educational purposes") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(face = "bold"),
+        panel.grid = element_blank())
+```
+
+**Adding UNF marker to Florida map:**
+
+```{r florida-unf-map, fig.width=8, fig.height=7}
+# Get only Florida
+florida <- shape_southeast %>% filter(NAME == "Florida")
+
+# Create UNF location point
+unf_location <- st_sfc(st_point(c(-81.6557, 30.3322)), crs = 4326)
+unf_location <- st_sf(name = "UNF", geometry = unf_location)
+
+ggplot() +
+  geom_sf(data = florida, aes(fill = unemployment_rate), 
+          color = "black", size = 0.5) +
+  geom_sf(data = unf_location, color = "red", size = 4, shape = 17) +
+  geom_sf_text(data = unf_location, aes(label = "Jacksonville\n(UNF)"), 
+               nudge_x = 1, nudge_y = 0.3, size = 3.5, fontface = "bold") +
+  scale_fill_gradient(low = "lightblue", high = "darkblue",
+                      name = "Unemployment\nRate (%)") +
+  labs(title = "Florida Unemployment Rate, 2020",
+       subtitle = "University of North Florida location marked",
+       caption = "Data: Simulated for educational purposes") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        plot.title = element_text(face = "bold"),
+        panel.grid = element_blank())
+```
+
+##### Creating interactive maps with leaflet
+
+For interactive maps that can be shared online or embedded in websites, `leaflet` is an excellent choice:
+
+```{r leaflet-simple, message=FALSE, warning=FALSE}
+library(leaflet)
+
+# Create a simple interactive map centered on Jacksonville, FL
+leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap tiles
+  setView(lng = -81.6557, lat = 30.3322, zoom = 11) %>%
+  addMarkers(lng = -81.6557, lat = 30.3322, 
+             popup = "<b>University of North Florida</b><br/>Jacksonville, FL") %>%
+  addCircleMarkers(lng = -81.6557, lat = 30.3322,
+                   radius = 50,
+                   color = "blue",
+                   fillOpacity = 0.2,
+                   popup = "UNF Campus Area")
+```
+
+We can also create an interactive choropleth map showing our unemployment data:
+
+```{r leaflet-choropleth, message=FALSE, warning=FALSE}
+library(leaflet)
+
+# For leaflet, we need to transform to WGS84 (EPSG:4326)
+shape_leaflet <- st_transform(shape_data_join2, 4326)
+
+# Create color palette
+pal <- colorNumeric(palette = "YlOrRd", 
+                    domain = shape_leaflet$unemployment_rate)
+
+# Create interactive map
+leaflet(shape_leaflet) %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = ~pal(unemployment_rate),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    fillOpacity = 0.7,
+    highlightOptions = highlightOptions(
+      weight = 3,
+      color = "#666",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste0(NAME, ": ", unemployment_rate, "%"),
+    popup = ~paste0("<strong>", NAME, "</strong><br/>",
+                   "Unemployment: ", unemployment_rate, "%<br/>",
+                   "GDP Growth: ", gdp_growth, "%")
+  ) %>%
+  addLegend(pal = pal, 
+            values = ~unemployment_rate, 
+            opacity = 0.7, 
+            title = "Unemployment Rate (%)",
+            position = "bottomright")
+```
+
+**TIP:** Interactive maps created with `leaflet` are great for presentations and can be easily embedded in websites or R Markdown HTML outputs!
+
+##### Other packages for map generation
+
+Besides the methods we've shown, there are several other alternatives in the **R** ecosystem for generating maps:
+
+- **ggmap**: Combines `ggplot2` with map tiles from Google Maps, OpenStreetMap, and others
+- **plotly**: Can convert `ggplot2` maps to interactive versions using `ggplotly()`
+- **mapview**: Quick interactive viewing of spatial data
+- **tmap**: Thematic maps with a grammar similar to `ggplot2` (though it may have compatibility issues in some environments)
+
+### Exporting geographic data
+
+#### Writing vector data files
+
+Just as in reading vector data, the recommended package for writing data is `sf`. The function equivalent to `st_read()` regarding data writing is `st_write()`. There are several types of vector files that can be written: `ESRI Shapefile` the most common (file extension `shp`), `GPX`, `KML`, `GeoJSON` and `GPKG`.
+
+See an example, writing a _shapefile_ `.shp`:
+
+```{r write-shapefile, eval=FALSE}
+# Saving as shapefile
+st_write(obj = shape_data_join2, 
+         dsn = "us_states_unemployment.shp",
+         delete_dsn = TRUE) # overwrites if it already exists
+
+# Or save as GeoJSON (more modern format)
+st_write(obj = shape_data_join2,
+         dsn = "us_states_unemployment.geojson",
+         delete_dsn = TRUE)
+```
+
+#### Writing image files
+
+To save static maps as images:
+
+```{r save-static-maps, eval=FALSE}
+# Save a ggplot map
+library(ggplot2)
+
+# Create the plot
+my_map <- ggplot(data = shape_data_join) +
+  geom_sf(aes(fill = unemployment_rate)) +
+  scale_fill_gradient(low = "yellow", high = "red") +
+  labs(title = "US Unemployment Rate by State") +
+  theme_minimal()
+
+# Save as PNG
+ggsave("us_unemployment_map.png", 
+       plot = my_map,
+       width = 10, height = 8, 
+       dpi = 300)
+
+# Save as PDF
+ggsave("us_unemployment_map.pdf",
+       plot = my_map,
+       width = 10, height = 8)
+
+# Or using base R for a base plot
+png("us_unemployment_base.png", width = 800, height = 600, res = 100)
+plot(st_geometry(shape_data_join), 
+     col = colors[shape_data_join$color_category],
+     main = "Unemployment Rate by State")
+dev.off()
+```
+
+You can also save interactive leaflet maps as HTML:
+
+```{r save-leaflet, eval=FALSE}
+library(htmlwidgets)
+library(leaflet)
+
+# Create the leaflet map (as shown above)
+my_leaflet_map <- leaflet(shape_leaflet) %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = ~pal(unemployment_rate),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    fillOpacity = 0.7,
+    popup = ~paste0("<strong>", NAME, "</strong><br/>",
+                   "Unemployment: ", unemployment_rate, "%")
+  ) %>%
+  addLegend(pal = pal, 
+            values = ~unemployment_rate,
+            title = "Unemployment Rate (%)")
+
+# Save as HTML
+saveWidget(my_leaflet_map, 
+           file = "us_unemployment_interactive.html")
+```
+
+***
+
+### Section References
+
+- Lovelace, R.; Nowosad, J.; Muenchow, J. (2019). _Geocomputation with R_. CRC Press. Available at: [https://geocompr.robinlovelace.net/](https://geocompr.robinlovelace.net/)
+
+- Pebesma, E. (2018). Simple Features for R: Standardized Support for Spatial Vector Data. _The R Journal_ 10 (1), 439-446, [https://doi.org/10.32614/RJ-2018-009](https://doi.org/10.32614/RJ-2018-009).
+
+- Wickham, H. (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. URL [https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org)
+
+- Cheng, J., Karambelkar, B., & Xie, Y. (2021). _leaflet: Create Interactive Web Maps with Leaflet_. R package. URL [https://rstudio.github.io/leaflet/](https://rstudio.github.io/leaflet/)
+
+- Bivand, R. S., Pebesma, E., & Gomez-Rubio, V. (2013). _Applied spatial data analysis with R_ (Vol. 2, pp. 1-405). New York: Springer.
+
+### Exercises
+
+1) **Basic Mapping**:
+   - a) Explore the `us_states` dataset from the `spData` package and identify other available variables (total_pop_15, median_income_15, etc).
+   - b) Create a map showing population density (total_pop_15/AREA) of US states using `ggplot2`.
+   - c) Add state abbreviations to your map using `geom_sf_text()`.
+
+2) **Interactive Mapping**:
+   - a) Create an interactive map using `leaflet` showing only the Southeast US region.
+   - b) Add popup information showing state name, unemployment rate, and GDP growth.
+   - c) Try changing the base map tiles using `addProviderTiles()` (hint: try "CartoDB.Positron" or "Esri.WorldImagery").
+
+3) **Data Visualization**:
+   - a) Download real unemployment data from the Bureau of Labor Statistics ([https://www.bls.gov/data/](https://www.bls.gov/data/)) and create a map with real data.
+   - b) Create a faceted map showing different regions of the US using `facet_wrap()` in `ggplot2`.
+
+4) **Florida Focus** (UNF special):
+   - a) Create a detailed map focused only on Florida using coordinate limits.
+   - b) Add a marker for Jacksonville and the UNF campus location (30.2672° N, 81.5102° W).
+   - c) Try to find and download Florida county-level shapefiles and create a county map.
+   - d) Save your final map as both a static PNG (using `ggsave()`) and an interactive HTML file (using `saveWidget()`).
+
+5) **Challenge**:
+   - Create a small multiples map showing unemployment rates for the four US Census regions separately.
+   - Add annotations to highlight interesting patterns (e.g., highest/lowest unemployment states).
+   - Customize the color palette to be colorblind-friendly using `scale_fill_viridis_c()`.

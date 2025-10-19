@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 4 Module IV | Introduction to Data Analysis with R and the Tidyverse</title>
+  <meta name="description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 4 Module IV | Introduction to Data Analysis with R and the Tidyverse" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
+  <meta property="og:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="github-repo" content="allanvc/book_IADR-T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 4 Module IV | Introduction to Data Analysis with R and the Tidyverse" />
+  
+  <meta name="twitter:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="twitter:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
+
+<meta name="author" content="Allan Quadros, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="m3.html"/>
+<link rel="next" href="conclusion.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Data Analysis in **R** using Tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-organization"><i class="fa fa-check"></i>Course Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="m1.html"><a href="m1.html"><i class="fa fa-check"></i><b>1</b> Module I</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="m1.html"><a href="m1.html#first-steps"><i class="fa fa-check"></i><b>1.1</b> First Steps</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="m1.html"><a href="m1.html#brief-history"><i class="fa fa-check"></i><b>1.1.1</b> Brief History</a></li>
+<li class="chapter" data-level="1.1.2" data-path="m1.html"><a href="m1.html#installing-r"><i class="fa fa-check"></i><b>1.1.2</b> Installing <strong>R</strong></a></li>
+<li class="chapter" data-level="1.1.3" data-path="m1.html"><a href="m1.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Installing <strong>RStudio</strong></a></li>
+<li class="chapter" data-level="1.1.4" data-path="m1.html"><a href="m1.html#installing-rtools-on-windows"><i class="fa fa-check"></i><b>1.1.4</b> Installing <strong>RTools</strong> on Windows</a></li>
+<li class="chapter" data-level="1.1.5" data-path="m1.html"><a href="m1.html#basic-functionalities-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.5</b> Basic Functionalities of R and RStudio</a></li>
+<li class="chapter" data-level="1.1.6" data-path="m1.html"><a href="m1.html#r-language-structure"><i class="fa fa-check"></i><b>1.1.6</b> R Language Structure</a></li>
+<li class="chapter" data-level="1.1.7" data-path="m1.html"><a href="m1.html#how-to-get-help"><i class="fa fa-check"></i><b>1.1.7</b> How to get help</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="m1.html"><a href="m1.html#r-language-object-structure"><i class="fa fa-check"></i><b>1.2</b> R Language Object Structure</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="m1.html"><a href="m1.html#vectors"><i class="fa fa-check"></i><b>1.2.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="m1.html"><a href="m1.html#dataframes"><i class="fa fa-check"></i><b>1.2.2</b> Dataframes</a></li>
+<li class="chapter" data-level="1.2.3" data-path="m1.html"><a href="m1.html#module-references"><i class="fa fa-check"></i><b>1.2.3</b> Module References</a></li>
+<li class="chapter" data-level="1.2.4" data-path="m1.html"><a href="m1.html#exercises"><i class="fa fa-check"></i><b>1.2.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="m2.html"><a href="m2.html"><i class="fa fa-check"></i><b>2</b> Module II</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="m2.html"><a href="m2.html#reading-data-in-r"><i class="fa fa-check"></i><b>2.1</b> Reading Data in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="m2.html"><a href="m2.html#the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> The Tidyverse</a></li>
+<li class="chapter" data-level="2.1.2" data-path="m2.html"><a href="m2.html#reading-and-exporting-data-using-readr"><i class="fa fa-check"></i><b>2.1.2</b> Reading and Exporting Data using <code>readr</code></a></li>
+<li class="chapter" data-level="2.1.3" data-path="m2.html"><a href="m2.html#writing-and-exporting-data"><i class="fa fa-check"></i><b>2.1.3</b> Writing and exporting data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="m2.html"><a href="m2.html#reading-data-from-stata-sas-and-spss"><i class="fa fa-check"></i><b>2.1.4</b> Reading data from Stata, SAS and SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="m2.html"><a href="m2.html#section-references"><i class="fa fa-check"></i><b>2.1.5</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="m2.html"><a href="m2.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Data Manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="m2.html"><a href="m2.html#filtering-rows-with-filter"><i class="fa fa-check"></i><b>2.2.1</b> Filtering rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="m2.html"><a href="m2.html#ordering-rows-with-arrange"><i class="fa fa-check"></i><b>2.2.2</b> Ordering rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="m2.html"><a href="m2.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.3</b> Selecting columns with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="m2.html"><a href="m2.html#adding-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Adding new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="m2.html"><a href="m2.html#modifying-entries-with-mutate-or-transmute-case_when"><i class="fa fa-check"></i><b>2.2.5</b> Modifying entries with <code>mutate()</code> or <code>transmute()</code> + <code>case_when()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="m2.html"><a href="m2.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>2.2.6</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.7" data-path="m2.html"><a href="m2.html#dplyr-structure"><i class="fa fa-check"></i><b>2.2.7</b> <code>dplyr</code> Structure</a></li>
+<li class="chapter" data-level="2.2.8" data-path="m2.html"><a href="m2.html#using-the-pipe"><i class="fa fa-check"></i><b>2.2.8</b> Using the Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="2.2.9" data-path="m2.html"><a href="m2.html#section-references-1"><i class="fa fa-check"></i><b>2.2.9</b> Section References</a></li>
+<li class="chapter" data-level="2.2.10" data-path="m2.html"><a href="m2.html#exercises-1"><i class="fa fa-check"></i><b>2.2.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="m2.html"><a href="m2.html#graphics-with-ggplot2"><i class="fa fa-check"></i><b>2.3</b> Graphics with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="m2.html"><a href="m2.html#introduction"><i class="fa fa-check"></i><b>2.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.2" data-path="m2.html"><a href="m2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.3.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="2.3.3" data-path="m2.html"><a href="m2.html#data"><i class="fa fa-check"></i><b>2.3.3</b> Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="m2.html"><a href="m2.html#the-ggplot-function"><i class="fa fa-check"></i><b>2.3.4</b> The <code>ggplot()</code> function</a></li>
+<li class="chapter" data-level="2.3.5" data-path="m2.html"><a href="m2.html#aesthetics-aesthetic-elements-of-graphics"><i class="fa fa-check"></i><b>2.3.5</b> Aesthetics (aesthetic elements of graphics)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="m2.html"><a href="m2.html#examples-for-aesthetics"><i class="fa fa-check"></i><b>2.3.6</b> Examples for <em>aesthetics</em></a></li>
+<li class="chapter" data-level="2.3.7" data-path="m2.html"><a href="m2.html#geoms"><i class="fa fa-check"></i><b>2.3.7</b> Geoms</a></li>
+<li class="chapter" data-level="2.3.8" data-path="m2.html"><a href="m2.html#examples-for-geoms"><i class="fa fa-check"></i><b>2.3.8</b> Examples for <em>Geoms</em></a></li>
+<li class="chapter" data-level="2.3.9" data-path="m2.html"><a href="m2.html#facetting"><i class="fa fa-check"></i><b>2.3.9</b> Facetting</a></li>
+<li class="chapter" data-level="2.3.10" data-path="m2.html"><a href="m2.html#titles-labels-themes-and-legends"><i class="fa fa-check"></i><b>2.3.10</b> Titles, labels, themes and legends</a></li>
+<li class="chapter" data-level="2.3.11" data-path="m2.html"><a href="m2.html#changing-colors-and-color-palette"><i class="fa fa-check"></i><b>2.3.11</b> Changing colors and color palette</a></li>
+<li class="chapter" data-level="2.3.12" data-path="m2.html"><a href="m2.html#plot-area-and-theme"><i class="fa fa-check"></i><b>2.3.12</b> Plot Area and Theme</a></li>
+<li class="chapter" data-level="2.3.13" data-path="m2.html"><a href="m2.html#section-references-2"><i class="fa fa-check"></i><b>2.3.13</b> Section References</a></li>
+<li class="chapter" data-level="2.3.14" data-path="m2.html"><a href="m2.html#exercises-2"><i class="fa fa-check"></i><b>2.3.14</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="m3.html"><a href="m3.html"><i class="fa fa-check"></i><b>3</b> Module III</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="m3.html"><a href="m3.html#accessing-relational-databases-with-dbplyr"><i class="fa fa-check"></i><b>3.1</b> Accessing Relational Databases with <code>dbplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="m3.html"><a href="m3.html#introduction-1"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1.2" data-path="m3.html"><a href="m3.html#connecting-to-a-database"><i class="fa fa-check"></i><b>3.1.2</b> Connecting to a database</a></li>
+<li class="chapter" data-level="3.1.3" data-path="m3.html"><a href="m3.html#generating-queries"><i class="fa fa-check"></i><b>3.1.3</b> Generating queries</a></li>
+<li class="chapter" data-level="3.1.4" data-path="m3.html"><a href="m3.html#section-references-3"><i class="fa fa-check"></i><b>3.1.4</b> Section References</a></li>
+<li class="chapter" data-level="3.1.5" data-path="m3.html"><a href="m3.html#exercises-3"><i class="fa fa-check"></i><b>3.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="m3.html"><a href="m3.html#data-manipulation-with-two-table-verbs---dplyr"><i class="fa fa-check"></i><b>3.2</b> Data Manipulation with <em>Two-table verbs</em> - <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="m3.html"><a href="m3.html#mutating-joins"><i class="fa fa-check"></i><b>3.2.1</b> <em>Mutating joins</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="m3.html"><a href="m3.html#filtering-joins"><i class="fa fa-check"></i><b>3.2.2</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="3.2.3" data-path="m3.html"><a href="m3.html#section-references-4"><i class="fa fa-check"></i><b>3.2.3</b> Section References</a></li>
+<li class="chapter" data-level="3.2.4" data-path="m3.html"><a href="m3.html#exercises-4"><i class="fa fa-check"></i><b>3.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="m3.html"><a href="m3.html#geographic-data-analysis-in-r"><i class="fa fa-check"></i><b>3.3</b> Geographic Data Analysis in <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="m3.html"><a href="m3.html#introduction-2"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="m3.html"><a href="m3.html#map-production-in-r"><i class="fa fa-check"></i><b>3.3.2</b> Map Production in R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="m3.html"><a href="m3.html#exporting-geographic-data"><i class="fa fa-check"></i><b>3.3.3</b> Exporting geographic data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="m3.html"><a href="m3.html#section-references-5"><i class="fa fa-check"></i><b>3.3.4</b> Section References</a></li>
+<li class="chapter" data-level="3.3.5" data-path="m3.html"><a href="m3.html#exercises-5"><i class="fa fa-check"></i><b>3.3.5</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="m4.html"><a href="m4.html"><i class="fa fa-check"></i><b>4</b> Module IV</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="m4.html"><a href="m4.html#string-manipulation-in-r-with-stringr"><i class="fa fa-check"></i><b>4.1</b> String Manipulation in R with <code>stringr</code></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="m4.html"><a href="m4.html#introduction-3"><i class="fa fa-check"></i><b>4.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.2" data-path="m4.html"><a href="m4.html#operations-with-individual-characters"><i class="fa fa-check"></i><b>4.1.2</b> Operations with individual characters</a></li>
+<li class="chapter" data-level="4.1.3" data-path="m4.html"><a href="m4.html#pattern-matching"><i class="fa fa-check"></i><b>4.1.3</b> Pattern matching</a></li>
+<li class="chapter" data-level="4.1.4" data-path="m4.html"><a href="m4.html#section-references-6"><i class="fa fa-check"></i><b>4.1.4</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="m4.html"><a href="m4.html#regular-expressions-regex"><i class="fa fa-check"></i><b>4.2</b> Regular Expressions (REGEX)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="m4.html"><a href="m4.html#introduction-4"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.2" data-path="m4.html"><a href="m4.html#regex-examples-using-stringr"><i class="fa fa-check"></i><b>4.2.2</b> REGEX Examples using <code>stringr</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="m4.html"><a href="m4.html#section-references-7"><i class="fa fa-check"></i><b>4.2.3</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="m4.html"><a href="m4.html#reports-and-reproducible-research-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> Reports and Reproducible Research with <code>rmarkdown</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="m4.html"><a href="m4.html#introduction-5"><i class="fa fa-check"></i><b>4.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.3.2" data-path="m4.html"><a href="m4.html#header"><i class="fa fa-check"></i><b>4.3.2</b> Header</a></li>
+<li class="chapter" data-level="4.3.3" data-path="m4.html"><a href="m4.html#text-formatting"><i class="fa fa-check"></i><b>4.3.3</b> Text Formatting</a></li>
+<li class="chapter" data-level="4.3.4" data-path="m4.html"><a href="m4.html#inserting-external-figures"><i class="fa fa-check"></i><b>4.3.4</b> Inserting external figures</a></li>
+<li class="chapter" data-level="4.3.5" data-path="m4.html"><a href="m4.html#inserting-links"><i class="fa fa-check"></i><b>4.3.5</b> Inserting links</a></li>
+<li class="chapter" data-level="4.3.6" data-path="m4.html"><a href="m4.html#mathematical-formulas"><i class="fa fa-check"></i><b>4.3.6</b> Mathematical formulas</a></li>
+<li class="chapter" data-level="4.3.7" data-path="m4.html"><a href="m4.html#code-insertion-and-execution"><i class="fa fa-check"></i><b>4.3.7</b> Code insertion and execution</a></li>
+<li class="chapter" data-level="4.3.8" data-path="m4.html"><a href="m4.html#more-sophisticated-tables"><i class="fa fa-check"></i><b>4.3.8</b> More sophisticated tables</a></li>
+<li class="chapter" data-level="4.3.9" data-path="m4.html"><a href="m4.html#section-references-8"><i class="fa fa-check"></i><b>4.3.9</b> Section References</a></li>
+<li class="chapter" data-level="4.3.10" data-path="m4.html"><a href="m4.html#exercises-6"><i class="fa fa-check"></i><b>4.3.10</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Data Analysis with R and the Tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="m4" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number"> 4</span> Module IV<a href="m4.html#m4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="string-manipulation-in-r-with-stringr" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> String Manipulation in R with <code>stringr</code><a href="m4.html#string-manipulation-in-r-with-stringr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-3" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Introduction<a href="m4.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>stringr</code> package, as its name suggests, is a package for string manipulation and also for regular expressions. These two techniques are very important in data analysis, because we often deal with text snippets and character columns, where we need to find patterns of words, numbers, emails, phone numbers, names, etc.</p>
+<p>All content related to the <code>stringr</code> package will be based on the package introduction page, available at <a href="http://stringr.tidyverse.org">http://stringr.tidyverse.org</a>. It will be like a selected and more user-friendly translation of the content provided by the authors. If you want to go deeper into the subject, you can refer to the book <a href="https://www.r4ds.co.nz"><strong>R for Data Science</strong></a> by Hadley Wickham.</p>
+<p>There are four main families of functions in the <code>stringr</code> package:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>character manipulation: these functions allow us to manipulate individual characters within strings and within vectors;</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>tools for dealing with whitespace, with which we can add, remove and manipulate whitespace;</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>locale-sensitive operations - these operations vary depending on location considering the alphabet used in each country;</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: decimal">
+<li>pattern matching functions - these functions recognize 4 “engines” for describing patterns. The most common are regular expressions, which we will use in this course.</li>
+</ol></li>
+</ul>
+</div>
+<div id="operations-with-individual-characters" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Operations with individual characters<a href="m4.html#operations-with-individual-characters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="getting-and-modifying-characters" class="section level4 hasAnchor" number="4.1.2.1">
+<h4><span class="header-section-number">4.1.2.1</span> Getting and modifying characters<a href="m4.html#getting-and-modifying-characters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="m4.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading</span></span>
+<span id="cb373-2"><a href="m4.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<p>To get the length of a string use <code>str_length()</code>:</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="m4.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="st">&quot;abc&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>To access individual characters (positions) or parts of a string, we can use <code>str_sub()</code>. This function takes as arguments a character vector, a start position and an end position. Both positions can receive a positive integer or a negative integer. If the position passed is a positive integer, the position count is made from left to right (from the beginning of the string) until the desired position is reached. When the position passed as argument is a negative integer, the count is made from right to left (from the end of the string) until the position is reached. In both cases the form of position evaluation is <strong>inclusive</strong>, that is, it includes the number that was passed. If the positions passed exceed the string limits, the result is truncated without returning any warning.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="m4.html#cb376-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="st">&quot;ghifjk&quot;</span>)</span>
+<span id="cb376-2"><a href="m4.html#cb376-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb376-3"><a href="m4.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extracting 3rd letter</span></span>
+<span id="cb376-4"><a href="m4.html#cb376-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x, <span class="dv">3</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;c&quot; &quot;i&quot;</code></pre>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="m4.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from second to second-to-last character</span></span>
+<span id="cb378-2"><a href="m4.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x, <span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;bcde&quot; &quot;hifj&quot;</code></pre>
+<p><code>str_sub()</code> can also be used to modify strings:</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="m4.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x, <span class="dv">3</span>, <span class="dv">3</span>) <span class="ot">&lt;-</span> <span class="st">&quot;X&quot;</span></span>
+<span id="cb380-2"><a href="m4.html#cb380-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] &quot;abXdef&quot; &quot;ghXfjk&quot;</code></pre>
+<p>To duplicate individual strings, use <code>str_dup()</code>:</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="m4.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_dup</span>(x, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;abXdefabXdef&quot;       &quot;ghXfjkghXfjkghXfjk&quot;</code></pre>
+</div>
+<div id="whitespace" class="section level4 hasAnchor" number="4.1.2.2">
+<h4><span class="header-section-number">4.1.2.2</span> Whitespace<a href="m4.html#whitespace" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The following functions add, remove or modify existing whitespace in strings.</p>
+<ol style="list-style-type: decimal">
+<li><code>str_pad()</code> fills a string with whitespace to a fixed width. Whitespace can be added to the left, right or both sides. This type of function is very useful for generating <code>.fwf</code> type files, i.e. with fixed widths/sizes for columns.</li>
+</ol>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="m4.html#cb384-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;defghi&quot;</span>)</span>
+<span id="cb384-2"><a href="m4.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(x, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;       abc&quot; &quot;    defghi&quot;</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="m4.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(x, <span class="dv">10</span>, <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;abc       &quot; &quot;defghi    &quot;</code></pre>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="m4.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(x, <span class="dv">10</span>, <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;   abc    &quot; &quot;  defghi  &quot;</code></pre>
+<p>We can also fill the string with other elements instead of whitespace:</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="m4.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(x, <span class="dv">10</span>, <span class="st">&quot;both&quot;</span>, <span class="at">pad=</span><span class="st">&quot;@&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;@@@abc@@@@&quot; &quot;@@defghi@@&quot;</code></pre>
+<p><code>str_pad()</code> never shortens a string:</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="m4.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(x, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] &quot; abc&quot;   &quot;defghi&quot;</code></pre>
+<p>Note: If you want to ensure that strings have the same size, combine <code>str_pad()</code> with <code>str_trunc()</code>:</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="m4.html#cb394-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Short&quot;</span>, <span class="st">&quot;This is a long string&quot;</span>)</span>
+<span id="cb394-2"><a href="m4.html#cb394-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb394-3"><a href="m4.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(x, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Short&quot;      &quot;This is...&quot;</code></pre>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="m4.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(x, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;     Short&quot;            &quot;This is a long string&quot;</code></pre>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="m4.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x %&gt;% </span></span>
+<span id="cb398-2"><a href="m4.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   str_trunc(10) %&gt;% </span></span>
+<span id="cb398-3"><a href="m4.html#cb398-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   str_pad(10, &quot;right&quot;)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>The opposite of <code>str_pad()</code> is <code>str_trim()</code>, which removes leading and trailing spaces:</li>
+</ol>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="m4.html#cb399-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;  a   &quot;</span>, <span class="st">&quot;b   &quot;</span>,  <span class="st">&quot;   c&quot;</span>)</span>
+<span id="cb399-2"><a href="m4.html#cb399-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trim</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="m4.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trim</span>(x, <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;a   &quot; &quot;b   &quot; &quot;c&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>We can use <code>str_wrap()</code> to modify existing whitespace to “wrap” for example a paragraph of text so that the length of each line is as similar as possible. It’s like justifying the paragraph.</li>
+</ol>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="m4.html#cb403-1" aria-hidden="true" tabindex="-1"></a>blah_blah_blah <span class="ot">&lt;-</span> <span class="fu">str_c</span>(</span>
+<span id="cb403-2"><a href="m4.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Roses are red, &quot;</span>,</span>
+<span id="cb403-3"><a href="m4.html#cb403-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Violets are blue, &quot;</span>,</span>
+<span id="cb403-4"><a href="m4.html#cb403-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;... In any combination of words &quot;</span>,</span>
+<span id="cb403-5"><a href="m4.html#cb403-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot; str_wrap gives you a clue  &quot;</span></span>
+<span id="cb403-6"><a href="m4.html#cb403-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb403-7"><a href="m4.html#cb403-7" aria-hidden="true" tabindex="-1"></a><span class="co"># an alternative to c() for strings</span></span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="m4.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_wrap</span>(blah_blah_blah, <span class="at">width =</span> <span class="dv">40</span>))</span></code></pre></div>
+<pre><code>## Roses are red, Violets are blue, ... In
+## any combination of words str_wrap gives
+## you a clue</code></pre>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="m4.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cat is an alternative to print</span></span></code></pre></div>
+</div>
+<div id="locale-sensitive" class="section level4 hasAnchor" number="4.1.2.3">
+<h4><span class="header-section-number">4.1.2.3</span> Locale sensitive<a href="m4.html#locale-sensitive" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A good part of <code>stringr</code> package functions are locale sensitive: they will behave differently depending on the country/region where the user is located.</p>
+<p>See examples of functions that transform lowercase letters to uppercase and vice versa:</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="m4.html#cb407-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;I like horses.&quot;</span></span>
+<span id="cb407-2"><a href="m4.html#cb407-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_upper</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;I LIKE HORSES.&quot;</code></pre>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="m4.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_title</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;I Like Horses.&quot;</code></pre>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="m4.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;i like horses.&quot;</code></pre>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="m4.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See the case of Turkish language which has two types of i: one with &quot;dot&quot; and another without</span></span>
+<span id="cb413-2"><a href="m4.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_to_lower</span>(x, <span class="st">&quot;tr&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;ı like horses.&quot;</code></pre>
+<p>Sorting strings and their indices:</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="m4.html#cb415-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;i&quot;</span>, <span class="st">&quot;k&quot;</span>)</span>
+<span id="cb415-2"><a href="m4.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_order</span>(x) <span class="co"># indices</span></span></code></pre></div>
+<pre><code>## [1] 2 3 1</code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="m4.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;i&quot; &quot;k&quot; &quot;y&quot;</code></pre>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="m4.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In Lithuanian language, y is between letters i and k</span></span>
+<span id="cb419-2"><a href="m4.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sort</span>(x, <span class="at">locale =</span> <span class="st">&quot;lt&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;i&quot; &quot;y&quot; &quot;k&quot;</code></pre>
+<p>An important aspect is that the default <code>stringr</code> configuration always comes with English language to ensure identical behavior in any system when using generic functions. This is different from what normally occurs with base R, where the global locale option normally varies with the regional version of the operating system and generates considerable confusion when developing programs.</p>
+<p>To get a list of available abbreviations and regions, just run <code>stringi::stri_locale_list()</code>.</p>
+</div>
+</div>
+<div id="pattern-matching" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Pattern matching<a href="m4.html#pattern-matching" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The vast majority of <code>stringr</code> functions work with patterns. These functions are parameterized by the type of task they perform and which patterns they match.</p>
+<div id="tasks" class="section level4 hasAnchor" number="4.1.3.1">
+<h4><span class="header-section-number">4.1.3.1</span> Tasks<a href="m4.html#tasks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Each matching function has the same first two arguments: a vector of strings to process and a pattern to match. The <code>stringr</code> package provides some functions to: detect <code>str_detect()</code>; locate <code>str_locate()</code>; extract <code>str_extract()</code>; match <code>str_match()</code>, replace <code>str_replace()</code>; and split strings <code>str_split()</code>.</p>
+<p>Let’s see an example with some strings and a Regular Expression to find US phone numbers:</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="m4.html#cb421-1" aria-hidden="true" tabindex="-1"></a>strings <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb421-2"><a href="m4.html#cb421-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;apple&quot;</span>, </span>
+<span id="cb421-3"><a href="m4.html#cb421-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;212 555 1234&quot;</span>, </span>
+<span id="cb421-4"><a href="m4.html#cb421-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;212-555-8753&quot;</span>, </span>
+<span id="cb421-5"><a href="m4.html#cb421-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Work: 212-555-5835; Home: 646-555-5344&quot;</span></span>
+<span id="cb421-6"><a href="m4.html#cb421-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb421-7"><a href="m4.html#cb421-7" aria-hidden="true" tabindex="-1"></a>phone <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]{3})[- .]([0-9]{3})[- .]([0-9]{4})&quot;</span></span></code></pre></div>
+<ul>
+<li><p><code>str_detect()</code> detects the presence or absence of a pattern and returns a logical vector.</p></li>
+<li><p><code>str_subset()</code> returns the elements of a character vector that match a regular expression.</p></li>
+</ul>
+<p>To know which positions of strings contain numbers, we can do:</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="m4.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which strings contain numbers</span></span>
+<span id="cb422-2"><a href="m4.html#cb422-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="m4.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [1] &quot;212 555 1234&quot;                           &quot;212-555-8753&quot;                          
+## [3] &quot;Work: 212-555-5835; Home: 646-555-5344&quot;</code></pre>
+<ul>
+<li><code>str_count()</code> counts the number of matches. To know how many phone numbers there are in each string, we can do:</li>
+</ul>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="m4.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [1] 0 1 1 2</code></pre>
+<ul>
+<li><p><code>str_locate()</code> locates the first position of the searched pattern in each string (element) present in the vector and returns a numeric <strong>matrix</strong> with columns indicating start and end positions.</p></li>
+<li><p><code>str_locate_all()</code> locates all matches, returning a <strong>list</strong> of numeric matrices.</p></li>
+</ul>
+<p>In which position of each string are the phone numbers located?</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="m4.html#cb428-1" aria-hidden="true" tabindex="-1"></a>(loc <span class="ot">&lt;-</span> <span class="fu">str_locate</span>(strings, phone))</span></code></pre></div>
+<pre><code>##      start end
+## [1,]    NA  NA
+## [2,]     1  12
+## [3,]     1  12
+## [4,]     7  18</code></pre>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="m4.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_locate_all</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [[1]]
+##      start end
+## 
+## [[2]]
+##      start end
+## [1,]     1  12
+## 
+## [[3]]
+##      start end
+## [1,]     1  12
+## 
+## [[4]]
+##      start end
+## [1,]     7  18
+## [2,]    27  38</code></pre>
+<ul>
+<li><p><code>str_extract()</code> extracts text corresponding to the <strong>first match</strong> within the string, returning a <strong>character vector</strong>.</p></li>
+<li><p><code>str_extract_all()</code> extracts all matches and returns a <strong>list</strong> of character vectors.</p></li>
+</ul>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="m4.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [1] NA             &quot;212 555 1234&quot; &quot;212-555-8753&quot; &quot;212-555-5835&quot;</code></pre>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="m4.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [[1]]
+## character(0)
+## 
+## [[2]]
+## [1] &quot;212 555 1234&quot;
+## 
+## [[3]]
+## [1] &quot;212-555-8753&quot;
+## 
+## [[4]]
+## [1] &quot;212-555-5835&quot; &quot;646-555-5344&quot;</code></pre>
+<p>Note that with <code>str_extract_all()</code>, we can identify exactly in which position of the original vector each string was.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="m4.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(strings, phone, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##      [,1]           [,2]          
+## [1,] &quot;&quot;             &quot;&quot;            
+## [2,] &quot;212 555 1234&quot; &quot;&quot;            
+## [3,] &quot;212-555-8753&quot; &quot;&quot;            
+## [4,] &quot;212-555-5835&quot; &quot;646-555-5344&quot;</code></pre>
+<ul>
+<li><p><code>str_match()</code> extracts capture groups from regular expressions formed by <code>()</code> only for the first match.</p></li>
+<li><p><code>str_match_all()</code> extracts capture groups from all matches and returns a list of character matrices.</p></li>
+</ul>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="m4.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull out the three components of the match</span></span>
+<span id="cb438-2"><a href="m4.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match</span>(strings, phone)</span></code></pre></div>
+<pre><code>##      [,1]           [,2]  [,3]  [,4]  
+## [1,] NA             NA    NA    NA    
+## [2,] &quot;212 555 1234&quot; &quot;212&quot; &quot;555&quot; &quot;1234&quot;
+## [3,] &quot;212-555-8753&quot; &quot;212&quot; &quot;555&quot; &quot;8753&quot;
+## [4,] &quot;212-555-5835&quot; &quot;212&quot; &quot;555&quot; &quot;5835&quot;</code></pre>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="m4.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match_all</span>(strings, phone)</span></code></pre></div>
+<pre><code>## [[1]]
+##      [,1] [,2] [,3] [,4]
+## 
+## [[2]]
+##      [,1]           [,2]  [,3]  [,4]  
+## [1,] &quot;212 555 1234&quot; &quot;212&quot; &quot;555&quot; &quot;1234&quot;
+## 
+## [[3]]
+##      [,1]           [,2]  [,3]  [,4]  
+## [1,] &quot;212-555-8753&quot; &quot;212&quot; &quot;555&quot; &quot;8753&quot;
+## 
+## [[4]]
+##      [,1]           [,2]  [,3]  [,4]  
+## [1,] &quot;212-555-5835&quot; &quot;212&quot; &quot;555&quot; &quot;5835&quot;
+## [2,] &quot;646-555-5344&quot; &quot;646&quot; &quot;555&quot; &quot;5344&quot;</code></pre>
+<ul>
+<li><code>str_replace()</code> replaces the <strong>first occurrence</strong> where there was matching and returns a character vector.</li>
+<li><code>str_replace_all()</code> replaces all matches.</li>
+</ul>
+<p>This is a very interesting function to use when we’re working with identified data and want to hide SSNs, phone numbers, etc. See an example with phone numbers.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="m4.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(strings, phone, <span class="st">&quot;XXX-XXX-XXXX&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;apple&quot;                                  &quot;XXX-XXX-XXXX&quot;                          
+## [3] &quot;XXX-XXX-XXXX&quot;                           &quot;Work: XXX-XXX-XXXX; Home: 646-555-5344&quot;</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="m4.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(strings, phone, <span class="st">&quot;XXX-XXX-XXXX&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;apple&quot;                                  &quot;XXX-XXX-XXXX&quot;                          
+## [3] &quot;XXX-XXX-XXXX&quot;                           &quot;Work: XXX-XXX-XXXX; Home: XXX-XXX-XXXX&quot;</code></pre>
+<ul>
+<li><p><code>str_split_fixed()</code> splits the string into a fixed number of parts based on the pattern passed as argument and returns a character <strong>matrix</strong>.</p></li>
+<li><p><code>str_split()</code> separates a string into a variable number of parts and returns a <strong>list</strong> of character vectors.</p></li>
+</ul>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="m4.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(<span class="st">&quot;a-b-c&quot;</span>, <span class="st">&quot;-&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="m4.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split_fixed</span>(<span class="st">&quot;a-b-c&quot;</span>, <span class="st">&quot;-&quot;</span>, <span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] 
+## [1,] &quot;a&quot;  &quot;b-c&quot;</code></pre>
+</div>
+<div id="indices-and-matching" class="section level4 hasAnchor" number="4.1.3.2">
+<h4><span class="header-section-number">4.1.3.2</span> Indices and matching:<a href="m4.html#indices-and-matching" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>str_subset()</code> allows extracting elements from a string vector, if it contains the character or group of characters informed.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="m4.html#cb450-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;pineapple&quot;</span>)</span>
+<span id="cb450-2"><a href="m4.html#cb450-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(fruit, <span class="st">&quot;a&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;apple&quot;     &quot;banana&quot;    &quot;pear&quot;      &quot;pineapple&quot;</code></pre>
+<p><code>str_which()</code> returns the position of the target vector, where a match was found for a certain character or set of characters informed.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="m4.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_which</span>(LETTERS, <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="m4.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_which(LETTERS, &quot;F|Y&quot;)</span></span></code></pre></div>
+</div>
+</div>
+<div id="section-references-6" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Section References<a href="m4.html#section-references-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Wickham, H. (2019). <em>stringr: Simple, Consistent Wrappers for Common String Operations</em>. R package version 1.4.0. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p></li>
+<li><p>____. (2020). <em>stringr vignette: Introduction</em>. URL <a href="http://stringr.tidyverse.org">http://stringr.tidyverse.org</a></p></li>
+<li><p>Wickham, H.; Grolemund, G. (2016). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media. december 2016. 522 pages. Available at: <a href="www.r4ds.co.nz">www.r4ds.co.nz</a></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+</div>
+<div id="regular-expressions-regex" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Regular Expressions (REGEX)<a href="m4.html#regular-expressions-regex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-4" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Introduction<a href="m4.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Programming languages have more than one type of pattern search mechanism in strings. Regular expressions are the most used mechanism. Therefore, it will be our focus in this course. However, know that the <code>stringr</code> package also brings implementations of the other 3 types, which we describe below:</p>
+<ul>
+<li>Fixed bytewise matching with the <code>fixed()</code> function;</li>
+<li>Locale-sensitive character matching with <code>coll()</code> (collation search);</li>
+<li>Text boundary analysis with the <code>boundary()</code> function.</li>
+</ul>
+<p>If you’re interested in the subject, you can seek more information in the <code>stringr</code> package documentation.</p>
+<p>But what exactly would <strong>Regular Expressions</strong> be?</p>
+<p>Regular Expressions are concise and flexible forms to describe patterns (that we’re searching for) in strings. In this section, we’ll describe the main aspects related to constructing regular expressions. For this we’ll use some of the examples described in the <code>stringr</code> package <a href="http://stringr.tidyverse.org/articles/regular-expressions.html">vignettes</a>.</p>
+<p>First we’ll make a general introduction about regular expressions and then we’ll see examples using the <code>stringr</code> package.</p>
+<p>Why are <strong>regular expressions</strong> important?</p>
+<p>Regular expressions allow us to describe in more general terms what we want to search in a string. Normally, it’s more efficient to use regular expressions, because if we search for simple characters, we’ll only get the exact match for that character. Have you thought about how we would search only for phone numbers, email addresses, SSNs or EINs in the middle of data (for example web pages) that are not exactly organized in columns?</p>
+<p>It should be noted that regular expressions is a technique used practically throughout the programming world. It’s not a particularity only of the <strong>R</strong> language.</p>
+<p>Regular expressions (regex), in general, are constructed from the combination of 3 components:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>literal characters: which will only match if there are identical literal characters in the data;</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>character classes: which allow matching by multiple characters - they are composed of characters inside two brackets <code>[ ]</code>;</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>modifiers or anchors: which will operate on characters, classes and combinations of both.</li>
+</ol></li>
+</ul>
+</div>
+<div id="regex-examples-using-stringr" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> REGEX Examples using <code>stringr</code><a href="m4.html#regex-examples-using-stringr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="literal-matches-basic-matchliteral-characters" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Literal matches (basic match/literal characters)<a href="m4.html#literal-matches-basic-matchliteral-characters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The simplest pattern for matching is:</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="m4.html#cb455-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb455-2"><a href="m4.html#cb455-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;an&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] NA   &quot;an&quot; NA</code></pre>
+<p>We can ignore uppercase and lowercase letters with <code>ignore_case = TRUE</code>:</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="m4.html#cb457-1" aria-hidden="true" tabindex="-1"></a>bananas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;Banana&quot;</span>, <span class="st">&quot;BANANA&quot;</span>)</span>
+<span id="cb457-2"><a href="m4.html#cb457-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(bananas, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="m4.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(bananas, <span class="fu">regex</span>(<span class="st">&quot;banana&quot;</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE</code></pre>
+<p>Continuing with the examples, the next step is to know the role played by <code>.</code>. Its function is to search for any character except a newline (<code>\n</code>):</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="m4.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] NA    &quot;ban&quot; &quot;ear&quot;</code></pre>
+<p>But if you want to find even characters that indicate a newline, you can “set” <code>dotall = TRUE</code> inside the function responsible for the matching mechanism, which is the <code>regex()</code> function:</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="m4.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">X</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot;.X.&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="m4.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">X</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">regex</span>(<span class="st">&quot;.X.&quot;</span>, <span class="at">dotall =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="escaping-characters" class="section level4 hasAnchor" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Escaping characters<a href="m4.html#escaping-characters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If <code>.</code> matches any character, how can we do literal matching of a period “.” in the data? We’ll have to use an escape character to tell <strong>R</strong> that we want a <strong>literal match</strong> and not use the special behavior of <code>.</code>. In REGEX, a backslash <code>\</code> is used for this purpose.</p>
+<p>So, to search for a simple “.” in the data, we use <code>\.</code>. But there’s a catch: the backslash is also treated as a special character in <strong>R</strong> when it comes to strings. Therefore, we would have to add another backslash forming the string <code>\\.</code> in order to match a simple period in the data.</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="m4.html#cb467-1" aria-hidden="true" tabindex="-1"></a>dot <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span></span>
+<span id="cb467-2"><a href="m4.html#cb467-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb467-3"><a href="m4.html#cb467-3" aria-hidden="true" tabindex="-1"></a><span class="co"># But see that as REGEX, there&#39;s only one backslash: \.</span></span>
+<span id="cb467-4"><a href="m4.html#cb467-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(dot)</span></code></pre></div>
+<pre><code>## \.</code></pre>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="m4.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This tells R to explicitly search for a period</span></span>
+<span id="cb469-2"><a href="m4.html#cb469-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;bef&quot;</span>), <span class="st">&quot;a</span><span class="sc">\\</span><span class="st">.c&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] NA    &quot;a.c&quot; NA</code></pre>
+<p>To help you understand how many backslashes you’ll need to write in the code, let’s think that there are two different mechanisms: the <strong>R</strong> interpreter and the REGEX mechanism. When you send a regular expression to the interpreter, it will pass through a filter where <strong>R</strong> rules will be applied. After this first filter, the expression goes to a new instance, where the REGEX mechanism will act.</p>
+<p>Think of these steps as a toll booth. For each backslash that needs to reach the last toll stage, you also need a backslash <code>\</code> to “pay the toll” of the first stage. Backslashes <code>\</code>, are therefore your currency and you can’t carry more or less “money” than you need. If the expression has to arrive at the REGEX stage as <code>\.</code>, so that the last backslash is seen as a special character that de-characterizes the special functioning of <code>.</code>, thus making a literal match, you need to send one more backslash <code>\</code> to be consumed at the <strong>R</strong> interpreter stage. That’s why, in your code, you should write <code>\\.</code>.</p>
+<p>Have you thought, then, how we would do literal matching of a backslash in a string?</p>
+<p>Let’s think again as a toll booth, starting from the last stage to the first. In the REGEX mechanism, last toll stage, the expression must arrive with two backslashes <code>\\</code>: the left one acting as a special character, which eliminates the special function of the right backslash. Therefore, to carry two backslashes to the end of the process, you need two other backslashes <code>\\</code> to be consumed at the <strong>R</strong> interpreter stage. Therefore, to do literal matching of a backslash in a string, your code should be written as <code>\\\\</code>.</p>
+<p>What happens, in fact, is that the interpreter separates each pair of backslashes, making the left one remove the special functioning of the right backslash in each pair. Thus, only two backslashes arrive at the REGEX mechanism.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="m4.html#cb471-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;a</span><span class="sc">\\</span><span class="st">b&quot;</span></span>
+<span id="cb471-2"><a href="m4.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(x)</span></code></pre></div>
+<pre><code>## a\b</code></pre>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="m4.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;\\&quot;</code></pre>
+<p>From now on, when we refer to regular expressions, we’ll use the form with only one <code>\</code>. However, know that in your code in <strong>R</strong> functions, you should add one more backslash <code>\\</code>.</p>
+</div>
+<div id="matching-multiple-characters-classes" class="section level4 hasAnchor" number="4.2.2.3">
+<h4><span class="header-section-number">4.2.2.3</span> Matching multiple characters (classes)<a href="m4.html#matching-multiple-characters-classes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>First, we’ll see some shortcuts for character classes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">shortcuts</th>
+<th align="left">classes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">\w</td>
+<td align="left">alphanumeric and _ (any word)</td>
+</tr>
+<tr class="even">
+<td align="left">\W</td>
+<td align="left">non-alphanumeric (anything different from words and _)</td>
+</tr>
+<tr class="odd">
+<td align="left">\d</td>
+<td align="left">digits</td>
+</tr>
+<tr class="even">
+<td align="left">\D</td>
+<td align="left">non-digits</td>
+</tr>
+<tr class="odd">
+<td align="left">\s</td>
+<td align="left">space</td>
+</tr>
+<tr class="even">
+<td align="left">\S</td>
+<td align="left">non-space</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s move on to examples:</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="m4.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;Don&#39;t eat that!&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">w+&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## [1] &quot;Don&quot;  &quot;t&quot;    &quot;eat&quot;  &quot;that&quot;</code></pre>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="m4.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(<span class="st">&quot;Don&#39;t eat that!&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">W&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## [1] &quot;Don&quot;  &quot;t&quot;    &quot;eat&quot;  &quot;that&quot; &quot;&quot;</code></pre>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="m4.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(<span class="st">&quot;1 + 2 = 3&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="m4.html#cb481-1" aria-hidden="true" tabindex="-1"></a>(text <span class="ot">&lt;-</span> <span class="st">&quot;Text  </span><span class="sc">\t</span><span class="st"> with</span><span class="sc">\n\t\t</span><span class="st">bad spacing </span><span class="sc">\f</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Text  \t with\n\t\tbad spacing \f&quot;</code></pre>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="m4.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(text, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Text with bad spacing &quot;</code></pre>
+<p>Another interesting shortcut is <code>\b</code> which searches for word boundaries/borders, i.e., transitions between word characters and non-word characters. <code>\B</code> does the opposite.</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="m4.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(<span class="st">&quot;The quick brown fox&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">b&quot;</span>, <span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;_The_ _quick_ _brown_ _fox_&quot;</code></pre>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="m4.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(<span class="st">&quot;The quick brown fox&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">B&quot;</span>, <span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;T_h_e q_u_i_c_k b_r_o_w_n f_o_x&quot;</code></pre>
+<p>You can consult other interesting shortcuts in this <code>stringr</code> package <a href="http://stringr.tidyverse.org/articles/regular-expressions.html">vignette</a>.</p>
+<p>There’s also the possibility of creating our own classes using <code>[]</code>:</p>
+<ul>
+<li><code>[abc]</code>: matches a, b or c;</li>
+<li><code>[a-z]</code>: matches any lowercase character between <strong>a</strong> and <strong>z</strong>;</li>
+<li><code>[A-Z]</code>: matches any uppercase character between <strong>A</strong> and <strong>Z</strong>;</li>
+<li><code>[^abc]</code>: matches anything except <strong>a</strong>, <strong>b</strong>, or <strong>c</strong>;</li>
+<li><code>[\^\-]</code>: matches <code>^</code> or <code>-</code>. Remember to add one more backslash in front of each backslash when passing the command in <strong>R</strong></li>
+</ul>
+<p>There are also several pre-built classes we can use with brackets:</p>
+<ul>
+<li><code>[:punct:]</code>: punctuation;</li>
+<li><code>[:alpha:]</code>: letters;</li>
+<li><code>[:lower:]</code>: lowercase letters;</li>
+<li><code>[:upper:]</code>: UPPERCASE LETTERS;</li>
+<li><code>[:digit:]</code>: digits;</li>
+<li><code>[:alnum:]</code>: letters and numbers.</li>
+<li><code>[:cntrl:]</code>: control characters.</li>
+<li><code>[:graph:]</code>: letters, numbers and punctuation.</li>
+<li><code>[:print:]</code>: letters, numbers, punctuation and whitespace.</li>
+<li><code>[:space:]</code>: space characters (equivalent to <code>\s</code>).</li>
+<li><code>[:blank:]</code>: space and tab.</li>
+</ul>
+<p>These expressions go inside other brackets:</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="m4.html#cb489-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1234</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;UNF&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;Hello, how are you?&quot;</span>)</span>
+<span id="cb489-2"><a href="m4.html#cb489-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(y, <span class="st">&quot;[[:digit:]]&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;
+## 
+## [[2]]
+## character(0)
+## 
+## [[3]]
+## character(0)
+## 
+## [[4]]
+## character(0)
+## 
+## [[5]]
+## character(0)</code></pre>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="m4.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(y, <span class="st">&quot;[[:digit:]a]&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;
+## 
+## [[2]]
+## character(0)
+## 
+## [[3]]
+## character(0)
+## 
+## [[4]]
+## character(0)
+## 
+## [[5]]
+## [1] &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="m4.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(y, <span class="st">&quot;[[:digit:]hw]&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;
+## 
+## [[2]]
+## character(0)
+## 
+## [[3]]
+## character(0)
+## 
+## [[4]]
+## character(0)
+## 
+## [[5]]
+## [1] &quot;h&quot; &quot;w&quot;</code></pre>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="m4.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(y, <span class="st">&quot;[y[:upper:]w]&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## character(0)
+## 
+## [[2]]
+## [1] &quot;R&quot;
+## 
+## [[3]]
+## [1] &quot;U&quot; &quot;N&quot; &quot;F&quot;
+## 
+## [[4]]
+## character(0)
+## 
+## [[5]]
+## [1] &quot;H&quot; &quot;w&quot; &quot;y&quot;</code></pre>
+</div>
+<div id="alternation-operator" class="section level4 hasAnchor" number="4.2.2.4">
+<h4><span class="header-section-number">4.2.2.4</span> Alternation Operator<a href="m4.html#alternation-operator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>|</code> is the alternation operator that allows choosing between one or more possible matches. <code>abc|def</code> will match <code>abc</code> or <code>def</code>.</p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="m4.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;def&quot;</span>, <span class="st">&quot;ghi&quot;</span>), <span class="st">&quot;abc|def&quot;</span>)</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
+</div>
+<div id="grouping" class="section level4 hasAnchor" number="4.2.2.5">
+<h4><span class="header-section-number">4.2.2.5</span> Grouping<a href="m4.html#grouping" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Parentheses can serve to alter precedence rules or form groups. The same thing we saw in Module <a href="m1.html#m1">1</a> to alter precedence rules applies to REGEX:</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="m4.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;gray&quot;</span>), <span class="st">&quot;gre|ay&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;gre&quot; &quot;ay&quot;</code></pre>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="m4.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;gray&quot;</span>), <span class="st">&quot;gr(e|a)y&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;grey&quot; &quot;gray&quot;</code></pre>
+<p>Parentheses define groups and we can backreference these groups using <code>\group_number</code> to indicate that groups can repeat more times, as well as the order in which they would repeat in the string.</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="m4.html#cb503-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="ot">&lt;-</span> <span class="st">&quot;(1|2)(3|4)</span><span class="sc">\\</span><span class="st">1&quot;</span></span>
+<span id="cb503-2"><a href="m4.html#cb503-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb503-3"><a href="m4.html#cb503-3" aria-hidden="true" tabindex="-1"></a>combinations <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;1213&quot;</span>, <span class="st">&quot;1413&quot;</span>, <span class="st">&quot;2324&quot;</span>, <span class="st">&quot;1111&quot;</span>, <span class="st">&quot;2222&quot;</span>, <span class="st">&quot;1415&quot;</span>, <span class="st">&quot;1313&quot;</span>, <span class="st">&quot;1331&quot;</span>)</span>
+<span id="cb503-4"><a href="m4.html#cb503-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb503-5"><a href="m4.html#cb503-5" aria-hidden="true" tabindex="-1"></a>combinations <span class="sc">%&gt;%</span></span>
+<span id="cb503-6"><a href="m4.html#cb503-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(pattern)</span></code></pre></div>
+<pre><code>## [1] &quot;1413&quot; &quot;2324&quot; &quot;1415&quot; &quot;1313&quot;</code></pre>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="m4.html#cb505-1" aria-hidden="true" tabindex="-1"></a>pattern2 <span class="ot">&lt;-</span> <span class="st">&quot;(1|2)(3|4)</span><span class="sc">\\</span><span class="st">1</span><span class="sc">\\</span><span class="st">2&quot;</span></span>
+<span id="cb505-2"><a href="m4.html#cb505-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb505-3"><a href="m4.html#cb505-3" aria-hidden="true" tabindex="-1"></a>combinations <span class="sc">%&gt;%</span></span>
+<span id="cb505-4"><a href="m4.html#cb505-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(pattern2)</span></code></pre></div>
+<pre><code>## [1] &quot;1313&quot;</code></pre>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="m4.html#cb507-1" aria-hidden="true" tabindex="-1"></a>pattern3 <span class="ot">&lt;-</span> <span class="st">&quot;(1|2)(3|4)</span><span class="sc">\\</span><span class="st">2</span><span class="sc">\\</span><span class="st">1&quot;</span></span>
+<span id="cb507-2"><a href="m4.html#cb507-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb507-3"><a href="m4.html#cb507-3" aria-hidden="true" tabindex="-1"></a>combinations <span class="sc">%&gt;%</span></span>
+<span id="cb507-4"><a href="m4.html#cb507-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(pattern3)</span></code></pre></div>
+<pre><code>## [1] &quot;1331&quot;</code></pre>
+</div>
+<div id="anchors-or-modifiers" class="section level4 hasAnchor" number="4.2.2.6">
+<h4><span class="header-section-number">4.2.2.6</span> Anchors or modifiers<a href="m4.html#anchors-or-modifiers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Anchoring means establishing a pattern for the beginning or end of the string we’re searching for.</p>
+<ul>
+<li><code>^</code> searches for the pattern at the beginning of the string;</li>
+<li><code>$</code> searches for the pattern at the end of the string.</li>
+</ul>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="m4.html#cb509-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb509-2"><a href="m4.html#cb509-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; NA  NA</code></pre>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="m4.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] NA  &quot;a&quot; NA</code></pre>
+</div>
+<div id="repetitions" class="section level4 hasAnchor" number="4.2.2.7">
+<h4><span class="header-section-number">4.2.2.7</span> Repetitions<a href="m4.html#repetitions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can control how many times a pattern appears in a certain part of the string with:</p>
+<ul>
+<li><code>?</code>: 0 or 1.</li>
+<li><code>+</code>: 1 or more.</li>
+<li><code>*</code>: 0 or more.</li>
+</ul>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="m4.html#cb513-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;</span></span>
+<span id="cb513-2"><a href="m4.html#cb513-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;CC?&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CC&quot;</code></pre>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="m4.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;CC+&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CCC&quot;</code></pre>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="m4.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&#39;C[LX]+&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CLXXX&quot;</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="m4.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&#39;(na)+&#39;</span>)</span></code></pre></div>
+<pre><code>##      [,1]   [,2]
+## [1,] &quot;nana&quot; &quot;na&quot;</code></pre>
+<p>We can specify the exact number of repetitions we expect with:</p>
+<ul>
+<li><code>{n}</code>: exactly <span class="math inline">\(n\)</span> times;</li>
+<li><code>{n,}</code>: <span class="math inline">\(n\)</span> times or more;</li>
+<li><code>{n,m}</code>: between <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> times.</li>
+</ul>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="m4.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;C{2}&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CC&quot;</code></pre>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="m4.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;C{2,}&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CCC&quot;</code></pre>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="m4.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(x, <span class="st">&quot;C{2,3}&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CCC&quot;</code></pre>
+<p>There are several other patterns and expressions that can be used. Search <code>??stringi_search-regex</code> or visit the <code>stringr</code> website.</p>
+<hr />
+</div>
+</div>
+<div id="section-references-7" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Section References<a href="m4.html#section-references-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Wickham, H. (2019). <em>stringr: Simple, Consistent Wrappers for Common String Operations</em>. R package version 1.4.0. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p></li>
+<li><p>____. (2020). <em>stringr vignette: Introduction</em>. URL <a href="http://stringr.tidyverse.org">http://stringr.tidyverse.org</a></p></li>
+<li><p>Wickham, H.; Grolemund, G. (2016). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media. december 2016. 522 pages. Available at: <a href="www.r4ds.co.nz">www.r4ds.co.nz</a></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+</div>
+<div id="reports-and-reproducible-research-with-rmarkdown" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Reports and Reproducible Research with <code>rmarkdown</code><a href="m4.html#reports-and-reproducible-research-with-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-5" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Introduction<a href="m4.html#introduction-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve reached a point in the course where we already have powerful tools to analyze and process data. However, nowadays, there’s another stage as important as the previous ones in Data Science: sharing and communicating your analyses.</p>
+<p>For this purpose, <strong>R</strong> is certainly the most powerful tool nowadays: you can integrate from the data analysis stage to sharing your codes, graphs and findings through reports, slides, <span class="math inline">\(\TeX\)</span> articles and even books. This course material itself was all made within the <strong>R</strong> language.</p>
+<p>In this section, we’ll focus on report production. We’ll also see how to make these reports adapt automatically to changes in the data that originate your analysis. In addition to this practical issue, all data and codes used in an analysis can be shared with your team, which reinforces the reproducibility character of the <strong>R</strong> language. Anyone else can easily replicate and verify/validate the results obtained by you.</p>
+<p>The tool that allows us to do most of these things we mentioned above is the <code>rmarkdown</code> package. It’s a package that gravitates around the <code>tidyverse</code> core. <code>rmarkdown</code> unites text writing and code writing in a single place, through markdown markup language. The markup language has a quite simple syntax that makes text production very agile, unlike what occurs with <span class="math inline">\(HTML\)</span> and <span class="math inline">\(\LaTeX\)</span>, for example. This means you don’t need to leave RStudio or even switch windows or tabs to include text, figures, outputs or code chunks in an R Markdown document. The <code>rmarkdown</code> package is so surprising that from it emerged derivative packages that allow creating websites and blogs with <code>blogdown</code> and making books and course materials like this one you’re reading through the <code>bookdown</code> package, among others.</p>
+<p>To start making a report in R Markdown, you need to create a new <code>.Rmd</code> file. Click on <img src="fig/add_icon.png" />, as you normally do to create a script, only this time select “R Markdown” <img src="fig/rmarkdown1.png" />.</p>
+<p>A new window will open in RStudio, where you should choose what type of output file you want, whether <code>HTML</code>, <code>PDF</code> or <code>.docx</code>, as well as its name and your report title. Let’s choose <code>PDF</code>.</p>
+<p><img src="fig/rmarkdown2.png" /></p>
+<p>Note that a new tab is automatically created in RStudio, with a pre-formatted <code>.Rmd</code> report template.</p>
+<p><strong>ATTENTION:</strong> If this is your first time using R Markdown on Windows, RStudio itself will offer to install some necessary packages (and their dependencies) to run <code>rmarkdown</code>. Among them will be the <code>tinytex</code> package. This is a package that performs the minimal installation of <span class="math inline">\(\LaTeX\)</span> libraries necessary for generating <code>.pdf</code> documents from R Markdown. After installing the packages, just run the code below in the console and then restart your RStudio session.</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="m4.html#cb527-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<p>In the created tab, there’s all the data you informed previously and also a series of automatically created examples depicting the functioning of a simple R Markdown report. Note that all text is editable.</p>
+<p><img src="fig/rmarkdown3.png" /></p>
+<p>Documents are generated using the <code>knitr</code> package. This package functions as a support package for <code>rmarkdown</code>, but you don’t need to know it in depth. Knit in English means to knit or unite. And that’s exactly what it does, it stitches and unites all elements that you come to build or program with R Markdown. If you already want to generate a report from the example presented to you when creating a new <code>.Rmd</code> file, you can do so by clicking the Knit button <img src="fig/knit.png" /> in the RStudio window. After choosing a name and saving your <code>.Rmd</code> file, if you chose the <code>PDF</code> option, you’ll have a <code>.pdf</code> extension file. Test changing the destination files: <code>.html</code> and <code>.docx</code> directly in the <code>Knit</code> button.</p>
+<p><strong>TIP:</strong> For each new command you learn throughout this section, we suggest generating a new report, so you can follow the modifications made in the document. Therefore, we also suggest you delete all content from the suggestion report created when opening a new <code>.Rmd</code> document, keeping only the header data: <code>title</code>, <code>author</code>, <code>date</code> and <code>output</code>.</p>
+</div>
+<div id="header" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Header<a href="m4.html#header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the header you can specify all technical aspects of your text formatting in R Markdown. There are several options, but we’ll focus on the most basic ones that appear on the screen at this moment.</p>
+<ul>
+<li><code>title</code> contains your document title;</li>
+<li><code>author</code> your name;</li>
+<li><code>date</code> the document generation date;</li>
+<li><code>output</code> the type of document to be generated, whether HTML, PDF or Word.</li>
+</ul>
+<p><strong>Some useful tricks:</strong></p>
+<ul>
+<li>If you want to add a co-author, use:</li>
+</ul>
+<pre class="rmarkdown"><code>author:
+  - Author1 Name
+  - Author2 Name</code></pre>
+<ul>
+<li>To add a subtitle, just write:</li>
+</ul>
+<pre class="rmarkdown"><code>title: &quot;Your Title&quot;
+subtitle: &quot;Subtitle for the report&quot;</code></pre>
+<ul>
+<li>So you don’t have to manually change the date every time you run Knit, use the <code>format()</code> function together with <code>Sys.time()</code>. Note that this code is passed between backticks <code>``</code>.</li>
+</ul>
+<pre class="rmarkdown"><code>date: &quot;`r format(Sys.time(), &#39;%B %d, %Y&#39;)`&quot;</code></pre>
+</div>
+<div id="text-formatting" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Text Formatting<a href="m4.html#text-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R Markdown’s text formatting syntax is very simple. That’s why text production with it is very fast. This comes at the cost of not having as much flexibility in altering textual elements as in a language like <span class="math inline">\(\LaTeX\)</span>, but still, the formatting possibilities are quite considerable.</p>
+<div id="titles" class="section level4 hasAnchor" number="4.3.3.1">
+<h4><span class="header-section-number">4.3.3.1</span> Titles<a href="m4.html#titles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>#</code> symbol is used to define titles. For each <code>#</code> added, you descend one hierarchy and create a subtitle of the previous title. The fewer <code>#</code> there are before your title, the greater the hierarchy and consequently the larger the font.</p>
+<pre class="rmarkdown"><code># Article Title
+## Subtitle
+### Section
+#### Subsection</code></pre>
+</div>
+<div id="paragraphs" class="section level4 hasAnchor" number="4.3.3.2">
+<h4><span class="header-section-number">4.3.3.2</span> Paragraphs<a href="m4.html#paragraphs" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To write a paragraph just start writing any text. To add paragraphs just skip a line, leaving a blank space between paragraphs</p>
+<pre class="rmarkdown"><code>This is the first paragraph of your text. You can write normally and it 
+will appear in your report.
+
+After skipping a line, you start a new paragraph. Add the ideas you 
+want in this second paragraph</code></pre>
+</div>
+<div id="font-formatting" class="section level4 hasAnchor" number="4.3.3.3">
+<h4><span class="header-section-number">4.3.3.3</span> Font formatting<a href="m4.html#font-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You can apply italic and bold formatting to specific words, expressions or complete excerpts of your text, placing the word or excerpt in question between asterisks.</p>
+<p>For bold formatting, use <code>**word or excerpt**</code>: <strong>word or excerpt</strong>.</p>
+<p>For italic formatting, use <code>*word or excerpt*</code>: <em>word or excerpt</em>.</p>
+<p>You can get the same effect using underscore instead of asterisks, as in these examples <code>_word or excerpt_</code>: <em>word or excerpt</em>; and <code>__word or excerpt__</code>: <strong>word or excerpt</strong>.</p>
+</div>
+<div id="footnotes" class="section level4 hasAnchor" number="4.3.3.4">
+<h4><span class="header-section-number">4.3.3.4</span> Footnotes<a href="m4.html#footnotes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Footnotes can be inserted in the text using the scheme <code>word^[Text that will go to the footnote about the word.]</code></p>
+<pre class="rmarkdown"><code>In this text we&#39;re going to insert a footnote about the word Statistics^[Statistics 
+is the discipline that consists of collecting, organizing, analyzing and presenting data.]</code></pre>
+</div>
+<div id="making-lists-and-item-enumeration" class="section level4 hasAnchor" number="4.3.3.5">
+<h4><span class="header-section-number">4.3.3.5</span> Making lists and item enumeration<a href="m4.html#making-lists-and-item-enumeration" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="unnumbered-lists" class="section level5 hasAnchor" number="4.3.3.5.1">
+<h5><span class="header-section-number">4.3.3.5.1</span> Unnumbered lists<a href="m4.html#unnumbered-lists" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>To create <strong>unnumbered</strong> lists, we can use either <code>*</code> or <code>-</code>:</p>
+<pre class="rmarkdown"><code>* item X
+* item Y
+* item Z</code></pre>
+<ul>
+<li>item X</li>
+<li>item Y</li>
+<li>item Z</li>
+</ul>
+<pre class="rmarkdown"><code>- item X
+- item Y
+- item Z</code></pre>
+<ul>
+<li>item X</li>
+<li>item Y</li>
+<li>item Z</li>
+</ul>
+<p>In unnumbered lists, to create subitems, you must give 4 spaces or <code>TAB</code> from the left margin and use <code>-</code> or <code>+</code>:</p>
+<pre class="rmarkdown"><code>* item X
+  - subitem
+* item Y
+  - subitem
+    + subsubitem
+* item Z
+  + subitem
+  + subitem</code></pre>
+<ul>
+<li>item X
+<ul>
+<li>subitem</li>
+</ul></li>
+<li>item Y
+<ul>
+<li>subitem
+<ul>
+<li>subsubitem</li>
+</ul></li>
+</ul></li>
+<li>item Z
+<ul>
+<li>subitem</li>
+<li>subitem</li>
+</ul></li>
+</ul>
+</div>
+<div id="numbered-lists" class="section level5 hasAnchor" number="4.3.3.5.2">
+<h5><span class="header-section-number">4.3.3.5.2</span> Numbered lists<a href="m4.html#numbered-lists" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>To create <strong>numbered</strong> lists, we use the numeral accompanied by a period: <code>1.</code>, <code>2.</code>, <code>3.</code> and so on. For creating subitems, in case of numbered lists, use <strong>two</strong> <code>TAB</code> or 4 spaces followed by <code>-</code>.</p>
+<pre class="rmarkdown"><code>1. item A
+    - subitem
+2. item B
+    - subitem
+    - subitem
+2. item C
+    - subitem
+    - subitem</code></pre>
+<ol style="list-style-type: decimal">
+<li>item A
+<ul>
+<li>subitem</li>
+</ul></li>
+<li>item B
+<ul>
+<li>subitem</li>
+<li>subitem</li>
+</ul></li>
+<li>item C
+<ul>
+<li>subitem</li>
+<li>subitem</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="tables" class="section level4 hasAnchor" number="4.3.3.6">
+<h4><span class="header-section-number">4.3.3.6</span> Tables<a href="m4.html#tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Tables can be added using <code>|</code> to separate columns and <code>------</code> to separate the header, containing column names. Note that the straight bars that separate columns must be aligned.</p>
+<pre class="rmarkdown"><code>column1 | column2  | column3
+--------|----------|--------
+Name1   | Address1 | Value1
+Name2   | Address2 | Value2
+Name3   | Address3 | Value3</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>column1</th>
+<th>column2</th>
+<th>column3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Name1</td>
+<td>Address1</td>
+<td>Value1</td>
+</tr>
+<tr class="even">
+<td>Name2</td>
+<td>Address2</td>
+<td>Value2</td>
+</tr>
+<tr class="odd">
+<td>Name3</td>
+<td>Address3</td>
+<td>Value3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="inserting-external-figures" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Inserting external figures<a href="m4.html#inserting-external-figures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can include in your report external figures, that is, figures that are not generated from <strong>R</strong>. You can reference both figures that are stored locally on your machine and figures available on the web.</p>
+<pre class="rmarkdown"><code>![Web Figure Description](https://www.r-project.org/Rlogo.png)
+
+![Logo of one of my packages](./fig/mRpostman_logo.png)</code></pre>
+<div class="figure">
+<img src="https://www.r-project.org/Rlogo.png" alt="" />
+<p class="caption">Web Figure Description</p>
+</div>
+<div class="figure">
+<img src="fig/mRpostman_logo.png" alt="" />
+<p class="caption">Logo of one of my packages</p>
+</div>
+</div>
+<div id="inserting-links" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Inserting links<a href="m4.html#inserting-links" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The process of inserting links follows a very similar approach to inserting external figures. The difference is that you won’t need <code>!</code> anymore. Also, only the text inside brackets <code>[]</code> will appear to the reader. When clicked, they will be directed to the link to be passed inside parentheses <code>()</code>.</p>
+<pre class="rmarkdown"><code>Click on this [LINK](https://www.unf.edu).
+
+File available at [https://www.unf.edu](https://www.unf.edu).</code></pre>
+<p>Click on this <a href="https://www.unf.edu">LINK</a>.</p>
+<p>File available at <a href="https://www.unf.edu">https://www.unf.edu</a>.</p>
+</div>
+<div id="mathematical-formulas" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Mathematical formulas<a href="m4.html#mathematical-formulas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can insert mathematical formulas using <span class="math inline">\(\LaTeX\)</span> principles. See the probability density function of a Normal distribution. For this, you must pass the formula between double <code>$$</code>. Note how elegant the formatting is.</p>
+<pre class="rmarkdown"><code>$$
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+$$</code></pre>
+<p><span class="math display">\[
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+\]</span></p>
+<p>If you want to present some formula in the middle of a paragraph text, pass the formula only between two simple <code>$</code>:</p>
+<pre class="rmarkdown"><code>The probability density function of the Normal Distribution is given by $f(x;\mu,\sigma^2) =
+\frac{1}{\sigma\sqrt{2\pi}} e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }$.</code></pre>
+<p>The probability density function of the Normal Distribution is given by <span class="math inline">\(f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }\)</span>.</p>
+</div>
+<div id="code-insertion-and-execution" class="section level3 hasAnchor" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> Code insertion and execution<a href="m4.html#code-insertion-and-execution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The biggest advantage of R Markdown is probably the possibility of joining code, outputs and text all in the same place in a very simple and natural way.</p>
+<div id="simple-insertion" class="section level4 hasAnchor" number="4.3.7.1">
+<h4><span class="header-section-number">4.3.7.1</span> Simple insertion<a href="m4.html#simple-insertion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To present your code along a line, without necessarily executing it, use simple backticks.</p>
+<pre class="rmarkdown"><code>In R, we can create a numeric vector x through the code `x &lt;- c(1:10)`.</code></pre>
+<p>In R, we can create a numeric vector x through the code <code>x &lt;- c(1:10)</code>.</p>
+<p>If we need to present a larger piece of code, we can do it between triple backticks <code>```</code>, forming a block:</p>
+<pre class="rmarkdown"><code>
+This is a larger piece of code:
+
+```
+x &lt;- c(1:10)
+sum(x)
+```
+</code></pre>
+<p>Which results in:</p>
+<p>This is a larger piece of code:</p>
+<pre><code>x &lt;- c(1:10)
+sum(x)</code></pre>
+</div>
+<div id="insertions-with-execution-and-other-controls" class="section level4 hasAnchor" number="4.3.7.2">
+<h4><span class="header-section-number">4.3.7.2</span> Insertions with execution and other controls<a href="m4.html#insertions-with-execution-and-other-controls" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To start presenting your codes together with respective outputs (which include graphs), we use what we call chunks, which are nothing more than pieces of code to be executed during document processing. <code>rmarkdown</code> and its interaction with RStudio are so sophisticated that, if you have other languages installed on your machine, you can even change the R language display format to Python for example. However, our focus will be only on configuring the most used parameters.</p>
+<p>Initially, to create an <strong>R</strong> code chunk, you must use the same triple backticks <code>```</code> from the previous example, accompanied by the notation <code>{r}</code>. Don’t forget to close the chunk with the same triple quotes.</p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb546-1"><a href="m4.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb546-2"><a href="m4.html#cb546-2" aria-hidden="true" tabindex="-1"></a><span class="in">x &lt;- 1:10</span></span>
+<span id="cb546-3"><a href="m4.html#cb546-3" aria-hidden="true" tabindex="-1"></a><span class="in">sum(x)</span></span>
+<span id="cb546-4"><a href="m4.html#cb546-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>As a result, we now have the printing of the output of the previous code:</p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="m4.html#cb547-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb547-2"><a href="m4.html#cb547-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code></pre></div>
+<pre><code>## [1] 55</code></pre>
+<p><strong>TIP:</strong> It’s also possible to execute code snippets inline, in the middle of paragraphs. For this, we use <code>`r sum(x)`</code>
+For example: <code>The sum of vector x is</code> <code>`r sum(x)`.</code></p>
+<p>Which results in:</p>
+<p>The sum of vector x is 55.</p>
+<div id="main-chunk-options" class="section level5 hasAnchor" number="4.3.7.2.1">
+<h5><span class="header-section-number">4.3.7.2.1</span> Main chunk options<a href="m4.html#main-chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The main chunk options are:</p>
+<ul>
+<li><p><code>results</code>: specifies how, and if, chunk results will be shown;</p>
+<ul>
+<li>options:
+<ul>
+<li><code>markup</code> (default): displays results normally</li>
+<li><code>hide</code>: doesn’t display outputs in final report</li>
+<li><code>hold</code>: displays results only at end of report</li>
+<li><code>asis</code>: doesn’t reformat results, displaying (useful when outputs are HTML code, for example)</li>
+</ul></li>
+</ul></li>
+<li><p><code>echo</code>: specifies if chunk code will be displayed</p>
+<ul>
+<li>options:
+<ul>
+<li><code>TRUE</code> (default): displays codes above output</li>
+<li><code>FALSE</code>: displays only output generated by chunk</li>
+</ul></li>
+</ul></li>
+<li><p><code>eval</code>: specifies if chunk will be executed or not</p>
+<ul>
+<li>options:
+<ul>
+<li><code>TRUE</code> (default): executes chunk</li>
+<li><code>FALSE</code>: doesn’t execute chunk (useful when we want to display only codes and not their output)</li>
+</ul></li>
+</ul></li>
+<li><p><code>message</code> and <code>warning</code>: defines if messages and other warnings generated during code execution</p>
+<ul>
+<li>options:
+<ul>
+<li><code>TRUE</code> (default): displays messages and warnings generated during chunk execution</li>
+<li><code>FALSE</code>: suppresses display of messages and warnings (useful to suppress package loading messages)</li>
+</ul></li>
+</ul></li>
+<li><p><code>fig.cap</code>: specifies a description for figure generated in chunk</p></li>
+<li><p><code>fig.align</code>: defines alignment of figure generated in chunk</p>
+<ul>
+<li>options:
+<ul>
+<li><code>center</code> (default): alignment at document center</li>
+<li><code>left</code>: left alignment</li>
+<li><code>right</code>: right alignment</li>
+</ul></li>
+</ul></li>
+<li><p><code>fig.height</code> and <code>fig.width</code>: defines figure height and width in inches
+- default is size 7</p></li>
+</ul>
+<p>If nothing is specified for a certain option, default configurations are used in code evaluation and results display.</p>
+<p>These options must be passed in chunk headers, next to the letter <code>r</code> and inside braces <code>{}</code>, for example:</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb549-1"><a href="m4.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE, message=FALSE}</span></span>
+<span id="cb549-2"><a href="m4.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr)</span></span>
+<span id="cb549-3"><a href="m4.html#cb549-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb549-4"><a href="m4.html#cb549-4" aria-hidden="true" tabindex="-1"></a><span class="in">x &lt;- 1:10</span></span>
+<span id="cb549-5"><a href="m4.html#cb549-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb549-6"><a href="m4.html#cb549-6" aria-hidden="true" tabindex="-1"></a><span class="in">x %&gt;%</span></span>
+<span id="cb549-7"><a href="m4.html#cb549-7" aria-hidden="true" tabindex="-1"></a><span class="in">  sum()</span></span>
+<span id="cb549-8"><a href="m4.html#cb549-8" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb549-9"><a href="m4.html#cb549-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>You can also assign names to your chunks. This is highly recommended when producing relatively large reports with several chunks, as it will facilitate identification of eventual errors during document generation process. Names must be informed before the first comma, at a space distance from letter r: <code>{r chunk_name, options}</code></p>
+<p>Let’s see some examples, where we create some named chunks, to read one of the databases from previous modules and plot a graph using <code>ggplot2</code>:</p>
+<div class="sourceCode" id="cb550"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb550-1"><a href="m4.html#cb550-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r loading, message=FALSE}</span></span>
+<span id="cb550-2"><a href="m4.html#cb550-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-3"><a href="m4.html#cb550-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(readr)</span></span>
+<span id="cb550-4"><a href="m4.html#cb550-4" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr)</span></span>
+<span id="cb550-5"><a href="m4.html#cb550-5" aria-hidden="true" tabindex="-1"></a><span class="in">library(nycflights13)</span></span>
+<span id="cb550-6"><a href="m4.html#cb550-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-7"><a href="m4.html#cb550-7" aria-hidden="true" tabindex="-1"></a><span class="in"># Loading flights data</span></span>
+<span id="cb550-8"><a href="m4.html#cb550-8" aria-hidden="true" tabindex="-1"></a><span class="in">flights_data &lt;- flights</span></span>
+<span id="cb550-9"><a href="m4.html#cb550-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-10"><a href="m4.html#cb550-10" aria-hidden="true" tabindex="-1"></a><span class="in"># Creating summary by carrier</span></span>
+<span id="cb550-11"><a href="m4.html#cb550-11" aria-hidden="true" tabindex="-1"></a><span class="in">carrier_summary &lt;- flights_data %&gt;%</span></span>
+<span id="cb550-12"><a href="m4.html#cb550-12" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(carrier) %&gt;%</span></span>
+<span id="cb550-13"><a href="m4.html#cb550-13" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(</span></span>
+<span id="cb550-14"><a href="m4.html#cb550-14" aria-hidden="true" tabindex="-1"></a><span class="in">    total_flights = n(),</span></span>
+<span id="cb550-15"><a href="m4.html#cb550-15" aria-hidden="true" tabindex="-1"></a><span class="in">    avg_delay = mean(dep_delay, na.rm = TRUE),</span></span>
+<span id="cb550-16"><a href="m4.html#cb550-16" aria-hidden="true" tabindex="-1"></a><span class="in">    avg_distance = mean(distance, na.rm = TRUE)</span></span>
+<span id="cb550-17"><a href="m4.html#cb550-17" aria-hidden="true" tabindex="-1"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb550-18"><a href="m4.html#cb550-18" aria-hidden="true" tabindex="-1"></a><span class="in">  arrange(desc(total_flights))</span></span>
+<span id="cb550-19"><a href="m4.html#cb550-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb551-1"><a href="m4.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r plot, fig.cap=&quot;Source: nycflights13 package&quot;, fig.height=5, fig.width=7, fig.align=&quot;center&quot;}</span></span>
+<span id="cb551-2"><a href="m4.html#cb551-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb551-3"><a href="m4.html#cb551-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb551-4"><a href="m4.html#cb551-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb551-5"><a href="m4.html#cb551-5" aria-hidden="true" tabindex="-1"></a><span class="in">carrier_summary %&gt;%</span></span>
+<span id="cb551-6"><a href="m4.html#cb551-6" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = reorder(carrier, -total_flights), y = total_flights)) +</span></span>
+<span id="cb551-7"><a href="m4.html#cb551-7" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(fill = &quot;steelblue&quot;) +</span></span>
+<span id="cb551-8"><a href="m4.html#cb551-8" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(title = &quot;Total Flights by Carrier&quot;,</span></span>
+<span id="cb551-9"><a href="m4.html#cb551-9" aria-hidden="true" tabindex="-1"></a><span class="in">       x = &quot;Carrier&quot;,</span></span>
+<span id="cb551-10"><a href="m4.html#cb551-10" aria-hidden="true" tabindex="-1"></a><span class="in">       y = &quot;Number of Flights&quot;) +</span></span>
+<span id="cb551-11"><a href="m4.html#cb551-11" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal() +</span></span>
+<span id="cb551-12"><a href="m4.html#cb551-12" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(axis.text.x = element_text(angle = 45, hjust = 1))</span></span>
+<span id="cb551-13"><a href="m4.html#cb551-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>Which would result in:</p>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="m4.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb552-2"><a href="m4.html#cb552-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb552-3"><a href="m4.html#cb552-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb552-4"><a href="m4.html#cb552-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb552-5"><a href="m4.html#cb552-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading flights data</span></span>
+<span id="cb552-6"><a href="m4.html#cb552-6" aria-hidden="true" tabindex="-1"></a>flights_data <span class="ot">&lt;-</span> flights</span>
+<span id="cb552-7"><a href="m4.html#cb552-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb552-8"><a href="m4.html#cb552-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating summary by carrier</span></span>
+<span id="cb552-9"><a href="m4.html#cb552-9" aria-hidden="true" tabindex="-1"></a>carrier_summary <span class="ot">&lt;-</span> flights_data <span class="sc">%&gt;%</span></span>
+<span id="cb552-10"><a href="m4.html#cb552-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">%&gt;%</span></span>
+<span id="cb552-11"><a href="m4.html#cb552-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb552-12"><a href="m4.html#cb552-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_flights =</span> <span class="fu">n</span>(),</span>
+<span id="cb552-13"><a href="m4.html#cb552-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb552-14"><a href="m4.html#cb552-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_distance =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb552-15"><a href="m4.html#cb552-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb552-16"><a href="m4.html#cb552-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_flights))</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="m4.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb553-2"><a href="m4.html#cb553-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb553-3"><a href="m4.html#cb553-3" aria-hidden="true" tabindex="-1"></a>carrier_summary <span class="sc">%&gt;%</span></span>
+<span id="cb553-4"><a href="m4.html#cb553-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(carrier, <span class="sc">-</span>total_flights), <span class="at">y =</span> total_flights)) <span class="sc">+</span></span>
+<span id="cb553-5"><a href="m4.html#cb553-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb553-6"><a href="m4.html#cb553-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Total Flights by Carrier&quot;</span>,</span>
+<span id="cb553-7"><a href="m4.html#cb553-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Carrier&quot;</span>,</span>
+<span id="cb553-8"><a href="m4.html#cb553-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Flights&quot;</span>) <span class="sc">+</span></span>
+<span id="cb553-9"><a href="m4.html#cb553-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb553-10"><a href="m4.html#cb553-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot"></span>
+<img src="IDAR-T_files/figure-html/plot-1.png" alt="Source: nycflights13 package" width="2100" />
+<p class="caption">
+Figure 4.1: Source: nycflights13 package
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="more-sophisticated-tables" class="section level3 hasAnchor" number="4.3.8">
+<h3><span class="header-section-number">4.3.8</span> More sophisticated tables<a href="m4.html#more-sophisticated-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we use a tibble or data frame and the destination output is an HTML file, we benefit from the fact that R Markdown recognizes the format and prints the tibble or data frame content as an R Markdown table. For this just include the following lines in the YAML header, changing <option> to <code>paged</code>, <code>kable</code> or <code>tibble</code>. Let’s see an example with paged</p>
+<pre class="rmarkdown"><code>---
+title: &quot;Title&quot;
+output:
+  html_document:
+    df_print: &lt;option&gt;
+---</code></pre>
+<p>Let’s use the <code>df_print: paged</code> option, which will make the table printed in a paginated way, displaying only a few lines (and columns) at a time and allowing users to navigate through its content interactively. After changing the header, just call the <code>carrier_summary</code> object from within a chunk.</p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb555-1"><a href="m4.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r table, cols.print = 5, rows.print = 5}</span></span>
+<span id="cb555-2"><a href="m4.html#cb555-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb555-3"><a href="m4.html#cb555-3" aria-hidden="true" tabindex="-1"></a><span class="in">carrier_summary</span></span>
+<span id="cb555-4"><a href="m4.html#cb555-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>Note that the <code>cols.print</code> and <code>rows.print</code> arguments control the number of columns and rows to be displayed in each pagination.</p>
+<p>The result will be the following:</p>
+<p><img src="fig/df_paged.png" /></p>
+<p><strong>TIP:</strong> If you want to better control table outputs, or seek to generate more sophisticated tables in PDF or Word reports, we can use the <code>knitr::kable</code> function inside an R Markdown chunk.</p>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="m4.html#cb556-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(carrier_summary[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">format =</span> <span class="st">&quot;latex&quot;</span>)</span></code></pre></div>
+<p>In the code above, we present an extract of data (first 5 rows and first 4 columns) from the data frame named <code>carrier_summary</code> that we used throughout the course. The <code>format = latex</code> option is suitable for producing tables in <span class="math inline">\(\LaTeX\)</span> style.</p>
+<p><img src="fig/kable_ex.png" /></p>
+<p>If the goal is to make the table look even better you can use the <code>booktabs = TRUE</code> option, which makes the pandoc engine use the <span class="math inline">\(\LaTeX\)</span> booktabs package to generate the table. There are several other options to further improve table style, such as adding footnotes, titles, colors, etc. For this you should investigate other options of the <code>kable</code> function itself and the <code>kableExtra</code> package that expands customization possibilities.</p>
+<hr />
+</div>
+<div id="section-references-8" class="section level3 hasAnchor" number="4.3.9">
+<h3><span class="header-section-number">4.3.9</span> Section References<a href="m4.html#section-references-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Allaire, J. J.; Xie, Y.; McPherson, J.; Luraschi, J.; Ushey, K.; Atkins, A.; Wickham, H.; Cheng, J.; Chang, W.; Iannone, R. (2019). <em>rmarkdown: Dynamic Documents for R</em>. R package version 1.13. URL <a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a>.</p></li>
+<li><p>Xie, Y. (2019). <em>R Markdown Cookbook</em>. CRS Press. Available at: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/">https://bookdown.org/yihui/rmarkdown-cookbook/</a></p></li>
+<li><p>Xie Y.; Allaire, J. J.; Grolemund, G. (2018). <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman; Hall/CRC. Available at: <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>.</p></li>
+<li><p><em>R MARKDOWN REFERENCE GUIDE</em>. Available at: <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a>.</p></li>
+</ul>
+</div>
+<div id="exercises-6" class="section level3 hasAnchor" number="4.3.10">
+<h3><span class="header-section-number">4.3.10</span> Exercises<a href="m4.html#exercises-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Choose a report you worked on recently and try to reproduce all of it or just a section using R Markdown knowledge. Give preference to works that involve data that allow applying most of the techniques seen throughout the course.</p></li>
+<li><p>Create a simple R Markdown report about a topic of your choice (could be about Jacksonville, UNF, your major, etc.) that includes:</p>
+<ul>
+<li>At least 3 different heading levels</li>
+<li>Bold and italic text</li>
+<li>A numbered list and an unnumbered list</li>
+<li>A table</li>
+<li>An external image or link</li>
+<li>A mathematical formula</li>
+<li>At least 2 code chunks with different options</li>
+</ul></li>
+<li><p>Practice with the <code>nycflights13</code> dataset:</p>
+<ul>
+<li>Create an R Markdown document that analyzes flight delays</li>
+<li>Include at least one table and one plot</li>
+<li>Use inline R code to report summary statistics</li>
+<li>Export to both HTML and PDF formats</li>
+</ul></li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="m3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": null,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

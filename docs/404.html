@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Page not found | Introduction to Data Analysis with R and the Tidyverse</title>
+  <meta name="description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Page not found | Introduction to Data Analysis with R and the Tidyverse" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
+  <meta property="og:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="github-repo" content="allanvc/book_IADR-T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Page not found | Introduction to Data Analysis with R and the Tidyverse" />
+  
+  <meta name="twitter:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
+  <meta name="twitter:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
+
+<meta name="author" content="Allan Quadros, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Data Analysis in **R** using Tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-organization"><i class="fa fa-check"></i>Course Organization</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="m1.html"><a href="m1.html"><i class="fa fa-check"></i><b>1</b> Module I</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="m1.html"><a href="m1.html#first-steps"><i class="fa fa-check"></i><b>1.1</b> First Steps</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="m1.html"><a href="m1.html#brief-history"><i class="fa fa-check"></i><b>1.1.1</b> Brief History</a></li>
+<li class="chapter" data-level="1.1.2" data-path="m1.html"><a href="m1.html#installing-r"><i class="fa fa-check"></i><b>1.1.2</b> Installing <strong>R</strong></a></li>
+<li class="chapter" data-level="1.1.3" data-path="m1.html"><a href="m1.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Installing <strong>RStudio</strong></a></li>
+<li class="chapter" data-level="1.1.4" data-path="m1.html"><a href="m1.html#installing-rtools-on-windows"><i class="fa fa-check"></i><b>1.1.4</b> Installing <strong>RTools</strong> on Windows</a></li>
+<li class="chapter" data-level="1.1.5" data-path="m1.html"><a href="m1.html#basic-functionalities-of-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.5</b> Basic Functionalities of R and RStudio</a></li>
+<li class="chapter" data-level="1.1.6" data-path="m1.html"><a href="m1.html#r-language-structure"><i class="fa fa-check"></i><b>1.1.6</b> R Language Structure</a></li>
+<li class="chapter" data-level="1.1.7" data-path="m1.html"><a href="m1.html#how-to-get-help"><i class="fa fa-check"></i><b>1.1.7</b> How to get help</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="m1.html"><a href="m1.html#r-language-object-structure"><i class="fa fa-check"></i><b>1.2</b> R Language Object Structure</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="m1.html"><a href="m1.html#vectors"><i class="fa fa-check"></i><b>1.2.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="m1.html"><a href="m1.html#dataframes"><i class="fa fa-check"></i><b>1.2.2</b> Dataframes</a></li>
+<li class="chapter" data-level="1.2.3" data-path="m1.html"><a href="m1.html#module-references"><i class="fa fa-check"></i><b>1.2.3</b> Module References</a></li>
+<li class="chapter" data-level="1.2.4" data-path="m1.html"><a href="m1.html#exercises"><i class="fa fa-check"></i><b>1.2.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="m2.html"><a href="m2.html"><i class="fa fa-check"></i><b>2</b> Module II</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="m2.html"><a href="m2.html#reading-data-in-r"><i class="fa fa-check"></i><b>2.1</b> Reading Data in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="m2.html"><a href="m2.html#the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> The Tidyverse</a></li>
+<li class="chapter" data-level="2.1.2" data-path="m2.html"><a href="m2.html#reading-and-exporting-data-using-readr"><i class="fa fa-check"></i><b>2.1.2</b> Reading and Exporting Data using <code>readr</code></a></li>
+<li class="chapter" data-level="2.1.3" data-path="m2.html"><a href="m2.html#writing-and-exporting-data"><i class="fa fa-check"></i><b>2.1.3</b> Writing and exporting data</a></li>
+<li class="chapter" data-level="2.1.4" data-path="m2.html"><a href="m2.html#reading-data-from-stata-sas-and-spss"><i class="fa fa-check"></i><b>2.1.4</b> Reading data from Stata, SAS and SPSS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="m2.html"><a href="m2.html#section-references"><i class="fa fa-check"></i><b>2.1.5</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="m2.html"><a href="m2.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Data Manipulation with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="m2.html"><a href="m2.html#filtering-rows-with-filter"><i class="fa fa-check"></i><b>2.2.1</b> Filtering rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="m2.html"><a href="m2.html#ordering-rows-with-arrange"><i class="fa fa-check"></i><b>2.2.2</b> Ordering rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="m2.html"><a href="m2.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.3</b> Selecting columns with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="m2.html"><a href="m2.html#adding-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Adding new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="m2.html"><a href="m2.html#modifying-entries-with-mutate-or-transmute-case_when"><i class="fa fa-check"></i><b>2.2.5</b> Modifying entries with <code>mutate()</code> or <code>transmute()</code> + <code>case_when()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="m2.html"><a href="m2.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>2.2.6</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.7" data-path="m2.html"><a href="m2.html#dplyr-structure"><i class="fa fa-check"></i><b>2.2.7</b> <code>dplyr</code> Structure</a></li>
+<li class="chapter" data-level="2.2.8" data-path="m2.html"><a href="m2.html#using-the-pipe"><i class="fa fa-check"></i><b>2.2.8</b> Using the Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="2.2.9" data-path="m2.html"><a href="m2.html#section-references-1"><i class="fa fa-check"></i><b>2.2.9</b> Section References</a></li>
+<li class="chapter" data-level="2.2.10" data-path="m2.html"><a href="m2.html#exercises-1"><i class="fa fa-check"></i><b>2.2.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="m2.html"><a href="m2.html#graphics-with-ggplot2"><i class="fa fa-check"></i><b>2.3</b> Graphics with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="m2.html"><a href="m2.html#introduction"><i class="fa fa-check"></i><b>2.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.2" data-path="m2.html"><a href="m2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.3.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="2.3.3" data-path="m2.html"><a href="m2.html#data"><i class="fa fa-check"></i><b>2.3.3</b> Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="m2.html"><a href="m2.html#the-ggplot-function"><i class="fa fa-check"></i><b>2.3.4</b> The <code>ggplot()</code> function</a></li>
+<li class="chapter" data-level="2.3.5" data-path="m2.html"><a href="m2.html#aesthetics-aesthetic-elements-of-graphics"><i class="fa fa-check"></i><b>2.3.5</b> Aesthetics (aesthetic elements of graphics)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="m2.html"><a href="m2.html#examples-for-aesthetics"><i class="fa fa-check"></i><b>2.3.6</b> Examples for <em>aesthetics</em></a></li>
+<li class="chapter" data-level="2.3.7" data-path="m2.html"><a href="m2.html#geoms"><i class="fa fa-check"></i><b>2.3.7</b> Geoms</a></li>
+<li class="chapter" data-level="2.3.8" data-path="m2.html"><a href="m2.html#examples-for-geoms"><i class="fa fa-check"></i><b>2.3.8</b> Examples for <em>Geoms</em></a></li>
+<li class="chapter" data-level="2.3.9" data-path="m2.html"><a href="m2.html#facetting"><i class="fa fa-check"></i><b>2.3.9</b> Facetting</a></li>
+<li class="chapter" data-level="2.3.10" data-path="m2.html"><a href="m2.html#titles-labels-themes-and-legends"><i class="fa fa-check"></i><b>2.3.10</b> Titles, labels, themes and legends</a></li>
+<li class="chapter" data-level="2.3.11" data-path="m2.html"><a href="m2.html#changing-colors-and-color-palette"><i class="fa fa-check"></i><b>2.3.11</b> Changing colors and color palette</a></li>
+<li class="chapter" data-level="2.3.12" data-path="m2.html"><a href="m2.html#plot-area-and-theme"><i class="fa fa-check"></i><b>2.3.12</b> Plot Area and Theme</a></li>
+<li class="chapter" data-level="2.3.13" data-path="m2.html"><a href="m2.html#section-references-2"><i class="fa fa-check"></i><b>2.3.13</b> Section References</a></li>
+<li class="chapter" data-level="2.3.14" data-path="m2.html"><a href="m2.html#exercises-2"><i class="fa fa-check"></i><b>2.3.14</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="m3.html"><a href="m3.html"><i class="fa fa-check"></i><b>3</b> Module III</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="m3.html"><a href="m3.html#accessing-relational-databases-with-dbplyr"><i class="fa fa-check"></i><b>3.1</b> Accessing Relational Databases with <code>dbplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="m3.html"><a href="m3.html#introduction-1"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1.2" data-path="m3.html"><a href="m3.html#connecting-to-a-database"><i class="fa fa-check"></i><b>3.1.2</b> Connecting to a database</a></li>
+<li class="chapter" data-level="3.1.3" data-path="m3.html"><a href="m3.html#generating-queries"><i class="fa fa-check"></i><b>3.1.3</b> Generating queries</a></li>
+<li class="chapter" data-level="3.1.4" data-path="m3.html"><a href="m3.html#section-references-3"><i class="fa fa-check"></i><b>3.1.4</b> Section References</a></li>
+<li class="chapter" data-level="3.1.5" data-path="m3.html"><a href="m3.html#exercises-3"><i class="fa fa-check"></i><b>3.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="m3.html"><a href="m3.html#data-manipulation-with-two-table-verbs---dplyr"><i class="fa fa-check"></i><b>3.2</b> Data Manipulation with <em>Two-table verbs</em> - <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="m3.html"><a href="m3.html#mutating-joins"><i class="fa fa-check"></i><b>3.2.1</b> <em>Mutating joins</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="m3.html"><a href="m3.html#filtering-joins"><i class="fa fa-check"></i><b>3.2.2</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="3.2.3" data-path="m3.html"><a href="m3.html#section-references-4"><i class="fa fa-check"></i><b>3.2.3</b> Section References</a></li>
+<li class="chapter" data-level="3.2.4" data-path="m3.html"><a href="m3.html#exercises-4"><i class="fa fa-check"></i><b>3.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="m3.html"><a href="m3.html#geographic-data-analysis-in-r"><i class="fa fa-check"></i><b>3.3</b> Geographic Data Analysis in <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="m3.html"><a href="m3.html#introduction-2"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="m3.html"><a href="m3.html#map-production-in-r"><i class="fa fa-check"></i><b>3.3.2</b> Map Production in R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="m3.html"><a href="m3.html#exporting-geographic-data"><i class="fa fa-check"></i><b>3.3.3</b> Exporting geographic data</a></li>
+<li class="chapter" data-level="3.3.4" data-path="m3.html"><a href="m3.html#section-references-5"><i class="fa fa-check"></i><b>3.3.4</b> Section References</a></li>
+<li class="chapter" data-level="3.3.5" data-path="m3.html"><a href="m3.html#exercises-5"><i class="fa fa-check"></i><b>3.3.5</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="m4.html"><a href="m4.html"><i class="fa fa-check"></i><b>4</b> Module IV</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="m4.html"><a href="m4.html#string-manipulation-in-r-with-stringr"><i class="fa fa-check"></i><b>4.1</b> String Manipulation in R with <code>stringr</code></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="m4.html"><a href="m4.html#introduction-3"><i class="fa fa-check"></i><b>4.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.2" data-path="m4.html"><a href="m4.html#operations-with-individual-characters"><i class="fa fa-check"></i><b>4.1.2</b> Operations with individual characters</a></li>
+<li class="chapter" data-level="4.1.3" data-path="m4.html"><a href="m4.html#pattern-matching"><i class="fa fa-check"></i><b>4.1.3</b> Pattern matching</a></li>
+<li class="chapter" data-level="4.1.4" data-path="m4.html"><a href="m4.html#section-references-6"><i class="fa fa-check"></i><b>4.1.4</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="m4.html"><a href="m4.html#regular-expressions-regex"><i class="fa fa-check"></i><b>4.2</b> Regular Expressions (REGEX)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="m4.html"><a href="m4.html#introduction-4"><i class="fa fa-check"></i><b>4.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.2" data-path="m4.html"><a href="m4.html#regex-examples-using-stringr"><i class="fa fa-check"></i><b>4.2.2</b> REGEX Examples using <code>stringr</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="m4.html"><a href="m4.html#section-references-7"><i class="fa fa-check"></i><b>4.2.3</b> Section References</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="m4.html"><a href="m4.html#reports-and-reproducible-research-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> Reports and Reproducible Research with <code>rmarkdown</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="m4.html"><a href="m4.html#introduction-5"><i class="fa fa-check"></i><b>4.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.3.2" data-path="m4.html"><a href="m4.html#header"><i class="fa fa-check"></i><b>4.3.2</b> Header</a></li>
+<li class="chapter" data-level="4.3.3" data-path="m4.html"><a href="m4.html#text-formatting"><i class="fa fa-check"></i><b>4.3.3</b> Text Formatting</a></li>
+<li class="chapter" data-level="4.3.4" data-path="m4.html"><a href="m4.html#inserting-external-figures"><i class="fa fa-check"></i><b>4.3.4</b> Inserting external figures</a></li>
+<li class="chapter" data-level="4.3.5" data-path="m4.html"><a href="m4.html#inserting-links"><i class="fa fa-check"></i><b>4.3.5</b> Inserting links</a></li>
+<li class="chapter" data-level="4.3.6" data-path="m4.html"><a href="m4.html#mathematical-formulas"><i class="fa fa-check"></i><b>4.3.6</b> Mathematical formulas</a></li>
+<li class="chapter" data-level="4.3.7" data-path="m4.html"><a href="m4.html#code-insertion-and-execution"><i class="fa fa-check"></i><b>4.3.7</b> Code insertion and execution</a></li>
+<li class="chapter" data-level="4.3.8" data-path="m4.html"><a href="m4.html#more-sophisticated-tables"><i class="fa fa-check"></i><b>4.3.8</b> More sophisticated tables</a></li>
+<li class="chapter" data-level="4.3.9" data-path="m4.html"><a href="m4.html#section-references-8"><i class="fa fa-check"></i><b>4.3.9</b> Section References</a></li>
+<li class="chapter" data-level="4.3.10" data-path="m4.html"><a href="m4.html#exercises-6"><i class="fa fa-check"></i><b>4.3.10</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Data Analysis with R and the Tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": null,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

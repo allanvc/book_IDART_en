@@ -1,0 +1,9 @@
+# Conclusion {-}
+
+Although the course is introductory, I believe you were able to reach a level of fluency in **R** that will have a significant impact on your work. We covered basic topics on how the language works, its main objects, tools for data analysis, and moved on to the topic of reproducibility in **R**. Along the way, you engaged with excellent packages and techniques that will greatly facilitate your data-analysis work.
+
+From now on, you are ready to move forward more independently in developing data analysis solutions using **R**. Your level of proficiency now allows you to think more clearly about how to organize your data, what kind of problem you have, the best way to approach it, and—most importantly—how and where to seek help to solve it. Make the most of the excellent materials you have at hand, and return to them and to the references whenever needed.
+
+Thank you for being part of this journey!
+
+__Allan Quadros__
