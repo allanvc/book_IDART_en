@@ -334,11 +334,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb172-8"><a href="m2.html#cb172-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span></code></pre></div>
 <p>If you don’t want to save the database on your computer, reading the file directly from the website, you can also do that. Just copy the file address shown in the browser and pass it to the <code>file</code> argument. Paths passed to the <code>file</code> argument starting with <code>http://</code>, <code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> result in automatic download and reading of the file.</p>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for
+## details, e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
 <pre><code>## Rows: 1599 Columns: 12</code></pre>
-<pre><code>## ── Column specification ──────────────────────────────────────────────────────────────────────────────
+<pre><code>## ── Column specification ────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
 ## chr (5): volatile acidity, citric acid, chlorides, density, sulphates
 ## dbl (2): total sulfur dioxide, quality
@@ -365,26 +366,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb177-15"><a href="m2.html#cb177-15" aria-hidden="true" tabindex="-1"></a>                       )</span>
 <span id="cb177-16"><a href="m2.html#cb177-16" aria-hidden="true" tabindex="-1"></a>                     )</span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for
+## details, e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
 <p>Once the file is read, we can inspect it by calling the created object, or by clicking on the object name in our <em>environment</em>.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="m2.html#cb180-1" aria-hidden="true" tabindex="-1"></a>wine_data</span></code></pre></div>
 <pre><code>## # A tibble: 1,599 × 12
-##    `fixed acidity` `volatile acidity` `citric acid` `residual sugar` chlorides `free sulfur dioxide`
-##              &lt;dbl&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;                 &lt;dbl&gt;
-##  1              NA                 NA             0               NA        NA                    11
-##  2              NA                 NA             0               NA        NA                    25
-##  3              NA                 NA            NA               NA        NA                    15
-##  4              NA                 NA            NA               NA        NA                    17
-##  5              NA                 NA             0               NA        NA                    11
-##  6              NA                 NA             0               NA        NA                    13
-##  7              NA                 NA            NA               NA        NA                    15
-##  8              NA                 NA             0               NA        NA                    15
-##  9              NA                 NA            NA                2        NA                     9
-## 10              NA                 NA            NA               NA        NA                    17
+##    `fixed acidity` `volatile acidity` `citric acid` `residual sugar`
+##              &lt;dbl&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
+##  1              NA                 NA             0               NA
+##  2              NA                 NA             0               NA
+##  3              NA                 NA            NA               NA
+##  4              NA                 NA            NA               NA
+##  5              NA                 NA             0               NA
+##  6              NA                 NA             0               NA
+##  7              NA                 NA            NA               NA
+##  8              NA                 NA             0               NA
+##  9              NA                 NA            NA                2
+## 10              NA                 NA            NA               NA
 ## # ℹ 1,589 more rows
-## # ℹ 6 more variables: `total sulfur dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;,
+## # ℹ 8 more variables: chlorides &lt;dbl&gt;, `free sulfur dioxide` &lt;dbl&gt;,
+## #   `total sulfur dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;,
 ## #   alcohol &lt;dbl&gt;, quality &lt;int&gt;</code></pre>
 <p>Note that this file doesn’t look much like the classic Dataframe format we saw in Module <a href="m1.html#m1">1</a>. It’s actually a new type of object, which follows the <em>Tidyverse</em> philosophy, commented on in the previous section. We have here a <code>tibble</code>, which is nothing more than a friendlier Dataframe. In general terms, the difference between a classic Dataframe and a <code>tibble</code> is mainly in the information presented to us when we print the object’s content to the console. Unlike a Dataframe, a <code>tibble</code> shows us only the first 10 rows of the table, the column types, and only the content of columns that fit on our screen.</p>
 <p>Another difference is in the result when we perform indexing. We can still use <code>[row_index, column_index]</code> or <code>dataframe_name$column_name</code>. The thing is that indexing with brackets will return a <code>tibble</code>, even if the operation results in a single column. Indexing via <code>$</code> will return a vector. In summary, the first doesn’t change the object type - we continue with a <code>tibble</code>. The second changes the object type.</p>
@@ -647,19 +650,20 @@ run;</code></pre>
 <p>However, <code>select()</code> “abandons” all other variables when you do a renaming. It’s better then to use <code>rename()</code>:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="m2.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(cars_data, <span class="at">miles_per_gallon =</span> mpg)</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 11
-##    miles_per_gallon   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1             21       6  160    110  3.9   2.62  16.5     0     1     4     4
-##  2             21       6  160    110  3.9   2.88  17.0     0     1     4     4
-##  3             22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
-##  4             21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
-##  5             18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
-##  6             18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
-##  7             14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
-##  8             24.4     4  147.    62  3.69  3.19  20       1     0     4     2
-##  9             22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-## 10             19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # ℹ 22 more rows</code></pre>
+##    miles_per_gallon   cyl  disp    hp  drat    wt  qsec    vs    am  gear
+##               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1             21       6  160    110  3.9   2.62  16.5     0     1     4
+##  2             21       6  160    110  3.9   2.88  17.0     0     1     4
+##  3             22.8     4  108     93  3.85  2.32  18.6     1     1     4
+##  4             21.4     6  258    110  3.08  3.22  19.4     1     0     3
+##  5             18.7     8  360    175  3.15  3.44  17.0     0     0     3
+##  6             18.1     6  225    105  2.76  3.46  20.2     1     0     3
+##  7             14.3     8  360    245  3.21  3.57  15.8     0     0     3
+##  8             24.4     4  147.    62  3.69  3.19  20       1     0     4
+##  9             22.8     4  141.    95  3.92  3.15  22.9     1     0     4
+## 10             19.2     6  168.   123  3.92  3.44  18.3     1     0     4
+## # ℹ 22 more rows
+## # ℹ 1 more variable: carb &lt;dbl&gt;</code></pre>
 </div>
 <div id="adding-new-columns-with-mutate" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Adding new columns with <code>mutate()</code><a href="m2.html#adding-new-columns-with-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -668,19 +672,20 @@ run;</code></pre>
 <span id="cb210-2"><a href="m2.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt</span>
 <span id="cb210-3"><a href="m2.html#cb210-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 12
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb power_to_weight
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;
-##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4            42.0
-##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4            38.3
-##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1            40.1
-##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1            34.2
-##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2            50.9
-##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1            30.3
-##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4            68.6
-##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2            19.4
-##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2            30.2
-## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4            35.8
-## # ℹ 22 more rows</code></pre>
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ℹ 22 more rows
+## # ℹ 1 more variable: power_to_weight &lt;dbl&gt;</code></pre>
 <p><code>mutate()</code> even allows us to refer to columns we just created in the same command. Let’s save this change in a new <em>tibble</em>, called <code>cars_data2</code></p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="m2.html#cb212-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cars_data,</span>
 <span id="cb212-2"><a href="m2.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt,</span>
@@ -815,7 +820,8 @@ run;</code></pre>
 <p>Example:</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="m2.html#cb226-1" aria-hidden="true" tabindex="-1"></a>by_cyl_am <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cars_data2, cyl, am)</span>
 <span id="cb226-2"><a href="m2.html#cb226-2" aria-hidden="true" tabindex="-1"></a>(summary_by_am <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_cyl_am, <span class="at">count =</span> <span class="fu">n</span>()))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 6 × 3
 ## # Groups:   cyl [3]
 ##     cyl    am count
@@ -946,7 +952,8 @@ run;</code></pre>
 <span id="cb241-7"><a href="m2.html#cb241-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb241-8"><a href="m2.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_cars <span class="sc">&gt;</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Adding missing grouping variables: `cyl`, `am`
-## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups` argument.</code></pre>
+## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 2 × 4
 ## # Groups:   cyl [2]
 ##     cyl    am total_cars avg_hp
@@ -1094,8 +1101,9 @@ run;</code></pre>
 <span id="cb249-7"><a href="m2.html#cb249-7" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
 <span id="cb249-8"><a href="m2.html#cb249-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">alpha=</span>prob_sim)) <span class="sc">+</span></span>
 <span id="cb249-9"><a href="m2.html#cb249-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<pre><code>## Warning in grid.Call.graphics(C_points, x$x, x$y, x$pch, x$size): semi-transparency is not supported
-## on this device: reported only once per page</code></pre>
+<pre><code>## Warning in grid.Call.graphics(C_points, x$x, x$y, x$pch, x$size):
+## semi-transparency is not supported on this device: reported only once per
+## page</code></pre>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-91-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In our case, this graph isn’t very useful because we have several overlapping points and this makes it difficult to perceive how colors are varying. However, it serves to illustrate this possibility with <code>ggplot2</code>.</p>
 <p>A better way to demonstrate different cylinder numbers would be to use different shapes (<code>shape</code> argument):</p>
@@ -1150,7 +1158,7 @@ run;</code></pre>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="m2.html#cb258-1" aria-hidden="true" tabindex="-1"></a>c <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-98-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="m2.html#cb259-1" aria-hidden="true" tabindex="-1"></a>c <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-98-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong><em>geoms</em> for one discrete numerical variable</strong></p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="m2.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count</span></span>
@@ -1347,63 +1355,27 @@ run;</code></pre>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="m2.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using txhousing dataset from ggplot2 package</span></span>
 <span id="cb279-2"><a href="m2.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;txhousing&quot;</span>)</span>
 <span id="cb279-3"><a href="m2.html#cb279-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-4"><a href="m2.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># to modify dates</span></span>
-<span id="cb279-5"><a href="m2.html#cb279-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a Date (first day of each month) and pick a few cities</span></span>
-<span id="cb279-6"><a href="m2.html#cb279-6" aria-hidden="true" tabindex="-1"></a>tx_subset <span class="ot">&lt;-</span> txhousing <span class="sc">%&gt;%</span></span>
-<span id="cb279-7"><a href="m2.html#cb279-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_date</span>(year, month, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb279-8"><a href="m2.html#cb279-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Austin&quot;</span>, <span class="st">&quot;Dallas&quot;</span>, <span class="st">&quot;Houston&quot;</span>))</span>
-<span id="cb279-9"><a href="m2.html#cb279-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-10"><a href="m2.html#cb279-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Line type by city</span></span>
-<span id="cb279-11"><a href="m2.html#cb279-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tx_subset, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> median, <span class="at">linetype =</span> city)) <span class="sc">+</span></span>
-<span id="cb279-12"><a href="m2.html#cb279-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb279-13"><a href="m2.html#cb279-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">name =</span> <span class="st">&quot;City&quot;</span>) <span class="sc">+</span></span>
-<span id="cb279-14"><a href="m2.html#cb279-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Median Home Price in Texas (by city)&quot;</span>,</span>
-<span id="cb279-15"><a href="m2.html#cb279-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
-<span id="cb279-16"><a href="m2.html#cb279-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Median price (USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb279-17"><a href="m2.html#cb279-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<span id="cb279-4"><a href="m2.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># to modify dates</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="m2.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a Date (first day of each month) and pick a few cities</span></span>
+<span id="cb282-2"><a href="m2.html#cb282-2" aria-hidden="true" tabindex="-1"></a>tx_subset <span class="ot">&lt;-</span> txhousing <span class="sc">%&gt;%</span></span>
+<span id="cb282-3"><a href="m2.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_date</span>(year, month, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb282-4"><a href="m2.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Austin&quot;</span>, <span class="st">&quot;Dallas&quot;</span>, <span class="st">&quot;Houston&quot;</span>))</span>
+<span id="cb282-5"><a href="m2.html#cb282-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-6"><a href="m2.html#cb282-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Line type by city</span></span>
+<span id="cb282-7"><a href="m2.html#cb282-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tx_subset, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> median, <span class="at">linetype =</span> city)) <span class="sc">+</span></span>
+<span id="cb282-8"><a href="m2.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb282-9"><a href="m2.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">name =</span> <span class="st">&quot;City&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-10"><a href="m2.html#cb282-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Median Home Price in Texas (by city)&quot;</span>,</span>
+<span id="cb282-11"><a href="m2.html#cb282-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb282-12"><a href="m2.html#cb282-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Median price (USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-13"><a href="m2.html#cb282-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can even have more than one <em>mapping</em> argument inside <code>aes()</code> and we can control legends of each one, adding one more layer to the graph:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="m2.html#cb280-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
-<span id="cb280-2"><a href="m2.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb280-3"><a href="m2.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
-<span id="cb280-4"><a href="m2.html#cb280-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
-<span id="cb280-5"><a href="m2.html#cb280-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb280-6"><a href="m2.html#cb280-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb280-7"><a href="m2.html#cb280-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
-<span id="cb280-8"><a href="m2.html#cb280-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
-<span id="cb280-9"><a href="m2.html#cb280-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
-<span id="cb280-10"><a href="m2.html#cb280-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>(<span class="at">name=</span><span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
-<p><img src="IDART_en_files/figure-html/unnamed-chunk-116-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="changing-colors-and-color-palette" class="section level3 hasAnchor" number="2.3.11">
-<h3><span class="header-section-number">2.3.11</span> Changing colors and color palette<a href="m2.html#changing-colors-and-color-palette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You must have noticed that in most graphs, <code>ggplot2</code> uses the library’s default colors for plotting. If you’re not happy with the default color palette used by the package in <em>mapping</em> your variables, you can manually define these colors using another palette or other colors of your preference.</p>
-<p>The way to change the color palette used in a <em>mapping</em> argument inside <code>aes()</code> is through functions of type <code>scale_GENERATOR_manual()</code>, changing the <code>values</code> parameter.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="m2.html#cb281-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
-<span id="cb281-2"><a href="m2.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb281-3"><a href="m2.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
-<span id="cb281-4"><a href="m2.html#cb281-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
-<span id="cb281-5"><a href="m2.html#cb281-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb281-6"><a href="m2.html#cb281-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb281-7"><a href="m2.html#cb281-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
-<span id="cb281-8"><a href="m2.html#cb281-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
-<span id="cb281-9"><a href="m2.html#cb281-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
-<span id="cb281-10"><a href="m2.html#cb281-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
-<p><img src="IDART_en_files/figure-html/unnamed-chunk-117-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Through these same functions of type <code>scale_GENERATOR_manual()</code>, we can also change category labels displayed in the legend using the <code>labels</code> argument.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="m2.html#cb282-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
-<span id="cb282-2"><a href="m2.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb282-3"><a href="m2.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
-<span id="cb282-4"><a href="m2.html#cb282-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
-<span id="cb282-5"><a href="m2.html#cb282-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb282-6"><a href="m2.html#cb282-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-7"><a href="m2.html#cb282-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-8"><a href="m2.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-9"><a href="m2.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
-<span id="cb282-10"><a href="m2.html#cb282-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
-<span id="cb282-11"><a href="m2.html#cb282-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;4 cyl&quot;</span>, <span class="st">&quot;6 cyl&quot;</span>, <span class="st">&quot;8 cyl&quot;</span>))</span></code></pre></div>
-<p><img src="IDART_en_files/figure-html/unnamed-chunk-118-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>As we mentioned several times up to this point in the course, in <strong>R</strong> there are several ways to do the same thing. Functions of type <code>scale_GENERATOR_manual()</code> also allow changing the legend title with the <code>name</code> argument:</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="m2.html#cb283-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
 <span id="cb283-2"><a href="m2.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb283-3"><a href="m2.html#cb283-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
@@ -1413,9 +1385,50 @@ run;</code></pre>
 <span id="cb283-7"><a href="m2.html#cb283-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
 <span id="cb283-8"><a href="m2.html#cb283-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
 <span id="cb283-9"><a href="m2.html#cb283-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
-<span id="cb283-10"><a href="m2.html#cb283-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
-<span id="cb283-11"><a href="m2.html#cb283-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;4 cyl&quot;</span>, <span class="st">&quot;6 cyl&quot;</span>, <span class="st">&quot;8 cyl&quot;</span>),</span>
-<span id="cb283-12"><a href="m2.html#cb283-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">name=</span><span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<span id="cb283-10"><a href="m2.html#cb283-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>(<span class="at">name=</span><span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
+<p><img src="IDART_en_files/figure-html/unnamed-chunk-116-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="changing-colors-and-color-palette" class="section level3 hasAnchor" number="2.3.11">
+<h3><span class="header-section-number">2.3.11</span> Changing colors and color palette<a href="m2.html#changing-colors-and-color-palette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You must have noticed that in most graphs, <code>ggplot2</code> uses the library’s default colors for plotting. If you’re not happy with the default color palette used by the package in <em>mapping</em> your variables, you can manually define these colors using another palette or other colors of your preference.</p>
+<p>The way to change the color palette used in a <em>mapping</em> argument inside <code>aes()</code> is through functions of type <code>scale_GENERATOR_manual()</code>, changing the <code>values</code> parameter.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="m2.html#cb284-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb284-2"><a href="m2.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb284-3"><a href="m2.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb284-4"><a href="m2.html#cb284-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb284-5"><a href="m2.html#cb284-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb284-6"><a href="m2.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb284-7"><a href="m2.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb284-8"><a href="m2.html#cb284-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb284-9"><a href="m2.html#cb284-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb284-10"><a href="m2.html#cb284-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="IDART_en_files/figure-html/unnamed-chunk-117-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Through these same functions of type <code>scale_GENERATOR_manual()</code>, we can also change category labels displayed in the legend using the <code>labels</code> argument.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="m2.html#cb285-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb285-2"><a href="m2.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb285-3"><a href="m2.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb285-4"><a href="m2.html#cb285-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb285-5"><a href="m2.html#cb285-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb285-6"><a href="m2.html#cb285-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb285-7"><a href="m2.html#cb285-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb285-8"><a href="m2.html#cb285-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb285-9"><a href="m2.html#cb285-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb285-10"><a href="m2.html#cb285-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb285-11"><a href="m2.html#cb285-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;4 cyl&quot;</span>, <span class="st">&quot;6 cyl&quot;</span>, <span class="st">&quot;8 cyl&quot;</span>))</span></code></pre></div>
+<p><img src="IDART_en_files/figure-html/unnamed-chunk-118-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As we mentioned several times up to this point in the course, in <strong>R</strong> there are several ways to do the same thing. Functions of type <code>scale_GENERATOR_manual()</code> also allow changing the legend title with the <code>name</code> argument:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="m2.html#cb286-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
+<span id="cb286-2"><a href="m2.html#cb286-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb286-3"><a href="m2.html#cb286-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg,</span>
+<span id="cb286-4"><a href="m2.html#cb286-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span>hp,</span>
+<span id="cb286-5"><a href="m2.html#cb286-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb286-6"><a href="m2.html#cb286-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cars Data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb286-7"><a href="m2.html#cb286-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb286-8"><a href="m2.html#cb286-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Miles per Gallon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb286-9"><a href="m2.html#cb286-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">&quot;Horsepower&quot;</span>) <span class="sc">+</span></span>
+<span id="cb286-10"><a href="m2.html#cb286-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb286-11"><a href="m2.html#cb286-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;4 cyl&quot;</span>, <span class="st">&quot;6 cyl&quot;</span>, <span class="st">&quot;8 cyl&quot;</span>),</span>
+<span id="cb286-12"><a href="m2.html#cb286-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">name=</span><span class="st">&quot;Cylinders&quot;</span>)</span></code></pre></div>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-119-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="plot-area-and-theme" class="section level3 hasAnchor" number="2.3.12">
@@ -1432,11 +1445,11 @@ run;</code></pre>
 <li><p><code>theme_classic()</code>: classic theme without grid lines;</p></li>
 <li><p><code>theme_void()</code>: empty theme, without background colors and grid. Recommended for unusual coordinate plots or drawings.</p></li>
 </ul>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="m2.html#cb284-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
-<span id="cb284-2"><a href="m2.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb284-3"><a href="m2.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb284-4"><a href="m2.html#cb284-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Graph Title&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X-axis Label&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y-axis Label&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Legend Title&quot;</span>) <span class="sc">+</span></span>
-<span id="cb284-5"><a href="m2.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="m2.html#cb287-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb287-2"><a href="m2.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb287-3"><a href="m2.html#cb287-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">colour=</span><span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb287-4"><a href="m2.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Graph Title&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X-axis Label&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y-axis Label&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Legend Title&quot;</span>) <span class="sc">+</span></span>
+<span id="cb287-5"><a href="m2.html#cb287-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-120-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>TIP:</strong> Strangely, <code>ggplot2</code> always aligns the graph title to the left. You can center the title using precisely the <code>theme()</code> function, which we commented above, writing <code>theme(plot.title = element_text(hjust=0.5))</code>. <code>0.5</code> indicates that the title should be in the middle of the graph, according to specified horizontal alignment (<code>hjust</code> parameter). <code>element_text()</code> is a <em>helper function</em> that serves to control textual aspects like size (<code>size</code>) and other parameters like horizontal alignment itself.</p>
 <hr />
