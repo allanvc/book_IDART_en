@@ -17,7 +17,7 @@ This approach has some problems:
 
 - the volume of data we would have to work with would be very large. Therefore, we would spend some time thinking about how to minimize resource consumption and time to arrive at the subset of data we actually need to work with;
 
-- to save resources, we would opt to directly use an external SQL client, work the data as much as possible to then extract what interests us and only then use **R**;
+- to save resources, we would opt to directly use an external SQL client, process data as much as possible on the server side, extract what interests us and only then use **R**;
 
 - we would need to know SQL in depth to make as many queries as possible using a "_client_" of _SQL Server_ for example. We would save different scripts so we could repeat the queries again;
 

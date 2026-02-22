@@ -699,7 +699,7 @@ cars_data %>%
   ggplot(data=cars_data, mapping = aes(x=wt, y=mpg))
 ```
 
-Let's see a first example for the relationship between _weight (wt)_ vs _miles per gallon (mpg)_.
+Let's see a first example for the relationship between _weight (wt)_ and _miles per gallon (mpg)_.
 
 ```{r, fig.align="center"}
 cars_data %>%

@@ -8,7 +8,7 @@
 
 The origin of the name **R** goes back to the **S** language, developed by John Chambers between 1975 and 76 at Bell Labs (former AT&T and current Lucent Technologies) – the same place where important innovations in computing originated, such as the UNIX operating system, the C programming language, transistors, among others.
 
-In contrast to the commercial implementation of the S language – **S-PLUS**, Ross Ihaka and Robert Gentleman, from the Department of Statistics at Auckland - New Zealand created, in 1995, R as a free and open-source alternative to the S language. The name R itself comes from a play on the S language and the initials of the authors' names, Ross and Robert.
+In contrast to the commercial implementation of the S language – **S-PLUS**, Ross Ihaka and Robert Gentleman, professors from the Department of Statistics at Auckland - New Zealand, created R as a free and open-source alternative to the S language, in 1995. The name R itself comes from a play on the S language and the initials of the authors' names, Ross and Robert.
 
 ```{r born, fig.cap='Birthplace of R indicated with the `leaflet` package. Click on the blue pin', echo=FALSE}
 ### leaflet
@@ -36,9 +36,9 @@ Installing the R environment is easy to do on any operating system. On Windows, 
 * 6 Download the installation executable by clicking on Download R X.X.X for Windows.
 * 7 Run the downloaded file to install the software.
 
-The default R window on Windows is quite simple. You can see it's divided into a larger window, called R GUI (R Graphical User Interface) – that is, the R graphical interface; and an R Console window. In this last window, when starting R, there's a description about the version used and some tips about the language. The `>` sign indicates the command line or prompt, which is where you type the commands to be run by the interpreter.
+The default R window on Windows is quite simple. You can see it's divided into a larger window, called R GUI (R Graphical User Interface); and an R Console window. In this last window, when starting R, there's a description about the version used and some tips about the language. The `>` sign indicates the command line or prompt, which is where you type the commands to be run by the interpreter.
 
-![R Graphical Interface on Windows](./fig/R_GUI.png)
+![R Graphical Interface on Windows](./fig/r-window.png)
 
 Here, it's worth making a distinction between the R language and some other programming languages: the R language is an interpreted language, that is, code execution occurs together with code analysis, as if it were _on-demand_. You type the code, give the execution command and immediately the interpreter gathers the commands, translates them to machine language (or low-level language) and transfers them to the processor for execution. Another example of an interpreted language would be Python.
 
@@ -56,7 +56,7 @@ See below steps to install RStudio on Windows:
 
 As you can see, RStudio's graphical interface is more "friendly" than R's _default_. The window is divided into three parts: one for _Console_, another for _Environment, History and Connections_ and another for _Files, Plots, Packages, Help and Viewer_. Other tabs can be added to the _Environment, History and Connections_ panel, depending on the type of work you're developing in R, such as the _Presentations_ tab when producing slides or the _Build_ tab when building and testing a package. The names in general are self-explanatory, but we'll talk more about them in the next modules.
 
-![RStudio Interface](./fig/RStudio_layout1.png)
+![RStudio Interface](./fig/rstudio.png)
 
 ****
 
@@ -177,11 +177,11 @@ You can open several script windows, side by side, and navigate between them, as
 
 To add the script window (_source pane_), just create a new file by clicking on ![](./fig/add_icon.png), just below _File_, and then on ![](./fig/script_file.png). Our RStudio window should look like the following figure.
 
-![](./fig/RStudio_layout2.png)
+![](./fig/rstudio-script.png)
 
 Let's add all the lines of code we executed earlier to our newly created script.
 
-![](./fig/script_filled.png)
+![](./fig/rstudio-operators.png)
 
 **TIP:** You can insert comments in your scripts as a way to document the steps of your work for future reference. In R, comments are included with the `#` character.
 
@@ -354,7 +354,7 @@ If you want to know the number of packages available on CRAN today, execute:
 dim(available.packages(contrib.url(getOption("repos")), filters=list()))[1]
 ```
 
-In March 2020 numbers, as you must have noticed, we have more than 15 thousand packages on CRAN for the most diverse purposes. To know the types of packages existing in the repository, a visit to CRAN's [_Task Views_](https://cran.r-project.org/web/views/) is recommended. There are packages for Econometrics, Regional Economic Analysis, Statistics, Clustering, Clinical Trials, Time Series, Optimization, Data Processing, Machine Learning and many others.
+In March of 2020 there were more than 15 thousand packages available on CRAN for the most diverse purposes. To see types of packages which exist in the repository, a visit to CRAN's [_Task Views_](https://cran.r-project.org/web/views/) is recommended. There are packages for Econometrics, Regional Economic Analysis, Statistics, Clustering, Clinical Trials, Time Series, Optimization, Data Processing, Machine Learning and many others.
 
 #### Installing packages
 
@@ -686,7 +686,9 @@ v3[c(3,5)] <- c(TRUE, FALSE) # the replacement must be the same size as the inde
 
 ### Dataframes
 
-Dataframes are R's "tables". It will probably be one of the objects you'll use most to do data analysis. The Dataframe has rows and columns. Think of columns as vectors, where each of these vector positions indicates a row. We can think of Dataframes, then, as a collection of vectors, which can even be of different types, but necessarily must have the same size. This makes perfect sense, because in a table we have numeric variables, names, and other types that won't be covered in this course, such as dates, for example.
+
+
+Dataframes are R's "tables". They are likely one of the objects you'll use most to do data analysis. The Dataframe is a bidimentional object with rows and columns, in which the columns work like vectors, where each of these vector positions indicates a row. We can think of Dataframes, then, as a collection of vectors (columns), which can even be of different types, but necessarily must have the same size (number of rows).
 
 #### How to create a Dataframe
 

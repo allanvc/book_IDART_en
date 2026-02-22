@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
   <meta property="og:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
-  <meta name="github-repo" content="allanvc/book_IADR-T" />
+  <meta name="github-repo" content="allanvc/book_IDART_en" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content=" 4 Module IV | Introduction to Data Analysis with R and the Tidyverse" />
@@ -444,8 +444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb425-2"><a href="m4.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(strings, phone)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
 <div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="m4.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(strings, phone)</span></code></pre></div>
-<pre><code>## [1] &quot;212 555 1234&quot;                          
-## [2] &quot;212-555-8753&quot;                          
+<pre><code>## [1] &quot;212 555 1234&quot;                           &quot;212-555-8753&quot;                          
 ## [3] &quot;Work: 212-555-5835; Home: 646-555-5344&quot;</code></pre>
 <ul>
 <li><code>str_count()</code> counts the number of matches. To know how many phone numbers there are in each string, we can do:</li>
@@ -537,15 +536,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>This is a very interesting function to use when we’re working with identified data and want to hide SSNs, phone numbers, etc. See an example with phone numbers.</p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="m4.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(strings, phone, <span class="st">&quot;XXX-XXX-XXXX&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;apple&quot;                                 
-## [2] &quot;XXX-XXX-XXXX&quot;                          
-## [3] &quot;XXX-XXX-XXXX&quot;                          
-## [4] &quot;Work: XXX-XXX-XXXX; Home: 646-555-5344&quot;</code></pre>
+<pre><code>## [1] &quot;apple&quot;                                  &quot;XXX-XXX-XXXX&quot;                          
+## [3] &quot;XXX-XXX-XXXX&quot;                           &quot;Work: XXX-XXX-XXXX; Home: 646-555-5344&quot;</code></pre>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="m4.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(strings, phone, <span class="st">&quot;XXX-XXX-XXXX&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;apple&quot;                                 
-## [2] &quot;XXX-XXX-XXXX&quot;                          
-## [3] &quot;XXX-XXX-XXXX&quot;                          
-## [4] &quot;Work: XXX-XXX-XXXX; Home: XXX-XXX-XXXX&quot;</code></pre>
+<pre><code>## [1] &quot;apple&quot;                                  &quot;XXX-XXX-XXXX&quot;                          
+## [3] &quot;XXX-XXX-XXXX&quot;                           &quot;Work: XXX-XXX-XXXX; Home: XXX-XXX-XXXX&quot;</code></pre>
 <ul>
 <li><p><code>str_split_fixed()</code> splits the string into a fixed number of parts based on the pattern passed as argument and returns a character <strong>matrix</strong>.</p></li>
 <li><p><code>str_split()</code> separates a string into a variable number of parts and returns a <strong>list</strong> of character vectors.</p></li>
@@ -646,7 +641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb472-2"><a href="m4.html#cb472-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;bef&quot;</span>), <span class="st">&quot;a</span><span class="sc">\\</span><span class="st">.c&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] NA    &quot;a.c&quot; NA</code></pre>
 <p>To help you understand how many backslashes you’ll need to write in the code, let’s think that there are two different mechanisms: the <strong>R</strong> interpreter and the REGEX mechanism. When you send a regular expression to the interpreter, it will pass through a filter where <strong>R</strong> rules will be applied. After this first filter, the expression goes to a new instance, where the REGEX mechanism will act.</p>
-<p>Think of these steps as a toll booth. For each backslash that needs to reach the last toll stage, you also need a backslash <code>\</code> to “pay the toll” of the first stage. Backslashes <code>\</code>, are therefore your currency and you can’t carry more or less “money” than you need. If the expression has to arrive at the REGEX stage as <code>\.</code>, so that the last backslash is seen as a special character that de-characterizes the special functioning of <code>.</code>, thus making a literal match, you need to send one more backslash <code>\</code> to be consumed at the <strong>R</strong> interpreter stage. That’s why, in your code, you should write <code>\\.</code>.</p>
+<p>Think of these steps as a toll booth. For each backslash that needs to reach the last toll stage, you also need a backslash <code>\</code> to “pay the toll” of the first stage. Backslashes <code>\</code> are therefore your currency and you can’t carry more or less “money” than you need. If the expression has to arrive at the REGEX stage as <code>\.</code>, so that the last backslash is seen as a special character that de-characterizes the special functioning of <code>.</code>, thus making a literal match, you need to send one more backslash <code>\</code> to be consumed at the <strong>R</strong> interpreter stage. That’s why, in your code, you should write <code>\\.</code>.</p>
 <p>Have you thought, then, how we would do literal matching of a backslash in a string?</p>
 <p>Let’s think again as a toll booth, starting from the last stage to the first. In the REGEX mechanism, last toll stage, the expression must arrive with two backslashes <code>\\</code>: the left one acting as a special character, which eliminates the special function of the right backslash. Therefore, to carry two backslashes to the end of the process, you need two other backslashes <code>\\</code> to be consumed at the <strong>R</strong> interpreter stage. Therefore, to do literal matching of a backslash in a string, your code should be written as <code>\\\\</code>.</p>
 <p>What happens, in fact, is that the interpreter separates each pair of backslashes, making the left one remove the special functioning of the right backslash in each pair. Thus, only two backslashes arrive at the REGEX mechanism.</p>

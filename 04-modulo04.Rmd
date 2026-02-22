@@ -392,7 +392,7 @@ str_extract(c("abc", "a.c", "bef"), "a\\.c")
 
 To help you understand how many backslashes you'll need to write in the code, let's think that there are two different mechanisms: the **R** interpreter and the REGEX mechanism. When you send a regular expression to the interpreter, it will pass through a filter where **R** rules will be applied. After this first filter, the expression goes to a new instance, where the REGEX mechanism will act.
 
-Think of these steps as a toll booth. For each backslash that needs to reach the last toll stage, you also need a backslash `\` to "pay the toll" of the first stage. Backslashes `\`, are therefore your currency and you can't carry more or less "money" than you need. If the expression has to arrive at the REGEX stage as `\.`, so that the last backslash is seen as a special character that de-characterizes the special functioning of `.`, thus making a literal match, you need to send one more backslash `\` to be consumed at the **R** interpreter stage. That's why, in your code, you should write `\\.`.
+Think of these steps as a toll booth. For each backslash that needs to reach the last toll stage, you also need a backslash `\` to "pay the toll" of the first stage. Backslashes `\` are therefore your currency and you can't carry more or less "money" than you need. If the expression has to arrive at the REGEX stage as `\.`, so that the last backslash is seen as a special character that de-characterizes the special functioning of `.`, thus making a literal match, you need to send one more backslash `\` to be consumed at the **R** interpreter stage. That's why, in your code, you should write `\\.`.
 
 Have you thought, then, how we would do literal matching of a backslash in a string?
 

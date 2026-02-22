@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://allanvc.github.io/book_IDART_en/img/cover_dark_v2.jpg" />
   <meta property="og:description" content="Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse." />
-  <meta name="github-repo" content="allanvc/book_IADR-T" />
+  <meta name="github-repo" content="allanvc/book_IDART_en" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content=" 2 Module II | Introduction to Data Analysis with R and the Tidyverse" />
@@ -334,12 +334,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb172-8"><a href="m2.html#cb172-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span></code></pre></div>
 <p>If you don’t want to save the database on your computer, reading the file directly from the website, you can also do that. Just copy the file address shown in the browser and pass it to the <code>file</code> argument. Paths passed to the <code>file</code> argument starting with <code>http://</code>, <code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> result in automatic download and reading of the file.</p>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for
-## details, e.g.:
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
 <pre><code>## Rows: 1599 Columns: 12</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
 ## chr (5): volatile acidity, citric acid, chlorides, density, sulphates
 ## dbl (2): total sulfur dioxide, quality
@@ -366,29 +365,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb177-15"><a href="m2.html#cb177-15" aria-hidden="true" tabindex="-1"></a>                       )</span>
 <span id="cb177-16"><a href="m2.html#cb177-16" aria-hidden="true" tabindex="-1"></a>                     )</span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for
-## details, e.g.:
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
 <p>Once the file is read, we can inspect it by calling the created object, or by clicking on the object name in our <em>environment</em>.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="m2.html#cb180-1" aria-hidden="true" tabindex="-1"></a>wine_data</span></code></pre></div>
 <pre><code>## # A tibble: 1,599 × 12
-##    `fixed acidity` `volatile acidity` `citric acid` `residual sugar`
-##              &lt;dbl&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
-##  1              NA                 NA             0               NA
-##  2              NA                 NA             0               NA
-##  3              NA                 NA            NA               NA
-##  4              NA                 NA            NA               NA
-##  5              NA                 NA             0               NA
-##  6              NA                 NA             0               NA
-##  7              NA                 NA            NA               NA
-##  8              NA                 NA             0               NA
-##  9              NA                 NA            NA                2
-## 10              NA                 NA            NA               NA
+##    `fixed acidity` `volatile acidity` `citric acid` `residual sugar` chlorides `free sulfur dioxide`
+##              &lt;dbl&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;                 &lt;dbl&gt;
+##  1              NA                 NA             0               NA        NA                    11
+##  2              NA                 NA             0               NA        NA                    25
+##  3              NA                 NA            NA               NA        NA                    15
+##  4              NA                 NA            NA               NA        NA                    17
+##  5              NA                 NA             0               NA        NA                    11
+##  6              NA                 NA             0               NA        NA                    13
+##  7              NA                 NA            NA               NA        NA                    15
+##  8              NA                 NA             0               NA        NA                    15
+##  9              NA                 NA            NA                2        NA                     9
+## 10              NA                 NA            NA               NA        NA                    17
 ## # ℹ 1,589 more rows
-## # ℹ 8 more variables: chlorides &lt;dbl&gt;, `free sulfur dioxide` &lt;dbl&gt;,
-## #   `total sulfur dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;,
-## #   alcohol &lt;dbl&gt;, quality &lt;int&gt;</code></pre>
+## # ℹ 6 more variables: `total sulfur dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;, alcohol &lt;dbl&gt;,
+## #   quality &lt;int&gt;</code></pre>
 <p>Note that this file doesn’t look much like the classic Dataframe format we saw in Module <a href="m1.html#m1">1</a>. It’s actually a new type of object, which follows the <em>Tidyverse</em> philosophy, commented on in the previous section. We have here a <code>tibble</code>, which is nothing more than a friendlier Dataframe. In general terms, the difference between a classic Dataframe and a <code>tibble</code> is mainly in the information presented to us when we print the object’s content to the console. Unlike a Dataframe, a <code>tibble</code> shows us only the first 10 rows of the table, the column types, and only the content of columns that fit on our screen.</p>
 <p>Another difference is in the result when we perform indexing. We can still use <code>[row_index, column_index]</code> or <code>dataframe_name$column_name</code>. The thing is that indexing with brackets will return a <code>tibble</code>, even if the operation results in a single column. Indexing via <code>$</code> will return a vector. In summary, the first doesn’t change the object type - we continue with a <code>tibble</code>. The second changes the object type.</p>
 <p>Test this in practice:</p>
@@ -650,20 +647,19 @@ run;</code></pre>
 <p>However, <code>select()</code> “abandons” all other variables when you do a renaming. It’s better then to use <code>rename()</code>:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="m2.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(cars_data, <span class="at">miles_per_gallon =</span> mpg)</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 11
-##    miles_per_gallon   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-##               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1             21       6  160    110  3.9   2.62  16.5     0     1     4
-##  2             21       6  160    110  3.9   2.88  17.0     0     1     4
-##  3             22.8     4  108     93  3.85  2.32  18.6     1     1     4
-##  4             21.4     6  258    110  3.08  3.22  19.4     1     0     3
-##  5             18.7     8  360    175  3.15  3.44  17.0     0     0     3
-##  6             18.1     6  225    105  2.76  3.46  20.2     1     0     3
-##  7             14.3     8  360    245  3.21  3.57  15.8     0     0     3
-##  8             24.4     4  147.    62  3.69  3.19  20       1     0     4
-##  9             22.8     4  141.    95  3.92  3.15  22.9     1     0     4
-## 10             19.2     6  168.   123  3.92  3.44  18.3     1     0     4
-## # ℹ 22 more rows
-## # ℹ 1 more variable: carb &lt;dbl&gt;</code></pre>
+##    miles_per_gallon   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1             21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2             21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3             22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4             21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5             18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6             18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7             14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8             24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9             22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10             19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ℹ 22 more rows</code></pre>
 </div>
 <div id="adding-new-columns-with-mutate" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Adding new columns with <code>mutate()</code><a href="m2.html#adding-new-columns-with-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -672,20 +668,19 @@ run;</code></pre>
 <span id="cb210-2"><a href="m2.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt</span>
 <span id="cb210-3"><a href="m2.html#cb210-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 12
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
-##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
-##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
-##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
-##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
-##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
-##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
-##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
-##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # ℹ 22 more rows
-## # ℹ 1 more variable: power_to_weight &lt;dbl&gt;</code></pre>
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb power_to_weight
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4            42.0
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4            38.3
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1            40.1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1            34.2
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2            50.9
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1            30.3
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4            68.6
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2            19.4
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2            30.2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4            35.8
+## # ℹ 22 more rows</code></pre>
 <p><code>mutate()</code> even allows us to refer to columns we just created in the same command. Let’s save this change in a new <em>tibble</em>, called <code>cars_data2</code></p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="m2.html#cb212-1" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cars_data,</span>
 <span id="cb212-2"><a href="m2.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">power_to_weight =</span> hp <span class="sc">/</span> wt,</span>
@@ -820,8 +815,7 @@ run;</code></pre>
 <p>Example:</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="m2.html#cb226-1" aria-hidden="true" tabindex="-1"></a>by_cyl_am <span class="ot">&lt;-</span> <span class="fu">group_by</span>(cars_data2, cyl, am)</span>
 <span id="cb226-2"><a href="m2.html#cb226-2" aria-hidden="true" tabindex="-1"></a>(summary_by_am <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_cyl_am, <span class="at">count =</span> <span class="fu">n</span>()))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the
-## `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 6 × 3
 ## # Groups:   cyl [3]
 ##     cyl    am count
@@ -952,8 +946,7 @@ run;</code></pre>
 <span id="cb241-7"><a href="m2.html#cb241-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb241-8"><a href="m2.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_cars <span class="sc">&gt;</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Adding missing grouping variables: `cyl`, `am`
-## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the
-## `.groups` argument.</code></pre>
+## `summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 2 × 4
 ## # Groups:   cyl [2]
 ##     cyl    am total_cars avg_hp
@@ -1075,7 +1068,7 @@ run;</code></pre>
 <span id="cb245-3"><a href="m2.html#cb245-3" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
 <span id="cb245-4"><a href="m2.html#cb245-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>cars_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg))</span></code></pre></div>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-88-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Let’s see a first example for the relationship between <em>weight (wt)</em> vs <em>miles per gallon (mpg)</em>.</p>
+<p>Let’s see a first example for the relationship between <em>weight (wt)</em> and <em>miles per gallon (mpg)</em>.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="m2.html#cb246-1" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
 <span id="cb246-2"><a href="m2.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg)) <span class="sc">+</span></span>
 <span id="cb246-3"><a href="m2.html#cb246-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
@@ -1101,9 +1094,8 @@ run;</code></pre>
 <span id="cb249-7"><a href="m2.html#cb249-7" aria-hidden="true" tabindex="-1"></a>cars_data2 <span class="sc">%&gt;%</span></span>
 <span id="cb249-8"><a href="m2.html#cb249-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>wt, <span class="at">y=</span>mpg, <span class="at">alpha=</span>prob_sim)) <span class="sc">+</span></span>
 <span id="cb249-9"><a href="m2.html#cb249-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<pre><code>## Warning in grid.Call.graphics(C_points, x$x, x$y, x$pch, x$size):
-## semi-transparency is not supported on this device: reported only once per
-## page</code></pre>
+<pre><code>## Warning in grid.Call.graphics(C_points, x$x, x$y, x$pch, x$size): semi-transparency is not supported on this
+## device: reported only once per page</code></pre>
 <p><img src="IDART_en_files/figure-html/unnamed-chunk-91-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In our case, this graph isn’t very useful because we have several overlapping points and this makes it difficult to perceive how colors are varying. However, it serves to illustrate this possibility with <code>ggplot2</code>.</p>
 <p>A better way to demonstrate different cylinder numbers would be to use different shapes (<code>shape</code> argument):</p>

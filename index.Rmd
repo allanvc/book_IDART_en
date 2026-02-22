@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to Data Analysis with R and the Tidyverse"
 author: "Allan Quadros, Ph.D."
-date: "October 2025"
+date: "October 2025 | Revision February 2026"
 cover-image: img/cover_dark_v2.jpg
 apple-touch-icon: img/apple-touch-icon.png
 favicon: img/favicon.ico
@@ -27,7 +27,7 @@ documentclass: book
 # bibliography: [book.bib, packages.bib]
 # biblio-style: apalike
 # link-citations: no
-github-repo: allanvc/book_IADR-T
+github-repo: allanvc/book_IDART_en
 description: "Textbook accompanying the Introductory Course on Data Analysis in R using Tidyverse."
 ---
 
@@ -78,7 +78,7 @@ Module \@ref(m4) begins with a focus on string manipulation and regular expressi
 
 **Allan Quadros** is an Instructor of Information Systems and Operations Management at the University of North Florida (UNF), where he teaches data and business analytics in the Coggin College of Business. He earned a Ph.D. in Statistics from Kansas State University (2025), an M.Sc. in Economic Development from the State University of Campinas (UNICAMP, 2012), and a B.Sc. in Statistics from the University of Brasília (UnB, 2018).
 
-Allan is the author of several **R** packages, including [emstreeR](https://www.github.com/allanvc/emstreeR), [mRpostman](https://allanvc.github.io/mRpostman)—recognized by RStudio’s R Views Blog as one of the top 40 new CRAN packages in August 2019—and [onlineretail](https://www.github.com/allanvc/onlineretail). His work spans computational statistics, Bayesian hierarchical modeling, financial mathematics, and data-driven applications in business and finance.
+Allan is the author of several **R** packages, including [emstreeR](https://www.github.com/allanvc/emstreeR), [mRpostman](https://allanvc.github.io/mRpostman)—recognized by RStudio’s R Views Blog as one of the top 40 new CRAN packages in August 2019—and [onlineretail](https://www.github.com/allanvc/onlineretail). His work spans computational statistics, Bayesian statistics, financial econometrics, and data-driven applications in business and finance.
 
 Among his professional experience, selected highlights include serving as Lead Data Scientist at Brazil’s National Fund for Educational Development (FNDE) and developing an equipment-failure risk model for the USDA’s National Bio and Agro-Defense Facility (NBAF).
 
